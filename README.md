@@ -1,2 +1,2 @@
 # good-fruit-platform
-Community besed platformed
+Community based platformed
