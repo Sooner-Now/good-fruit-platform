@@ -17,130 +17,111 @@
     <div class="container">
 
       <section style="margin-bottom: 18px;">
-        <h1 style="font-size: 28px;">Needs &amp; support</h1>
-        <p class="text-secondary">Mutual aid that's practical and prayerful.</p>
+        <h1 style="font-size: 28px;">Needs exchange</h1>
+        <p class="text-secondary">Match people with needs to people, churches, businesses, and neighbors with means.</p>
       </section>
 
-      <div data-component="local-feed" data-feed="needs" data-title="Local needs sources" style="margin-bottom: 18px;"></div>
+      <section class="needs-intake card" aria-label="Needs source intake">
+        <div class="needs-intake__head">
+          <div>
+            <p class="section-eyebrow">Source inbox</p>
+            <h2>Public listings, approved group posts, and church-submitted needs</h2>
+            <p class="text-sm text-secondary">Good Fruit only highlights posts that are public, partner-approved, or submitted directly. Private Facebook groups and personal profiles require permission before anything is imported.</p>
+          </div>
+          <button class="btn btn-primary btn-sm" data-testid="btn-source-review">Review sources</button>
+        </div>
+        <div class="source-grid">
+          <article class="source-card source-card--active">
+            <span class="badge badge-green">Ready</span>
+            <h3>Craigslist public searches</h3>
+            <p class="text-sm text-secondary">Monitor Central Oregon posts for wanted items, free goods, gigs, rides, and services.</p>
+            <a href="https://bend.craigslist.org/search/sss?query=free%20furniture" target="_blank" rel="noreferrer">Open Bend search</a>
+          </article>
+          <article class="source-card">
+            <span class="badge badge-amber">Permission needed</span>
+            <h3>Facebook groups</h3>
+            <p class="text-sm text-secondary">Use admin-approved public group exports, Page posts, or manual submissions from group moderators.</p>
+            <a href="https://www.facebook.com/help/412300192139228" target="_blank" rel="noreferrer">Privacy rules</a>
+          </article>
+          <article class="source-card source-card--active">
+            <span class="badge badge-green">Ready</span>
+            <h3>Church &amp; nonprofit partners</h3>
+            <p class="text-sm text-secondary">Let local teams submit vetted needs, volunteer roles, and offers from members.</p>
+            <a href="https://www.findhelp.org" target="_blank" rel="noreferrer">Resource network</a>
+          </article>
+        </div>
+      </section>
 
       <!-- Impact stats -->
       <div class="grid grid-3" style="margin-bottom: 18px;">
         <div class="card" style="text-align:center; padding: 14px 12px;">
-          <div class="prayer-stat__value font-display tabular" style="font-size: 22px; font-weight: 700;">218</div>
-          <div class="text-xs text-muted" style="text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600;">Needs met</div>
+          <div class="prayer-stat__value font-display tabular" id="needs-open-count" style="font-size: 22px; font-weight: 700;">--</div>
+          <div class="text-xs text-muted" style="text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600;">Open needs</div>
         </div>
         <div class="card" style="text-align:center; padding: 14px 12px;">
-          <div class="font-display tabular" style="font-size: 22px; font-weight: 700; color: var(--color-lime-hover);">$14.2K</div>
-          <div class="text-xs text-muted" style="text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600;">Given this month</div>
+          <div class="font-display tabular" id="needs-offer-count" style="font-size: 22px; font-weight: 700; color: var(--color-lime-hover);">--</div>
+          <div class="text-xs text-muted" style="text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600;">Available offers</div>
         </div>
         <div class="card" style="text-align:center; padding: 14px 12px;">
-          <div class="font-display tabular" style="font-size: 22px; font-weight: 700; color: var(--color-turquoise-hover);">142</div>
-          <div class="text-xs text-muted" style="text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600;">Active helpers</div>
+          <div class="font-display tabular" id="needs-match-count" style="font-size: 22px; font-weight: 700; color: var(--color-turquoise-hover);">--</div>
+          <div class="text-xs text-muted" style="text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600;">Suggested matches</div>
         </div>
       </div>
+
+      <section class="needs-controls card" aria-label="Needs filters">
+        <div class="needs-controls__grid">
+          <div class="field">
+            <label for="needs-search">Search needs and offers</label>
+            <input id="needs-search" type="search" placeholder="Furniture, rent, ride, childcare, food..." autocomplete="off" data-testid="input-needs-search" />
+          </div>
+          <div class="field">
+            <label for="needs-source">Source</label>
+            <select id="needs-source" data-testid="select-needs-source">
+              <option value="all">All sources</option>
+              <option value="church">Church partners</option>
+              <option value="craigslist">Craigslist</option>
+              <option value="facebook">Facebook approved</option>
+              <option value="community">Community boards</option>
+              <option value="nonprofit">Nonprofits</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="needs-mode">Show</label>
+            <select id="needs-mode" data-testid="select-needs-mode">
+              <option value="all">Needs and offers</option>
+              <option value="need">Needs only</option>
+              <option value="offer">Offers only</option>
+            </select>
+          </div>
+        </div>
+      </section>
 
       <!-- Categories -->
       <div class="chip-row" data-chip-group>
         <button class="chip is-active" aria-pressed="true" data-filter="all">All</button>
-        <button class="chip" aria-pressed="false">Financial</button>
-        <button class="chip" aria-pressed="false">Housing</button>
-        <button class="chip" aria-pressed="false">Food</button>
-        <button class="chip" aria-pressed="false">Transport</button>
-        <button class="chip" aria-pressed="false">Emotional</button>
-        <button class="chip" aria-pressed="false">Childcare</button>
+        <button class="chip" aria-pressed="false" data-filter="financial">Financial</button>
+        <button class="chip" aria-pressed="false" data-filter="housing">Housing</button>
+        <button class="chip" aria-pressed="false" data-filter="food">Food</button>
+        <button class="chip" aria-pressed="false" data-filter="transport">Transport</button>
+        <button class="chip" aria-pressed="false" data-filter="household">Household</button>
+        <button class="chip" aria-pressed="false" data-filter="childcare">Childcare</button>
       </div>
 
+      <section class="section">
+        <div class="section-title">
+          <h2>Suggested pairings</h2>
+          <span class="badge badge-gold">Means to needs</span>
+        </div>
+        <div class="match-grid" id="needs-match-list"></div>
+      </section>
+
       <!-- Needs feed -->
-      <section class="section stack">
-
-        <article class="card need-card urgency-high">
-          <div class="row" style="margin-bottom: 8px;">
-            <div class="avatar">JR</div>
-            <div style="flex:1;">
-              <strong>Joelle Reyes</strong>
-              <p class="text-xs text-muted" style="margin: 0;">Brooklyn, NY · 2h ago</p>
-            </div>
-            <span class="badge badge-red">High urgency</span>
-          </div>
-          <h3 style="margin-bottom: 6px;">Eviction notice — need $1,400 by Friday</h3>
-          <p class="text-sm text-secondary">Single mom of two, lost a contract last month. Working two jobs but rent's behind. Anything helps.</p>
-          <div class="row-wrap" style="margin: 10px 0;">
-            <span class="skill-tag">Financial</span>
-            <span class="skill-tag">Housing</span>
-          </div>
-          <div class="progress progress--orange"><div class="progress__bar" style="width: 64%;"></div></div>
-          <div class="between" style="margin-top: 8px;">
-            <span class="text-xs"><strong style="color: var(--color-text);">$890</strong> raised of $1,400 · 12 helpers</span>
-          </div>
-          <div class="row-tight" style="margin-top: 12px;">
-            <button class="btn btn-coral btn-sm" data-testid="btn-help-1">💝 Help</button>
-            <button class="btn btn-ghost btn-sm">🙏 Pray</button>
-            <button class="btn btn-ghost btn-sm">Share</button>
-          </div>
-        </article>
-
-        <article class="card need-card urgency-medium">
-          <div class="row" style="margin-bottom: 8px;">
-            <div class="avatar avatar-violet">FK</div>
-            <div style="flex:1;">
-              <strong>Father Kenechukwu</strong>
-              <p class="text-xs text-muted" style="margin: 0;">Bronx, NY · 5h ago</p>
-            </div>
-            <span class="badge badge-amber">Medium</span>
-          </div>
-          <h3 style="margin-bottom: 6px;">Need a working car seat (toddler)</h3>
-          <p class="text-sm text-secondary">For a family from our parish — theirs broke, and they're driving 40 mins to the children's hospital twice a week.</p>
-          <div class="row-wrap" style="margin: 10px 0;">
-            <span class="skill-tag">Childcare</span>
-            <span class="skill-tag">Transport</span>
-          </div>
-          <div class="row-tight" style="margin-top: 6px;">
-            <button class="btn btn-primary btn-sm">🤝 Offer help</button>
-            <button class="btn btn-ghost btn-sm">🙏 Pray</button>
-          </div>
-        </article>
-
-        <article class="card need-card urgency-low">
-          <div class="row" style="margin-bottom: 8px;">
-            <div class="avatar avatar-rose">MT</div>
-            <div style="flex:1;">
-              <strong>Mrs. Tanaka</strong>
-              <p class="text-xs text-muted" style="margin: 0;">Queens, NY · 1d ago</p>
-            </div>
-            <span class="badge badge-green">Ongoing</span>
-          </div>
-          <h3 style="margin-bottom: 6px;">Weekly visit — homebound widow</h3>
-          <p class="text-sm text-secondary">She's 84, lives alone since her husband passed. Would love a visit and someone to read to her on Wednesdays.</p>
-          <div class="row-wrap" style="margin: 10px 0;">
-            <span class="skill-tag">Emotional</span>
-            <span class="skill-tag">Companionship</span>
-          </div>
-          <div class="row-tight">
-            <button class="btn btn-lime btn-sm">🤝 Sign up</button>
-            <button class="btn btn-ghost btn-sm">🙏 Pray</button>
-          </div>
-        </article>
-
-        <article class="card need-card urgency-medium">
-          <div class="row" style="margin-bottom: 8px;">
-            <div class="avatar avatar-teal">CN</div>
-            <div style="flex:1;">
-              <strong>Carlos N.</strong>
-              <p class="text-xs text-muted" style="margin: 0;">Jersey City, NJ · 1d ago</p>
-            </div>
-            <span class="badge badge-amber">Medium</span>
-          </div>
-          <h3 style="margin-bottom: 6px;">Job lead in trades / construction</h3>
-          <p class="text-sm text-secondary">Recently certified electrician, just moved here. Looking for an introduction or shop that'll mentor.</p>
-          <div class="row-wrap" style="margin: 10px 0;">
-            <span class="skill-tag">Employment</span>
-          </div>
-          <div class="row-tight">
-            <button class="btn btn-primary btn-sm">🤝 Offer help</button>
-            <button class="btn btn-ghost btn-sm">🙏 Pray</button>
-          </div>
-        </article>
-
+      <section class="section">
+        <div class="section-title">
+          <h2>Needs and offers</h2>
+          <button class="btn btn-primary btn-sm" data-testid="btn-add-offer">+ Offer help</button>
+        </div>
+        <div class="stack" id="needs-feed"></div>
       </section>
 
       <button class="btn btn-coral btn-block" style="margin-top: 8px;" data-testid="btn-post-need">+ Post a need</button>
@@ -150,6 +131,7 @@
 
   <div data-component="bottom-nav" data-active="needs"></div>
   <script src="assets/shared.js"></script>
+  <script src="assets/needs-board.js"></script>
 <script data-pplx-inline-edit>
 (function () {
   if (window === window.top) return;
