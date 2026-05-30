@@ -22,35 +22,66 @@
   <main class="app-main">
     <div class="container">
       <section style="margin-bottom: 18px;">
-        <h1 style="font-size: 28px;">Global prayer wall</h1>
-        <p class="text-secondary">Around the world, your family is praying. Come pray with us.</p>
+        <h1 style="font-size: 28px;">Central Oregon prayer map</h1>
+        <p class="text-secondary">Find local churches, see nearby ministry needs, and pray with the region.</p>
       </section>
 
-      <div data-component="local-feed" data-feed="prayer" data-title="Local prayer partners" style="margin-bottom: 18px;"></div>
+      <section class="prayer-finder card" aria-label="Central Oregon church search">
+        <div class="prayer-finder__top">
+          <div>
+            <p class="section-eyebrow">Church locator</p>
+            <h2>Churches and prayer needs near Bend, Redmond, Sisters, Prineville, Madras, and La Pine</h2>
+          </div>
+          <span class="badge badge-green" id="church-source-badge">Loading live map</span>
+        </div>
+        <div class="prayer-search-row">
+          <div class="field prayer-search-field">
+            <label for="church-search">Search churches</label>
+            <input id="church-search" type="search" placeholder="Church, city, denomination, or need" autocomplete="off" data-testid="input-church-search" />
+          </div>
+          <div class="field prayer-filter-field">
+            <label for="need-filter">Prayer need</label>
+            <select id="need-filter" data-testid="select-prayer-need">
+              <option value="all">All needs</option>
+              <option value="urgent">Urgent</option>
+              <option value="community">Community care</option>
+              <option value="families">Families</option>
+              <option value="students">Students</option>
+              <option value="praise">Praise</option>
+            </select>
+          </div>
+        </div>
+        <p class="text-xs text-muted" id="church-map-status" aria-live="polite">Searching public map data for Central Oregon churches...</p>
+      </section>
 
-      <!-- Stats -->
-      <div class="grid grid-3" style="margin-bottom: 18px;">
+      <div class="grid grid-3 prayer-stat-grid" style="margin-bottom: 18px;">
         <div class="card prayer-stat">
-          <div class="prayer-stat__value tabular">1,284</div>
-          <div class="prayer-stat__label">Prayers today</div>
+          <div class="prayer-stat__value tabular" id="church-count">--</div>
+          <div class="prayer-stat__label">Churches mapped</div>
         </div>
         <div class="card prayer-stat">
-          <div class="prayer-stat__value tabular">47</div>
-          <div class="prayer-stat__label">Countries</div>
+          <div class="prayer-stat__value tabular" id="request-count">--</div>
+          <div class="prayer-stat__label">Known requests</div>
         </div>
         <div class="card prayer-stat">
-          <div class="prayer-stat__value tabular">9.2K</div>
-          <div class="prayer-stat__label">This week</div>
+          <div class="prayer-stat__value tabular" id="city-count">--</div>
+          <div class="prayer-stat__label">Communities</div>
         </div>
       </div>
 
-      <!-- Map -->
-      <div id="prayer-map" role="img" aria-label="World map of prayer requests"></div>
+      <div class="prayer-map-shell">
+        <div id="prayer-map" role="img" aria-label="Live map of Central Oregon churches and prayer requests"></div>
+        <div class="prayer-map-overlay">
+          <strong>Central Oregon</strong>
+          <span>Church locations from public OpenStreetMap data. Prayer needs appear when they are public or church-submitted.</span>
+        </div>
+      </div>
 
       <!-- Legend -->
       <div class="row-wrap" style="margin-top: 12px;">
-        <span class="badge badge-red"><span style="width:8px;height:8px;background:#ef4444;border-radius:50%;"></span> Urgent</span>
-        <span class="badge"><span style="width:8px;height:8px;background:#0ea5e9;border-radius:50%;"></span> Ongoing</span>
+        <span class="badge"><span style="width:8px;height:8px;background:#14b8a6;border-radius:50%;"></span> Church</span>
+        <span class="badge badge-red"><span style="width:8px;height:8px;background:#ef4444;border-radius:50%;"></span> Urgent request</span>
+        <span class="badge badge-gold"><span style="width:8px;height:8px;background:#facc15;border-radius:50%;"></span> Public need</span>
         <span class="badge badge-green"><span style="width:8px;height:8px;background:#10b981;border-radius:50%;"></span> Praise</span>
       </div>
 
@@ -65,66 +96,11 @@
       <!-- Prayer feed -->
       <section class="section">
         <div class="section-title">
-          <h2>Recent prayers</h2>
-          <button class="btn btn-primary btn-sm" data-testid="btn-add-prayer">+ Pray</button>
+          <h2>Church prayer feed</h2>
+          <button class="btn btn-primary btn-sm" data-testid="btn-add-prayer">+ Add request</button>
         </div>
 
-        <div class="stack">
-          <article class="card">
-            <div class="row" style="margin-bottom: 8px;">
-              <div class="avatar">DR</div>
-              <div style="flex:1;">
-                <div class="row-tight"><strong>Daniel Rivera</strong><span class="text-xs text-muted">· Austin, TX</span></div>
-                <span class="text-xs text-muted">12m ago</span>
-              </div>
-              <span class="badge badge-red">Urgent</span>
-            </div>
-            <blockquote style="margin:0; padding: 8px 14px; border-left: 3px solid var(--color-coral); font-style: italic; color: var(--color-text-secondary);">
-              Mom starts chemo Monday. Asking for peace, strength, and a clean scan in 90 days.
-            </blockquote>
-            <div class="row-tight" style="margin-top: 12px;">
-              <button class="btn btn-soft btn-sm" data-testid="btn-praying-1">🙏 247 praying</button>
-              <button class="btn btn-ghost btn-sm">💧 Give water</button>
-              <button class="btn btn-ghost btn-sm">☀️ Share sun</button>
-            </div>
-          </article>
-
-          <article class="card">
-            <div class="row" style="margin-bottom: 8px;">
-              <div class="avatar avatar-violet">MS</div>
-              <div style="flex:1;">
-                <div class="row-tight"><strong>Mei-Lin Sato</strong><span class="text-xs text-muted">· Tokyo, JP</span></div>
-                <span class="text-xs text-muted">1h ago</span>
-              </div>
-              <span class="badge">Ongoing</span>
-            </div>
-            <blockquote style="margin:0; padding: 8px 14px; border-left: 3px solid var(--color-turquoise); font-style: italic; color: var(--color-text-secondary);">
-              Praying for boldness to share with my coworkers. They have so many questions.
-            </blockquote>
-            <div class="row-tight" style="margin-top: 12px;">
-              <button class="btn btn-soft btn-sm">🙏 89 praying</button>
-              <button class="btn btn-ghost btn-sm">💧 Give water</button>
-            </div>
-          </article>
-
-          <article class="card">
-            <div class="row" style="margin-bottom: 8px;">
-              <div class="avatar avatar-green">PA</div>
-              <div style="flex:1;">
-                <div class="row-tight"><strong>Priya Anand</strong><span class="text-xs text-muted">· Atlanta, GA</span></div>
-                <span class="text-xs text-muted">3h ago</span>
-              </div>
-              <span class="badge badge-green">Praise</span>
-            </div>
-            <blockquote style="margin:0; padding: 8px 14px; border-left: 3px solid var(--color-lime); font-style: italic; color: var(--color-text-secondary);">
-              Got the apprenticeship I'd been praying about for 8 months. God is so faithful.
-            </blockquote>
-            <div class="row-tight" style="margin-top: 12px;">
-              <button class="btn btn-soft btn-sm">🎉 412 celebrating</button>
-              <button class="btn btn-ghost btn-sm">☀️ Share sun</button>
-            </div>
-          </article>
-        </div>
+        <div class="stack" id="church-prayer-list"></div>
       </section>
 
     </div>
@@ -133,56 +109,7 @@
   <div data-component="bottom-nav" data-active="prayer"></div>
   <script src="assets/shared.js"></script>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-  <script>
-  (function () {
-    const map = L.map('prayer-map', {
-      worldCopyJump: true,
-      scrollWheelZoom: false,
-    }).setView([18, 0], 2);
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-      maxZoom: 18,
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> · &copy; <a href="https://carto.com/attributions">CARTO</a>',
-    }).addTo(map);
-
-    const PRAYERS = [
-      { lat: 30.2672, lng: -97.7431, type: 'urgent', name: 'Daniel R.', loc: 'Austin, TX', text: "Mom's chemo starts Monday." },
-      { lat: 37.5665, lng: 126.9780, type: 'ongoing', name: 'Soo-Jin K.', loc: 'Seoul', text: 'For my brother to come back to faith.' },
-      { lat: 6.5244, lng: 3.3792, type: 'praise', name: 'Tunde A.', loc: 'Lagos', text: 'Pastor recovered fully — praise God.' },
-      { lat: 51.5074, lng: -0.1278, type: 'ongoing', name: 'Aisha M.', loc: 'London', text: 'Wisdom in a hard work decision.' },
-      { lat: -33.8688, lng: 151.2093, type: 'urgent', name: 'Liam W.', loc: 'Sydney', text: 'For our marriage — week 2 of counseling.' },
-      { lat: 19.4326, lng: -99.1332, type: 'ongoing', name: 'Carmen L.', loc: 'Mexico City', text: 'For peace in the colonia.' },
-      { lat: 1.3521, lng: 103.8198, type: 'praise', name: 'Hannah Y.', loc: 'Singapore', text: 'My grandmother prayed for the first time!' },
-      { lat: -1.2921, lng: 36.8219, type: 'urgent', name: 'Wanjiru K.', loc: 'Nairobi', text: 'Drought — pray for rain and harvest.' },
-      { lat: 52.5200, lng: 13.4050, type: 'ongoing', name: 'Lukas B.', loc: 'Berlin', text: 'Boldness with refugees on our block.' },
-      { lat: 35.6762, lng: 139.6503, type: 'ongoing', name: 'Mei-Lin S.', loc: 'Tokyo', text: 'For my coworkers asking questions.' },
-      { lat: -23.5505, lng: -46.6333, type: 'praise', name: 'Júlia C.', loc: 'São Paulo', text: 'New church plant launched Sunday.' },
-      { lat: 28.6139, lng: 77.2090, type: 'urgent', name: 'Vikram J.', loc: 'New Delhi', text: 'Healing for my son in hospital.' },
-      { lat: 45.4215, lng: -75.6972, type: 'ongoing', name: 'Marie L.', loc: 'Ottawa', text: 'For our adoption paperwork.' },
-      { lat: -26.2041, lng: 28.0473, type: 'praise', name: 'Sipho N.', loc: 'Johannesburg', text: 'God provided for school fees!' },
-      { lat: 41.9028, lng: 12.4964, type: 'ongoing', name: 'Giulia R.', loc: 'Rome', text: 'For my mother to find peace.' },
-    ];
-
-    const colorFor = (t) => t === 'urgent' ? '#ef4444' : t === 'praise' ? '#10b981' : '#0ea5e9';
-
-    PRAYERS.forEach((p) => {
-      const c = colorFor(p.type);
-      const icon = L.divIcon({
-        className: '',
-        html: `<div class="pulse-marker" style="background:${c}; color:${c};"></div>`,
-        iconSize: [14, 14],
-        iconAnchor: [7, 7],
-      });
-      L.marker([p.lat, p.lng], { icon }).addTo(map).bindPopup(
-        `<div style="min-width:180px;">
-          <strong>${p.name}</strong><br/>
-          <span style="color:#a8a29e; font-size:11px;">${p.loc}</span>
-          <p style="margin: 8px 0 6px; font-size: 13px; line-height:1.45;">${p.text}</p>
-          <span style="display:inline-block; padding: 2px 8px; border-radius: 99px; background: ${c}22; color: ${c}; font-size: 11px; font-weight: 700; text-transform: uppercase;">${p.type}</span>
-        </div>`
-      );
-    });
-  })();
-  </script>
+  <script src="assets/prayer-map.js"></script>
 <script data-pplx-inline-edit>
 (function () {
   if (window === window.top) return;
