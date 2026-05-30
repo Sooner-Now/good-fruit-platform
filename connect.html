@@ -17,193 +17,104 @@
     <div class="container">
 
       <section style="margin-bottom: 18px;">
-        <h1 style="font-size: 28px;">Connect</h1>
-        <p class="text-secondary">Mentors, projects, groups, and events.</p>
+        <h1 style="font-size: 28px;">Connect Central Oregon</h1>
+        <p class="text-secondary">Find groups, events, trainings, and projects where you can plug in, help out, or grow.</p>
       </section>
 
-      <div data-component="local-feed" data-feed="connect" data-title="Churches and communities to connect with" style="margin-bottom: 18px;"></div>
+      <section class="connect-source-panel card" aria-label="Connect source directory">
+        <div class="connect-source-panel__head">
+          <div>
+            <p class="section-eyebrow">Local opportunity radar</p>
+            <h2>Public volunteer boards, partner organizations, church teams, and community calendars</h2>
+            <p class="text-sm text-secondary">Good Fruit can highlight public opportunities and partner-submitted items. Private Facebook groups, text threads, and member lists stay permission-based.</p>
+          </div>
+          <button class="btn btn-primary btn-sm" data-testid="btn-refresh-connect">Refresh leads</button>
+        </div>
+        <div class="source-grid">
+          <article class="source-card source-card--active">
+            <span class="badge badge-green">Public board</span>
+            <h3>Connect Central Oregon</h3>
+            <p class="text-sm text-secondary">Regional volunteer listings from nonprofits and service organizations.</p>
+            <a href="https://volunteer.connectcentraloregon.org/" target="_blank" rel="noreferrer">Open board</a>
+          </article>
+          <article class="source-card source-card--active">
+            <span class="badge badge-green">Training</span>
+            <h3>Volunteer portals</h3>
+            <p class="text-sm text-secondary">Orientation and training pathways from local service partners.</p>
+            <a href="https://www.councilonaging.org/volunteer-portal/" target="_blank" rel="noreferrer">Open training</a>
+          </article>
+          <article class="source-card">
+            <span class="badge badge-amber">Permission needed</span>
+            <h3>Church &amp; community groups</h3>
+            <p class="text-sm text-secondary">Small groups, teams, and private communities can be added by approved leaders.</p>
+            <a href="https://www.facebook.com/help/412300192139228" target="_blank" rel="noreferrer">Privacy rules</a>
+          </article>
+        </div>
+      </section>
+
+      <div class="grid grid-3" style="margin-bottom: 18px;">
+        <div class="card connect-stat">
+          <div class="connect-stat__value tabular" id="connect-count">--</div>
+          <div class="connect-stat__label">Open pathways</div>
+        </div>
+        <div class="card connect-stat">
+          <div class="connect-stat__value tabular" id="connect-training-count">--</div>
+          <div class="connect-stat__label">Trainings</div>
+        </div>
+        <div class="card connect-stat">
+          <div class="connect-stat__value tabular" id="connect-city-count">--</div>
+          <div class="connect-stat__label">Communities</div>
+        </div>
+      </div>
+
+      <section class="connect-controls card" aria-label="Connect filters">
+        <div class="connect-controls__grid">
+          <div class="field">
+            <label for="connect-search">Search opportunities</label>
+            <input id="connect-search" type="search" placeholder="Mentor, meals, wildlife, recovery, youth, seniors..." autocomplete="off" data-testid="input-connect-search" />
+          </div>
+          <div class="field">
+            <label for="connect-city">Area</label>
+            <select id="connect-city" data-testid="select-connect-city">
+              <option value="all">All areas</option>
+              <option value="Bend">Bend</option>
+              <option value="Redmond">Redmond</option>
+              <option value="Sisters">Sisters</option>
+              <option value="Prineville">Prineville</option>
+              <option value="Madras">Madras</option>
+              <option value="La Pine">La Pine</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="connect-fit">Best fit</label>
+            <select id="connect-fit" data-testid="select-connect-fit">
+              <option value="all">Any fit</option>
+              <option value="serve">Serve</option>
+              <option value="learn">Learn</option>
+              <option value="belong">Belong</option>
+              <option value="lead">Lead</option>
+            </select>
+          </div>
+        </div>
+      </section>
 
       <!-- Tabs -->
       <div data-tabs>
         <div class="tab-row" role="tablist" aria-label="Connect sections">
-          <button class="tab" role="tab" aria-selected="true" aria-controls="panel-mentors" id="tab-mentors">Mentors</button>
-          <button class="tab" role="tab" aria-selected="false" aria-controls="panel-projects" id="tab-projects">Projects</button>
+          <button class="tab" role="tab" aria-selected="true" aria-controls="panel-opportunities" id="tab-opportunities">All</button>
           <button class="tab" role="tab" aria-selected="false" aria-controls="panel-groups" id="tab-groups">Groups</button>
           <button class="tab" role="tab" aria-selected="false" aria-controls="panel-events" id="tab-events">Events</button>
+          <button class="tab" role="tab" aria-selected="false" aria-controls="panel-trainings" id="tab-trainings">Trainings</button>
+          <button class="tab" role="tab" aria-selected="false" aria-controls="panel-projects" id="tab-projects">Projects</button>
         </div>
       </div>
 
       <div style="margin-top: 16px;">
-        <!-- MENTORS -->
-        <section id="panel-mentors" role="tabpanel" aria-labelledby="tab-mentors" class="stack">
-
-          <article class="card mentor-card">
-            <div class="mentor-card__head">
-              <div class="avatar avatar-lg avatar-teal">MN</div>
-              <div style="flex:1;">
-                <div class="between">
-                  <h3>Marcus Ndebele</h3>
-                  <span class="badge badge-green">Available</span>
-                </div>
-                <p class="text-sm text-muted" style="margin:2px 0 0;">Worship pastor · Philadelphia, PA</p>
-                <p class="text-sm" style="margin: 8px 0 10px; color: var(--color-text-secondary);">10+ years mentoring young worship leaders. Loves talking through both theology and chord progressions.</p>
-                <div class="row-wrap">
-                  <span class="skill-tag">Worship</span>
-                  <span class="skill-tag">Leadership</span>
-                  <span class="skill-tag">Songwriting</span>
-                </div>
-              </div>
-            </div>
-            <button class="btn btn-primary btn-block" data-testid="btn-request-mentor-1">Request mentorship</button>
-          </article>
-
-          <article class="card mentor-card">
-            <div class="mentor-card__head">
-              <div class="avatar avatar-lg avatar-violet">PA</div>
-              <div style="flex:1;">
-                <div class="between">
-                  <h3>Priya Anand</h3>
-                  <span class="badge badge-amber">Limited</span>
-                </div>
-                <p class="text-sm text-muted" style="margin:2px 0 0;">CPA &amp; small business advisor · Atlanta, GA</p>
-                <p class="text-sm" style="margin: 8px 0 10px; color: var(--color-text-secondary);">Helping believers steward money well — budgeting, taxes, generous giving plans.</p>
-                <div class="row-wrap">
-                  <span class="skill-tag">Finance</span>
-                  <span class="skill-tag">Stewardship</span>
-                  <span class="skill-tag">Small biz</span>
-                </div>
-              </div>
-            </div>
-            <button class="btn btn-ghost btn-block">Request mentorship</button>
-          </article>
-
-          <article class="card mentor-card">
-            <div class="mentor-card__head">
-              <div class="avatar avatar-lg avatar-rose">EK</div>
-              <div style="flex:1;">
-                <div class="between">
-                  <h3>Esther Kim</h3>
-                  <span class="badge badge-green">Available</span>
-                </div>
-                <p class="text-sm text-muted" style="margin:2px 0 0;">Marriage &amp; family counselor · Los Angeles, CA</p>
-                <p class="text-sm" style="margin: 8px 0 10px; color: var(--color-text-secondary);">Twenty years walking with couples and families through hard seasons.</p>
-                <div class="row-wrap">
-                  <span class="skill-tag">Marriage</span>
-                  <span class="skill-tag">Counseling</span>
-                  <span class="skill-tag">Family</span>
-                </div>
-              </div>
-            </div>
-            <button class="btn btn-primary btn-block">Request mentorship</button>
-          </article>
-
-        </section>
-
-        <!-- PROJECTS -->
-        <section id="panel-projects" role="tabpanel" aria-labelledby="tab-projects" hidden class="stack">
-          <article class="card">
-            <div class="row" style="margin-bottom: 10px;">
-              <div style="font-size: 36px;">🏘️</div>
-              <div>
-                <h3>Habitat build · West side</h3>
-                <p class="text-xs text-muted">Organized by Riverside Church</p>
-              </div>
-              <span class="badge badge-coral" style="margin-left:auto;">8 spots</span>
-            </div>
-            <p class="text-sm text-secondary">Three-weekend build starting May 11. We need framers, painters, and lots of sandwich-makers.</p>
-            <div class="row-tight" style="margin: 10px 0;">
-              <div class="row-tight" style="margin-left: 0;">
-                <div class="avatar avatar-sm avatar-teal">M</div>
-                <div class="avatar avatar-sm avatar-rose" style="margin-left: -8px;">J</div>
-                <div class="avatar avatar-sm avatar-violet" style="margin-left: -8px;">P</div>
-                <div class="avatar avatar-sm" style="margin-left: -8px;">+9</div>
-              </div>
-              <span class="text-xs text-muted">12 volunteers</span>
-            </div>
-            <button class="btn btn-lime btn-block" data-testid="btn-join-habitat">Join project</button>
-          </article>
-
-          <article class="card">
-            <div class="row" style="margin-bottom: 10px;">
-              <div style="font-size: 36px;">🍲</div>
-              <div>
-                <h3>Saturday soup kitchen</h3>
-                <p class="text-xs text-muted">Organized by Hannah Pereira</p>
-              </div>
-              <span class="badge badge-green" style="margin-left:auto;">Open</span>
-            </div>
-            <p class="text-sm text-secondary">Weekly meal prep & service from 9 AM to 1 PM. We'd love hands and heart.</p>
-            <button class="btn btn-lime btn-block">Join project</button>
-          </article>
-        </section>
-
-        <!-- GROUPS -->
-        <section id="panel-groups" role="tabpanel" aria-labelledby="tab-groups" hidden>
-          <div class="stack">
-            <div class="card row" style="gap: 14px;">
-              <div style="font-size: 32px;">📖</div>
-              <div style="flex:1;">
-                <h3>Romans deep-dive</h3>
-                <p class="text-xs text-muted">42 members · Tuesdays 7 PM</p>
-              </div>
-              <button class="btn btn-primary btn-sm">Join</button>
-            </div>
-            <div class="card row" style="gap: 14px;">
-              <div style="font-size: 32px;">👶</div>
-              <div style="flex:1;">
-                <h3>Young moms circle</h3>
-                <p class="text-xs text-muted">28 members · Thursday mornings</p>
-              </div>
-              <button class="btn btn-primary btn-sm">Join</button>
-            </div>
-            <div class="card row" style="gap: 14px;">
-              <div style="font-size: 32px;">🌍</div>
-              <div style="flex:1;">
-                <h3>Missions &amp; culture</h3>
-                <p class="text-xs text-muted">156 members · Monthly</p>
-              </div>
-              <button class="btn btn-primary btn-sm">Join</button>
-            </div>
-          </div>
-        </section>
-
-        <!-- EVENTS -->
-        <section id="panel-events" role="tabpanel" aria-labelledby="tab-events" hidden>
-          <div class="stack">
-            <article class="card row" style="gap: 14px; align-items: flex-start;">
-              <div class="event-date">
-                <div class="event-date__month">May</div>
-                <div class="event-date__day">11</div>
-              </div>
-              <div style="flex:1;">
-                <h3>Habitat build kickoff</h3>
-                <p class="text-xs text-muted">Sat · 7:00 AM · 1402 Vine St</p>
-                <p class="text-sm text-secondary" style="margin-top: 6px;">Donuts at 7, framing starts at 8. Bring a hammer and a hat.</p>
-              </div>
-            </article>
-            <article class="card row" style="gap: 14px; align-items: flex-start;">
-              <div class="event-date">
-                <div class="event-date__month" style="background: var(--color-turquoise);">May</div>
-                <div class="event-date__day">18</div>
-              </div>
-              <div style="flex:1;">
-                <h3>Worship night · Westside</h3>
-                <p class="text-xs text-muted">Sat · 7:00 PM · Riverside Park amphitheater</p>
-                <p class="text-sm text-secondary" style="margin-top: 6px;">Outdoor worship with five churches together. Bring a blanket.</p>
-              </div>
-            </article>
-            <article class="card row" style="gap: 14px; align-items: flex-start;">
-              <div class="event-date">
-                <div class="event-date__month" style="background: var(--color-lime-hover);">May</div>
-                <div class="event-date__day">24</div>
-              </div>
-              <div style="flex:1;">
-                <h3>Youth retreat sign-ups close</h3>
-                <p class="text-xs text-muted">Fri · All day</p>
-              </div>
-            </article>
-          </div>
-        </section>
+        <section id="panel-opportunities" role="tabpanel" aria-labelledby="tab-opportunities" class="connect-grid"></section>
+        <section id="panel-groups" role="tabpanel" aria-labelledby="tab-groups" hidden class="connect-grid"></section>
+        <section id="panel-events" role="tabpanel" aria-labelledby="tab-events" hidden class="connect-grid"></section>
+        <section id="panel-trainings" role="tabpanel" aria-labelledby="tab-trainings" hidden class="connect-grid"></section>
+        <section id="panel-projects" role="tabpanel" aria-labelledby="tab-projects" hidden class="connect-grid"></section>
       </div>
 
     </div>
@@ -211,6 +122,7 @@
 
   <div data-component="bottom-nav" data-active="connect"></div>
   <script src="assets/shared.js"></script>
+  <script src="assets/connect-board.js"></script>
 <script data-pplx-inline-edit>
 (function () {
   if (window === window.top) return;

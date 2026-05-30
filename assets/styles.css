@@ -868,6 +868,118 @@ p { margin: 0 0 12px; }
 }
 
 /* ==========================================================================
+   Connect board
+   ========================================================================== */
+
+.connect-source-panel,
+.connect-controls {
+  margin-bottom: 18px;
+}
+.connect-source-panel__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.connect-source-panel__head h2 {
+  max-width: 760px;
+  font-size: clamp(20px, 3vw, 30px);
+}
+.connect-stat {
+  padding: 14px 12px;
+  text-align: center;
+}
+.connect-stat__value {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 22px;
+  color: var(--color-text);
+}
+.connect-stat__label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+.connect-controls__grid {
+  display: grid;
+  gap: 12px;
+}
+@media (min-width: 800px) {
+  .connect-controls__grid {
+    grid-template-columns: minmax(0, 1fr) minmax(150px, 190px) minmax(150px, 190px);
+    align-items: end;
+  }
+}
+.connect-grid {
+  display: grid;
+  gap: 12px;
+}
+@media (min-width: 860px) {
+  .connect-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+.connect-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  gap: 12px;
+}
+.connect-card__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+.connect-card__source {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--color-text-muted);
+  font-size: 11px;
+  font-weight: 700;
+}
+.connect-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.connect-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: auto;
+}
+.connect-card[data-type="training"] { border-color: #d9f99d; }
+.connect-card[data-type="project"] { border-color: #99f6e4; }
+.connect-card[data-type="event"] { border-color: #fed7aa; }
+.connect-card[data-type="group"] { border-color: #e9d5ff; }
+.connect-type-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-md);
+  display: grid;
+  place-items: center;
+  background: var(--color-bg-warm);
+  color: var(--color-coral-hover);
+  font-weight: 800;
+  flex-shrink: 0;
+}
+.connect-empty {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 720px) {
+  .connect-source-panel__head,
+  .connect-card__head {
+    flex-direction: column;
+  }
+}
+
+/* ==========================================================================
    Mentor / Project / Group / Event cards
    ========================================================================== */
 
