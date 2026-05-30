@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#fff1ea" />
+  <title>Bible Reader — Good Fruit Platform</title>
+  <meta name="description" content="A simple Bible reader with daily verse, full chapters, and bookmarks. Powered by STEP Bible." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500;1,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles.css" />
+  <style>
+    .step-attribution {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 11px; color: var(--color-text-muted); font-weight: 500;
+    }
+    .step-attribution a { color: var(--color-turquoise-deep); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+    .nav-row { display: flex; justify-content: space-between; gap: 12px; align-items: center; }
+    .source-pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 3px 10px;
+      border-radius: 99px;
+      background: var(--color-turquoise-soft);
+      color: var(--color-turquoise-deep);
+      font-size: 10.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .source-pill--fallback { background: var(--color-gold-soft); color: var(--color-gold-deep); }
+  </style>
+</head>
+<body>
+  <div data-component="header" data-title="Bible Reader" data-back="true"></div>
+
+  <main class="app-main">
+    <div class="container">
+
+      <!-- ========================================================
+           Daily verse — top of page
+           ======================================================== -->
+      <section class="daily-verse" aria-labelledby="dv-title">
+        <p class="daily-verse__eyebrow" id="dv-title">Verse of the day</p>
+        <p class="daily-verse__text" id="daily-verse-text">Loading…</p>
+        <p class="daily-verse__ref" id="daily-verse-ref">—</p>
+        <div class="daily-verse__actions">
+          <button class="btn btn-sm" id="btn-share-daily" data-testid="btn-share-daily">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            Share
+          </button>
+          <button class="btn btn-sm" id="btn-save-daily" data-testid="btn-save-daily">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m19 21-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
+            Save
+          </button>
+        </div>
+      </section>
+
+      <!-- ========================================================
+           Bookmarks rail
+           ======================================================== -->
+      <section class="section" aria-labelledby="bookmarks-h">
+        <div class="section-title">
+          <h2 id="bookmarks-h" style="font-size: 17px;">Your bookmarks</h2>
+          <span class="step-attribution">
+            Powered by
+            <a href="https://www.stepbible.org/" target="_blank" rel="noopener" data-testid="link-step-attr">STEP Bible</a>
+          </span>
+        </div>
+        <div class="bookmarks-rail" id="bookmarks-rail" role="list" aria-label="Saved verses"></div>
+      </section>
+
+      <!-- ========================================================
+           Reader controls
+           ======================================================== -->
+      <section style="margin-bottom: 14px;">
+        <div class="bible-controls" role="toolbar" aria-label="Reader controls">
+          <select id="book-select" class="bible-select" aria-label="Select book" data-testid="select-book"></select>
+          <select id="chapter-select" class="bible-select" aria-label="Select chapter" data-testid="select-chapter"></select>
+
+          <div class="size-controls" role="group" aria-label="Text size">
+            <button id="btn-size-down" aria-label="Smaller text" data-testid="btn-size-down">A−</button>
+            <button id="btn-size-up" aria-label="Larger text" data-testid="btn-size-up">A+</button>
+          </div>
+
+          <div class="mode-toggle" role="group" aria-label="Reading mode">
+            <button class="is-active" data-mode="comfortable" data-testid="btn-mode-comfortable">Comfortable</button>
+            <button data-mode="focus" data-testid="btn-mode-focus">Focus</button>
+            <button data-mode="night" data-testid="btn-mode-night">Night</button>
+          </div>
+
+          <span id="source-pill" class="source-pill" aria-live="polite">Local KJV</span>
+        </div>
+      </section>
+
+      <section class="bible-study-panel card" aria-live="polite">
+        <div>
+          <p class="section-eyebrow">Interactive study lens</p>
+          <h2 id="study-word-title">Hover or tap a word</h2>
+          <p class="text-sm text-secondary" id="study-word-body">Word meanings, original-language hints, and related ideas will appear here while you read.</p>
+        </div>
+        <div class="study-word-meta" id="study-word-meta">
+          <span class="badge badge-slate">KJV study aid</span>
+          <a class="badge" href="https://www.stepbible.org/" target="_blank" rel="noopener">Open STEP Bible</a>
+        </div>
+      </section>
+
+      <!-- ========================================================
+           Bible text
+           ======================================================== -->
+      <section>
+        <article id="bible-text" class="bible-text mode-comfortable" aria-live="polite">
+          <h2 id="passage-title">Loading…</h2>
+          <p class="ref-line">King James Version (public domain) · <a href="https://www.stepbible.org/" target="_blank" rel="noopener" style="color: var(--color-turquoise-deep);">Read in STEP Bible →</a></p>
+          <div id="verse-list" role="region" aria-label="Verses"></div>
+        </article>
+
+        <div class="nav-row" style="margin-top: 14px;">
+          <button class="btn btn-ghost" id="btn-prev-chapter" data-testid="btn-prev-chapter">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+            Previous
+          </button>
+          <button class="btn btn-primary" id="btn-next-chapter" data-testid="btn-next-chapter">
+            Next
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+          </button>
+        </div>
+      </section>
+
+      <!-- Footer attribution -->
+      <section class="section" style="text-align: center; padding: 32px 0 8px;">
+        <p class="step-attribution" style="justify-content:center; display:flex;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-turquoise);"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          Scripture experience powered by <a href="https://www.stepbible.org/" target="_blank" rel="noopener">STEP Bible</a> from Tyndale House, Cambridge. KJV text is public domain.
+        </p>
+      </section>
+
+    </div>
+  </main>
+
+  <div data-component="bottom-nav" data-active="learn"></div>
+  <script src="assets/shared.js"></script>
+  <script src="assets/bible-data.js"></script>
+  <script src="assets/bible-study.js"></script>
+  <script>
+  /* ================================================================
+     Bible Reader — interactive layer
+     - in-memory state (no localStorage)
+     - graceful STEP Bible adapter with fallback
+     ================================================================ */
+  (function () {
+    'use strict';
+    const state = window.GF_STATE;
+    const data = window.GF_BIBLE;
+
+    /* ---------- Daily verse rotation ---------- */
+    function dayOfYear() {
+      const d = new Date();
+      const start = new Date(d.getFullYear(), 0, 0);
+      return Math.floor((d - start) / 86400000);
+    }
+    const dailyIdx = dayOfYear() % data.dailyVerses.length;
+    const today = data.dailyVerses[dailyIdx];
+    const dvText = document.getElementById('daily-verse-text');
+    const dvRef = document.getElementById('daily-verse-ref');
+    dvText.textContent = `\u201C${today.text}\u201D`;
+    dvRef.textContent = today.ref;
+
+    document.getElementById('btn-share-daily').addEventListener('click', () => {
+      window.GF_SHARE({
+        title: `${today.ref} · Good Fruit`,
+        text: `"${today.text}" — ${today.ref}`,
+        url: window.location.href,
+      });
+    });
+    document.getElementById('btn-save-daily').addEventListener('click', () => {
+      const id = today.ref.replace(/[^A-Za-z0-9]/g, '');
+      if (state.bookmarks.find((b) => b.id === id)) {
+        window.GF_TOAST('Already saved', { tone: 'success' });
+        return;
+      }
+      state.bookmarks.unshift({ id, ref: today.ref, text: today.text });
+      renderBookmarks();
+      window.GF_TOAST('Saved to your bookmarks', { tone: 'success' });
+    });
+
+    /* ---------- Bookmarks ---------- */
+    function renderBookmarks() {
+      const rail = document.getElementById('bookmarks-rail');
+      if (!state.bookmarks.length) {
+        rail.innerHTML = `<p class="text-sm text-muted" style="margin:0; padding: 6px 0;">No bookmarks yet — tap any verse to save.</p>`;
+        return;
+      }
+      rail.innerHTML = state.bookmarks.map((b) => `
+        <button class="bookmark-pill" data-bookmark-id="${b.id}" data-testid="bookmark-${b.id}">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" style="color: var(--color-coral);"><path d="m19 21-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
+          ${b.ref}
+        </button>
+      `).join('');
+    }
+    renderBookmarks();
+
+    /* ---------- Book + chapter selectors ---------- */
+    const bookSelect = document.getElementById('book-select');
+    const chapterSelect = document.getElementById('chapter-select');
+
+    data.books.forEach((b) => {
+      const opt = document.createElement('option');
+      opt.value = b.id;
+      opt.textContent = b.name;
+      bookSelect.appendChild(opt);
+    });
+    bookSelect.value = 'JHN';
+
+    function refreshChapterOptions() {
+      const book = data.books.find((b) => b.id === bookSelect.value);
+      chapterSelect.innerHTML = '';
+      const max = book ? book.chapters : 1;
+      // We populate ALL chapters but our local fallback only has a few — STEP API would supply rest
+      for (let i = 1; i <= max; i++) {
+        const opt = document.createElement('option');
+        opt.value = String(i);
+        opt.textContent = `Chapter ${i}`;
+        chapterSelect.appendChild(opt);
+      }
+      const fallbackKey = `${bookSelect.value}-${state.bible.chapter}`;
+      // pick a chapter we have locally if possible
+      const seeded = Object.keys(data.chapters).filter((k) => k.startsWith(bookSelect.value + '-'));
+      if (seeded.length) {
+        chapterSelect.value = seeded[0].split('-').pop();
+      } else {
+        chapterSelect.value = '1';
+      }
+      state.bible.book = bookSelect.value;
+      state.bible.chapter = parseInt(chapterSelect.value, 10);
+    }
+    refreshChapterOptions();
+
+    bookSelect.addEventListener('change', () => {
+      refreshChapterOptions();
+      loadPassage();
+    });
+    chapterSelect.addEventListener('change', () => {
+      state.bible.chapter = parseInt(chapterSelect.value, 10);
+      loadPassage();
+    });
+
+    /* ---------- Text size ---------- */
+    const bibleText = document.getElementById('bible-text');
+    function applySize() {
+      bibleText.style.setProperty('--bible-size', state.bible.size + 'px');
+    }
+    document.getElementById('btn-size-down').addEventListener('click', () => {
+      state.bible.size = Math.max(13, state.bible.size - 1);
+      applySize();
+    });
+    document.getElementById('btn-size-up').addEventListener('click', () => {
+      state.bible.size = Math.min(28, state.bible.size + 1);
+      applySize();
+    });
+    applySize();
+
+    /* ---------- Reading modes ---------- */
+    document.querySelectorAll('.mode-toggle button').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.mode-toggle button').forEach((b) => b.classList.remove('is-active'));
+        btn.classList.add('is-active');
+        state.bible.mode = btn.dataset.mode;
+        bibleText.classList.remove('mode-comfortable', 'mode-focus', 'mode-night');
+        bibleText.classList.add('mode-' + state.bible.mode);
+      });
+    });
+
+    /* ---------- STEP Bible adapter ---------- */
+    /*
+     * STEP Bible (https://www.stepbible.org/) is the preferred source.
+     * Their public passage URL works as `/?q=...` in browser, but their
+     * JSON endpoint at us.stepbible.org/api/passage doesn't always allow
+     * cross-origin requests from arbitrary domains. The adapter:
+     *   1) Tries the JSON endpoint with `mode: 'cors'`.
+     *   2) On any failure (CORS, timeout, parse error), falls back to
+     *      the local KJV data and labels the source clearly.
+     */
+    const sourcePill = document.getElementById('source-pill');
+    function setSource(label, isLive) {
+      sourcePill.textContent = label;
+      sourcePill.className = 'source-pill' + (isLive ? '' : ' source-pill--fallback');
+    }
+
+    async function tryStepBible(book, chapter) {
+      const refMap = {
+        GEN: 'Gen', PSA: 'Psa', PRO: 'Pro', ISA: 'Isa',
+        MAT: 'Matt', MRK: 'Mark', LUK: 'Luke', JHN: 'John',
+        ROM: 'Rom', COR1: '1Cor', GAL: 'Gal', EPH: 'Eph',
+        PHP: 'Phil', JAS: 'Jas',
+      };
+      const ref = `${refMap[book] || book}.${chapter}`;
+      const url = `https://us.stepbible.org/api/passage/text/version=KJV/reference=${encodeURIComponent(ref)}`;
+      const ctrl = new AbortController();
+      const timer = setTimeout(() => ctrl.abort(), 4500);
+      try {
+        const res = await fetch(url, { signal: ctrl.signal, mode: 'cors' });
+        clearTimeout(timer);
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const json = await res.json();
+        // STEP returns a `value` array with HTML-fragmented passages; normalize to verses.
+        // Implementations vary by deployment, so we attempt a best-effort parse.
+        if (json && json.value && Array.isArray(json.value)) {
+          const html = json.value.map((v) => v.value || '').join('');
+          const verses = [];
+          const tmp = document.createElement('div');
+          tmp.innerHTML = html;
+          tmp.querySelectorAll('.verse, span.verse, [class*="verseStart"]').forEach((node) => {
+            const numEl = node.querySelector('.verseNumber, .verse-num, sup');
+            const num = numEl ? parseInt(numEl.textContent, 10) : null;
+            const text = node.textContent.replace(/^\s*\d+\s*/, '').trim();
+            if (num && text) verses.push({ n: num, t: text });
+          });
+          if (verses.length) return { title: ref.replace('.', ' '), verses };
+        }
+        throw new Error('Unrecognized STEP response shape');
+      } catch (e) {
+        clearTimeout(timer);
+        return null;
+      }
+    }
+
+    /* ---------- Render ---------- */
+    function renderChapter(chapter) {
+      const list = document.getElementById('verse-list');
+      document.getElementById('passage-title').textContent = chapter.title;
+      list.innerHTML = chapter.verses.map((v) => `
+        <span class="verse${v.wj ? '' : ''}" data-verse-num="${v.n}" tabindex="0" role="button" aria-label="Verse ${v.n}">
+          <span class="verse__num">${v.n}</span><span class="${v.wj ? 'verse__words-of-jesus' : ''}">${window.GF_BIBLE_STUDY ? window.GF_BIBLE_STUDY.renderVerse(v.t) : v.t}</span>
+        </span>
+      `).join(' ');
+
+      // Bind verse interaction (tap to bookmark, with toast)
+      list.querySelectorAll('.verse').forEach((el) => {
+        el.addEventListener('click', () => toggleBookmark(el, chapter));
+        el.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            toggleBookmark(el, chapter);
+          }
+        });
+      });
+      if (window.GF_BIBLE_STUDY) window.GF_BIBLE_STUDY.bind(list, chapter);
+
+      // Update source pill
+      // (tryStepBible may have already set this; default below)
+    }
+
+    function toggleBookmark(el, chapter) {
+      const num = parseInt(el.dataset.verseNum, 10);
+      const verse = chapter.verses.find((v) => v.n === num);
+      if (!verse) return;
+      const ref = `${chapter.title}:${num}`;
+      const id = ref.replace(/[^A-Za-z0-9]/g, '');
+      const idx = state.bookmarks.findIndex((b) => b.id === id);
+      if (idx >= 0) {
+        state.bookmarks.splice(idx, 1);
+        el.classList.remove('is-bookmarked');
+        window.GF_TOAST('Bookmark removed');
+      } else {
+        state.bookmarks.unshift({ id, ref, text: verse.t });
+        el.classList.add('is-bookmarked');
+        window.GF_TOAST('Bookmark added · ' + ref, { tone: 'success' });
+      }
+      renderBookmarks();
+    }
+
+    /* ---------- Loader ---------- */
+    function showLoading() {
+      const list = document.getElementById('verse-list');
+      list.innerHTML = `<div class="skeleton" style="height: 1em; width: 100%; margin-bottom: 0.6em;"></div>
+        <div class="skeleton" style="height: 1em; width: 92%; margin-bottom: 0.6em;"></div>
+        <div class="skeleton" style="height: 1em; width: 96%; margin-bottom: 0.6em;"></div>
+        <div class="skeleton" style="height: 1em; width: 88%; margin-bottom: 0.6em;"></div>
+        <div class="skeleton" style="height: 1em; width: 95%;"></div>`;
+      document.getElementById('passage-title').textContent = 'Loading…';
+    }
+
+    async function loadPassage() {
+      showLoading();
+      const book = state.bible.book;
+      const chap = state.bible.chapter;
+
+      // 1) Try STEP Bible
+      const live = await tryStepBible(book, chap);
+      if (live) {
+        setSource('Live · STEP Bible', true);
+        renderChapter(live);
+        return;
+      }
+
+      // 2) Fall back to local KJV
+      const key = `${book}-${chap}`;
+      const local = window.GF_BIBLE.chapters[key];
+      if (local) {
+        setSource('Offline · KJV', false);
+        renderChapter(local);
+      } else {
+        // Empty state
+        setSource('Offline · KJV', false);
+        document.getElementById('passage-title').textContent = `${data.books.find((b) => b.id === book).name} ${chap}`;
+        document.getElementById('verse-list').innerHTML = `
+          <div class="empty-state" style="padding: 24px 8px;">
+            <div class="empty-state__icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            </div>
+            <h3>This chapter isn't cached locally yet.</h3>
+            <p>Connect to STEP Bible online for the full text. Try
+              <a href="https://www.stepbible.org/" target="_blank" rel="noopener" style="color: var(--color-turquoise-deep); text-decoration: underline;">STEP Bible</a>
+              for the complete passage.</p>
+          </div>
+        `;
+      }
+    }
+
+    /* ---------- Chapter nav ---------- */
+    document.getElementById('btn-prev-chapter').addEventListener('click', () => {
+      if (state.bible.chapter > 1) {
+        state.bible.chapter -= 1;
+        chapterSelect.value = String(state.bible.chapter);
+        loadPassage();
+        document.getElementById('bible-text').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+    document.getElementById('btn-next-chapter').addEventListener('click', () => {
+      const book = data.books.find((b) => b.id === state.bible.book);
+      if (state.bible.chapter < book.chapters) {
+        state.bible.chapter += 1;
+        chapterSelect.value = String(state.bible.chapter);
+        loadPassage();
+        document.getElementById('bible-text').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+
+    /* ---------- Boot ---------- */
+    loadPassage();
+  })();
+  </script>
+<script data-pplx-inline-edit>
+(function () {
+  if (window === window.top) return;
+
+  const allowedParentOrigins = ["https://www.perplexity.ai","https://perplexity.ai","https://testing.perplexity.ai","https://staging.perplexity.ai","https://*.preview.i.perplexity.ai","http://localhost:3000","http://127.0.0.1:3000","http://localhost:5173","http://127.0.0.1:5173"];
+  const MAX_FONT_BYTES = 500 * 1024;
+  const MAX_TOTAL_FONT_BYTES = 2 * 1024 * 1024;
+  let scrollForwarding = false;
+  let scrollRaf = 0;
+  let trustedTopOrigin = null;
+
+  // Allow entries like "https://*.preview.i.perplexity.ai" — the wildcard
+  // matches a single DNS label (no dots), so "https://*.foo" cannot stretch
+  // across multiple labels.
+  function matchesAllowedOrigin(origin) {
+    if (!origin) return false;
+    for (const entry of allowedParentOrigins) {
+      if (!entry.includes("*")) {
+        if (entry === origin) return true;
+        continue;
+      }
+      const pattern = new RegExp(
+        "^" +
+          entry.replace(/[.+?^${}()|[\]\\]/g, "\\$&").replace(/\*/g, "[^.]+") +
+          "$",
+      );
+      if (pattern.test(origin)) return true;
+    }
+    return false;
+  }
+
+  // Trust decision: when the sender is same-origin-visible (event.origin is a
+  // real origin like https://www.perplexity.ai) we trust event.origin directly.
+  // When event.origin is "null" (opaque broker srcdoc), we fall back to the
+  // broker's stamped `parentOrigin` to identify the top window. The fallback
+  // is claim-only — we rely on the browser's native `targetOrigin` enforcement
+  // on the response path (see postToTrustedTop) to ensure replies can't be
+  // delivered to anyone but the actual top window of that claimed origin.
+  function getTrustedParentOrigin(event) {
+    const forwardedParentOrigin =
+      typeof event.data.parentOrigin === "string" ? event.data.parentOrigin : null;
+    const parentOrigin = event.origin === "null" ? forwardedParentOrigin : event.origin;
+    return matchesAllowedOrigin(parentOrigin) ? parentOrigin : null;
+  }
+
+  // All responses go to window.top with targetOrigin = the allowlisted origin.
+  // An attacker that iframes us inside their own null-origin broker can claim
+  // any parentOrigin they like, but the browser will drop the reply whenever
+  // the real top's origin doesn't match — so the screenshot never leaves.
+  function postToTrustedTop(message) {
+    if (!trustedTopOrigin) return;
+    try {
+      window.top.postMessage(message, trustedTopOrigin);
+    } catch (_error) {}
+  }
+
+  function inlineAll(original, clone) {
+    if (original.nodeType !== 1 || clone.nodeType !== 1) return;
+
+    try {
+      const computedStyle = getComputedStyle(original);
+      // cssText on a computed style is the serialized declaration in modern
+      // Chromium/Safari — a single read beats enumerating ~400 longhand
+      // properties. Firefox returns "" here, so we fall back on empty.
+      const serialized = computedStyle.cssText;
+      if (serialized) {
+        clone.style.cssText = serialized;
+      } else {
+        const parts = new Array(computedStyle.length);
+        for (let index = 0; index < computedStyle.length; index += 1) {
+          const property = computedStyle[index];
+          parts[index] = `${property}:${computedStyle.getPropertyValue(property)};`;
+        }
+        clone.style.cssText = parts.join("");
+      }
+    } catch (_error) {}
+
+    const originalChildren = original.children;
+    const clonedChildren = clone.children;
+    for (
+      let index = 0;
+      index < originalChildren.length && index < clonedChildren.length;
+      index += 1
+    ) {
+      inlineAll(originalChildren[index], clonedChildren[index]);
+    }
+  }
+
+  function extractFontUrl(srcValue) {
+    const matches = [
+      ...srcValue.matchAll(
+        /url\(["']?([^"')]+)["']?\)(?:\s*format\(["']?([^"')]+)["']?\))?/gi,
+      ),
+    ];
+    if (matches.length === 0) return null;
+    const woff2 = matches.find((m) => m[2] && m[2].toLowerCase().includes("woff2"));
+    if (woff2) return woff2[1];
+    const woff = matches.find((m) => m[2] && m[2].toLowerCase().includes("woff"));
+    if (woff) return woff[1];
+    return matches[0][1];
+  }
+
+  // Cache resolved font URL -> data URI across captures. Fonts on a page
+  // essentially never change, and a batch run emits multiple captures back to
+  // back — without this we'd refetch + re-base64 every time.
+  const fontDataUriCache = new Map();
+  const SRC_DECLARATION_RE = /src\s*:\s*[^;}]+/i;
+
+  async function fetchAsDataUri(url) {
+    if (fontDataUriCache.has(url)) return fontDataUriCache.get(url);
+    let dataUri = null;
+    try {
+      const response = await fetch(url, { mode: "cors", credentials: "omit" });
+      if (response.ok) {
+        const blob = await response.blob();
+        if (blob.size <= MAX_FONT_BYTES) {
+          dataUri = await new Promise((resolve) => {
+            const reader = new FileReader();
+            reader.onloadend = () =>
+              resolve(typeof reader.result === "string" ? reader.result : null);
+            reader.onerror = () => resolve(null);
+            reader.readAsDataURL(blob);
+          });
+        }
+      }
+    } catch (_error) {
+      dataUri = null;
+    }
+    fontDataUriCache.set(url, dataUri);
+    return dataUri;
+  }
+
+  function collectFontFaceRuleTexts() {
+    const rules = [];
+    for (const sheet of document.styleSheets) {
+      let cssRules;
+      try {
+        cssRules = sheet.cssRules;
+      } catch (_error) {
+        continue;
+      }
+      if (!cssRules) continue;
+      for (const rule of cssRules) {
+        const cssText = rule.cssText || "";
+        if (cssText.startsWith("@font-face")) rules.push(cssText);
+      }
+    }
+    return rules;
+  }
+
+  async function buildInlinedFontCss() {
+    const ruleTexts = collectFontFaceRuleTexts();
+    if (ruleTexts.length === 0) return null;
+
+    const resolved = ruleTexts.map((cssText) => {
+      if (!SRC_DECLARATION_RE.test(cssText)) return null;
+      const srcMatch = cssText.match(/src\s*:\s*([^;}]+)[;}]/i);
+      if (!srcMatch) return null;
+      const url = extractFontUrl(srcMatch[1]);
+      if (!url) return null;
+      try {
+        return { cssText, url: new URL(url, document.baseURI).href };
+      } catch (_error) {
+        return null;
+      }
+    });
+
+    const dataUris = await Promise.all(
+      resolved.map((entry) => (entry ? fetchAsDataUri(entry.url) : Promise.resolve(null))),
+    );
+
+    const inlined = [];
+    let totalBytes = 0;
+    for (let index = 0; index < resolved.length; index += 1) {
+      const entry = resolved[index];
+      const dataUri = dataUris[index];
+      if (!entry || !dataUri) continue;
+      const approxBytes = dataUri.length * 0.75;
+      if (totalBytes + approxBytes > MAX_TOTAL_FONT_BYTES) break;
+      totalBytes += approxBytes;
+      inlined.push(entry.cssText.replace(SRC_DECLARATION_RE, `src: url("${dataUri}")`));
+    }
+    return inlined.length > 0 ? inlined.join("\n") : null;
+  }
+
+  function stripExternal(clone) {
+    const images = clone.querySelectorAll("img");
+    for (let index = 0; index < images.length; index += 1) {
+      const src = images[index].getAttribute("src");
+      if (src && !src.startsWith("data:")) images[index].removeAttribute("src");
+    }
+
+    const elements = clone.querySelectorAll("*");
+    for (let index = 0; index < elements.length; index += 1) {
+      const style = elements[index].style.cssText;
+      if (style && style.includes("url(")) {
+        elements[index].style.cssText = style.replace(
+          /url\(["']?(?!data:)[^)"']*["']?\)/gi,
+          "none",
+        );
+      }
+    }
+  }
+
+  function emitScroll() {
+    scrollRaf = 0;
+    if (!scrollForwarding) return;
+    postToTrustedTop({
+      type: "INLINE_EDIT_SCROLL",
+      scrollX: window.scrollX,
+      scrollY: window.scrollY,
+    });
+  }
+
+  window.addEventListener(
+    "scroll",
+    function () {
+      if (!scrollForwarding || scrollRaf) return;
+      scrollRaf = requestAnimationFrame(emitScroll);
+    },
+    { passive: true, capture: true },
+  );
+
+  async function handleCaptureRequest(event) {
+    const requestId = event.data.requestId;
+    const scrollX = window.scrollX;
+    const scrollY = window.scrollY;
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+
+    function postResult(dataUrl) {
+      postToTrustedTop({
+        type: "INLINE_EDIT_SCREENSHOT_RESULT",
+        requestId,
+        dataUrl,
+        scrollX,
+        scrollY,
+      });
+    }
+
+    try {
+      // Wait for any pending web fonts to resolve so both inline metrics and
+      // the @font-face inlining below see the same loaded faces.
+      if (document.fonts && document.fonts.ready) {
+        try {
+          await document.fonts.ready;
+        } catch (_error) {}
+      }
+
+      const clone = document.documentElement.cloneNode(true);
+      inlineAll(document.documentElement, clone);
+
+      const removedNodes = clone.querySelectorAll("script,link[rel=\"stylesheet\"],style");
+      for (let index = 0; index < removedNodes.length; index += 1) {
+        removedNodes[index].remove();
+      }
+
+      stripExternal(clone);
+
+      // Re-embed web fonts as data-URI @font-face rules so the SVG rasterizer
+      // can resolve them — external font URLs aren't fetched during
+      // foreignObject rendering, which would otherwise force a fallback face
+      // and change text metrics.
+      const inlinedFontCss = await buildInlinedFontCss();
+      if (inlinedFontCss) {
+        const styleEl = document.createElement("style");
+        styleEl.textContent = inlinedFontCss;
+        const head = clone.querySelector("head");
+        if (head) head.appendChild(styleEl);
+        else clone.insertBefore(styleEl, clone.firstChild);
+      }
+
+      const html = new XMLSerializer().serializeToString(clone);
+      const svg =
+        `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}">` +
+        '<foreignObject width="100%" height="100%">' +
+        `<div xmlns="http://www.w3.org/1999/xhtml" style="width:${width}px;height:${height}px;overflow:hidden">` +
+        `<div style="transform:translate(-${scrollX}px,-${scrollY}px);transform-origin:top left">` +
+        html +
+        "</div></div></foreignObject></svg>";
+      const svgUrl = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
+      const image = new Image();
+      image.onload = function () {
+        const canvas = document.createElement("canvas");
+        canvas.width = width;
+        canvas.height = height;
+        canvas.getContext("2d").drawImage(image, 0, 0);
+        postResult(canvas.toDataURL("image/png"));
+      };
+      image.onerror = function () {
+        postResult(null);
+      };
+      image.src = svgUrl;
+    } catch (_error) {
+      postResult(null);
+    }
+  }
+
+  window.addEventListener("message", function (event) {
+    if (!event.data) return;
+    // Only accept messages from the direct parent frame. Blocks sibling /
+    // unrelated-window postMessage senders that could otherwise reach us.
+    if (event.source !== window.parent) return;
+
+    const trustedParentOrigin = getTrustedParentOrigin(event);
+    if (!trustedParentOrigin) return;
+    trustedTopOrigin = trustedParentOrigin;
+
+    if (event.data.type === "INLINE_EDIT_SCROLL_START") {
+      scrollForwarding = true;
+      emitScroll();
+      return;
+    }
+
+    if (event.data.type === "INLINE_EDIT_SCROLL_STOP") {
+      scrollForwarding = false;
+      if (scrollRaf) cancelAnimationFrame(scrollRaf);
+      scrollRaf = 0;
+      return;
+    }
+
+    if (event.data.type !== "INLINE_EDIT_CAPTURE_REQUEST") return;
+
+    handleCaptureRequest(event);
+  });
+})();
+
+
+</script></body>
+</html>

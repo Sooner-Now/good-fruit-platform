@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#fff1ea" />
+  <title>Home — Good Fruit Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <div data-component="header" data-title="Home"></div>
+
+  <main class="app-main">
+    <div class="container">
+
+      <!-- Greeting -->
+      <section style="margin-bottom: 18px;">
+        <p class="section-eyebrow" style="color: var(--color-turquoise-deep);">Today</p>
+        <h1 id="home-greeting" style="font-size: clamp(24px, 4vw, 32px); margin-top: 4px;">Good morning, friend.</h1>
+        <p class="text-secondary" style="margin-top: 4px;">Your feed is built around your local area, trust level, and the kinds of good work you want to find.</p>
+      </section>
+
+      <section class="onboarding-summary card" data-onboarding-summary style="margin-bottom: 18px;"></section>
+
+      <a href="advocate.html" class="card bible-home-card is-hoverable" data-testid="card-home-advocate">
+        <div class="bible-home-card__icon" aria-hidden="true">
+          <img src="assets/seedling-expressions/joyful.png" alt="" aria-hidden="true" style="width:42px;height:42px;object-fit:cover;object-position:center bottom;border-radius:16px;" />
+        </div>
+        <div style="flex:1; min-width:0;">
+          <p class="section-eyebrow">Meet Seedling</p>
+          <h2>Ask your Good Fruit advocate</h2>
+          <p class="text-sm text-secondary">Get help navigating prayer, needs, service, learning, Scripture, trust, and local community.</p>
+        </div>
+        <span class="badge badge-green">Guide</span>
+      </a>
+
+      <div data-component="local-feed" data-feed="home" data-title="What’s growing near you" style="margin-bottom: 18px;"></div>
+
+      <a href="bible.html" class="card bible-home-card is-hoverable" data-testid="card-home-bible">
+        <div class="bible-home-card__icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        </div>
+        <div style="flex:1; min-width:0;">
+          <p class="section-eyebrow">Bible study</p>
+          <h2>Open the interactive reader</h2>
+          <p class="text-sm text-secondary">Read, bookmark, hover words for meaning, and keep growing in Scripture.</p>
+        </div>
+        <span class="badge badge-gold">+Growth Fruit</span>
+      </a>
+
+      <section class="game-hero card" data-testid="game-hero">
+        <div class="game-hero__copy">
+          <p class="section-eyebrow">Good Fruit game</p>
+          <h2>Team up. Do good. Grow together.</h2>
+          <p class="text-sm">Earn fruit by joining local quests, confirming good things happening, and inviting others into service. Team actions unlock bigger boosts than solo actions.</p>
+        </div>
+        <div class="game-hero__score">
+          <span class="game-hero__ring">72%</span>
+          <strong>Young Tree</strong>
+          <span>280 fruit to next level</span>
+        </div>
+      </section>
+
+      <section class="grid grid-2" style="margin-bottom: 18px;">
+        <div class="water-wallet">
+          <span class="section-eyebrow">Water wallet</span>
+          <strong class="tabular" style="font-size: 24px;">64 / 100</strong>
+          <span class="text-sm">Regenerates daily. Invest it through prayer, encouragement, mentoring, giving, and hands-on help.</span>
+        </div>
+        <div class="sun-wallet">
+          <span class="section-eyebrow">Sunlight</span>
+          <strong class="tabular" style="font-size: 24px;">18 boosts</strong>
+          <span class="text-sm">Use sunlight to lift needs, local businesses, trainings, testimonies, and good work worth seeing.</span>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-title">
+          <h2>Team quests</h2>
+          <a href="connect.html" class="link">Find more</a>
+        </div>
+        <div class="game-quest-grid" data-game-quests></div>
+      </section>
+
+      <section class="section">
+        <div class="section-title">
+          <h2>Promote good things</h2>
+          <button class="btn btn-primary btn-sm" data-game-promote>+ Share good</button>
+        </div>
+        <div class="game-good-feed" data-good-feed></div>
+      </section>
+
+      <!-- Plant avatar card + quick actions, asymmetric layout -->
+      <section style="display:grid; gap:16px; grid-template-columns: 1fr;">
+        <div class="plant-card" data-testid="card-plant-avatar">
+          <div style="display:flex; gap: 18px; align-items:center; position: relative; z-index: 1;">
+            <div style="text-align:center;">
+              <span class="plant-emoji" aria-hidden="true">🌳</span>
+            </div>
+            <div style="flex:1; min-width: 0;">
+              <p style="font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-turquoise-deep); margin-bottom: 4px;">Level 4 · Young Tree</p>
+              <h2 style="font-size: 24px; margin-bottom: 8px;">720 / 1,000 fruit</h2>
+              <div class="progress progress--orange" aria-label="Progress to next level" role="progressbar" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100">
+                <div class="progress__bar" style="width: 72%; background: linear-gradient(90deg, var(--color-coral), var(--color-gold));"></div>
+              </div>
+              <p class="text-xs text-muted" style="margin-top: 6px;">280 points to <strong style="color: var(--color-text);">Mature Tree 🌲</strong></p>
+            </div>
+          </div>
+
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 16px; position: relative; z-index: 1;">
+            <div class="plant-stat">
+              <span class="plant-stat__label">💧 Water given</span>
+              <span class="plant-stat__value tabular">47</span>
+            </div>
+            <div class="plant-stat">
+              <span class="plant-stat__label">☀️ Sun shared</span>
+              <span class="plant-stat__value tabular">32</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick actions -->
+        <div class="grid grid-4">
+          <button class="quick-action quick-action--pray" data-testid="qa-pray" onclick="window.GF_TOAST('Prayer sent · +10 pts', { tone: 'success' })">
+            <span class="quick-action__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg></span>
+            <span class="quick-action__label">Pray</span>
+          </button>
+          <button class="quick-action quick-action--water" data-testid="qa-water" onclick="window.GF_TOAST('💧 Water given · +10 pts', { tone: 'success' })">
+            <span class="quick-action__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/></svg></span>
+            <span class="quick-action__label">Give Water</span>
+          </button>
+          <button class="quick-action quick-action--sun" data-testid="qa-sun" onclick="window.GF_TOAST('☀️ Sun shared · +10 pts', { tone: 'success' })">
+            <span class="quick-action__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg></span>
+            <span class="quick-action__label">Share Sun</span>
+          </button>
+          <button class="quick-action quick-action--post" data-testid="qa-post" onclick="window.GF_TOAST('Post composer (demo)', { tone: 'success' })">
+            <span class="quick-action__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></span>
+            <span class="quick-action__label">Post</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- Productivity hub (collapsible) -->
+      <section class="section">
+        <details class="card" style="padding: 0;">
+          <summary style="list-style: none; padding: 16px 18px; cursor: pointer; display: flex; align-items: center; justify-content: space-between;">
+            <div>
+              <span class="section-eyebrow" style="color: var(--color-lime-hover);">Today</span>
+              <h3 style="margin-top: 2px;">Productivity Hub</h3>
+            </div>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+          </summary>
+          <div style="padding: 0 18px 18px;">
+            <h4 style="margin-bottom: 8px;">To-do</h4>
+            <div class="todo-list" data-testid="list-todos">
+              <label class="todo-item is-done">
+                <input type="checkbox" checked style="display:none">
+                <span class="todo-check" aria-hidden="true">✓</span>
+                <span class="todo-text">Pray for Mark's interview</span>
+              </label>
+              <label class="todo-item">
+                <input type="checkbox" style="display:none">
+                <span class="todo-check"></span>
+                <span class="todo-text">Drop off groceries to Mrs. Tanaka</span>
+              </label>
+              <label class="todo-item">
+                <input type="checkbox" style="display:none">
+                <span class="todo-check"></span>
+                <span class="todo-text">Finish Galatians chapter 5</span>
+              </label>
+            </div>
+
+            <h4 style="margin-bottom: 8px; margin-top: 18px;">Sticky notes</h4>
+            <div class="notes-grid">
+              <div class="note" style="--rot:-2deg;">Bring soup recipe to Sunday potluck.</div>
+              <div class="note note-blue" style="--rot:1deg;">Call Pastor Lee re: youth retreat.</div>
+              <div class="note note-green" style="--rot:-1deg;">Order extra Bibles for the shelter.</div>
+            </div>
+          </div>
+        </details>
+      </section>
+
+      <!-- Milestones -->
+      <section class="section">
+        <div class="section-title">
+          <h2>Milestones</h2>
+          <a href="profile.html" class="link">View all</a>
+        </div>
+        <div class="grid grid-3">
+          <div class="card">
+            <div class="row-tight" style="margin-bottom: 8px;">
+              <span class="badge badge-gold">🔥 Streak</span>
+            </div>
+            <h3 style="margin-bottom: 8px;">7-day streak</h3>
+            <div class="progress progress--amber"><div class="progress__bar" style="width: 100%;"></div></div>
+            <p class="text-xs text-muted" style="margin-top: 8px;">Achieved · 12 days running</p>
+          </div>
+          <div class="card">
+            <div class="row-tight" style="margin-bottom: 8px;">
+              <span class="badge">Help others</span>
+            </div>
+            <h3 style="margin-bottom: 8px;">Help 5 people</h3>
+            <div class="progress"><div class="progress__bar" style="width: 60%;"></div></div>
+            <p class="text-xs text-muted" style="margin-top: 8px;">3 of 5 helped this month</p>
+          </div>
+          <div class="card">
+            <div class="row-tight" style="margin-bottom: 8px;">
+              <span class="badge badge-lime">Course</span>
+            </div>
+            <h3 style="margin-bottom: 8px;">Financial Stewardship</h3>
+            <div class="progress"><div class="progress__bar" style="width: 67%; background: linear-gradient(90deg, var(--color-lime), var(--color-turquoise));"></div></div>
+            <p class="text-xs text-muted" style="margin-top: 8px;">Lesson 8 of 12</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Activity feed -->
+      <section class="section">
+        <div class="section-title">
+          <h2>Community activity</h2>
+          <a href="connect.html" class="link">See all</a>
+        </div>
+
+        <article class="activity-item" data-testid="card-activity-1">
+          <div class="avatar avatar-teal">DR</div>
+          <div class="activity-item__body">
+            <div class="activity-item__head">
+              <span class="activity-item__name">Daniel Rivera</span>
+              <span class="activity-item__time">12m ago</span>
+            </div>
+            <p class="activity-item__text">Asked for prayer — his mom starts chemo on Monday. Texas, USA.</p>
+            <div class="activity-item__actions">
+              <button class="activity-item__action" onclick="window.GF_TOAST('Praying with Daniel · +10 pts', { tone:'success'})">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+                Pray
+              </button>
+              <button class="activity-item__action">💧 Give water</button>
+              <button class="activity-item__action">☀️ Share sun</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="activity-item">
+          <div class="avatar avatar-violet">PA</div>
+          <div class="activity-item__body">
+            <div class="activity-item__head">
+              <span class="activity-item__name">Priya Anand</span>
+              <span class="activity-item__time">1h ago</span>
+            </div>
+            <p class="activity-item__text">Praising God — she got the apprenticeship she'd been praying for. 🎉</p>
+            <div class="activity-item__actions">
+              <button class="activity-item__action">🎉 Celebrate</button>
+              <button class="activity-item__action">☀️ Share sun</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="activity-item">
+          <div class="avatar avatar-rose">JT</div>
+          <div class="activity-item__body">
+            <div class="activity-item__head">
+              <span class="activity-item__name">Jaye Tanaka</span>
+              <span class="activity-item__time">3h ago</span>
+            </div>
+            <p class="activity-item__text">Listed a sourdough starter (free) and 3 hrs of bookkeeping help in the marketplace.</p>
+            <div class="activity-item__actions">
+              <a class="activity-item__action" href="marketplace.html">View listing →</a>
+              <button class="activity-item__action">🤝 Connect</button>
+            </div>
+          </div>
+        </article>
+      </section>
+
+    </div>
+  </main>
+
+  <div data-component="bottom-nav" data-active="home"></div>
+  <script src="assets/shared.js"></script>
+  <script src="assets/good-game.js"></script>
+  <script>
+    (function () {
+      const state = window.GF_STATE || {};
+      const profile = state.profileDraft || {};
+      const params = new URLSearchParams(window.location.search);
+      const name = params.get('name') || profile.name;
+      if (name) {
+        document.getElementById('home-greeting').textContent = `Good morning, ${name.split(' ')[0]}.`;
+      }
+      const summary = document.querySelector('[data-onboarding-summary]');
+      if (!summary) return;
+      const escapeHtml = function (value) {
+        return String(value || '').replace(/[&<>"']/g, function (char) {
+          return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char];
+        });
+      };
+      const role = profile.role || params.get('role') || 'Visitor';
+      const city = profile.city || params.get('city') || 'Central Oregon';
+      const radius = profile.radius || params.get('radius') || '25 miles';
+      const interests = profile.interests && profile.interests.length ? profile.interests : ['Prayer', 'Needs', 'Connect'];
+      const emailStatus = profile.emailConfirmed === 'confirmed' ? 'Confirmed' : 'Pending';
+      const idStatus = profile.idVerified === 'not_required' ? 'Not required' : profile.idVerified === 'verified' ? 'Verified' : 'Pending';
+      summary.innerHTML = `
+        <div class="onboarding-summary__head">
+          <div>
+            <p class="section-eyebrow">Access and feed</p>
+            <h2>${escapeHtml(role)} account</h2>
+            <p class="text-sm text-secondary">Local feed centered on <strong>${escapeHtml(city)}</strong>, starting at <strong>${escapeHtml(radius)}</strong>.</p>
+          </div>
+          <span class="badge badge-gold">${emailStatus === 'Confirmed' ? 'Ready' : 'Email pending'}</span>
+        </div>
+        <div class="trust-status-grid">
+          <div class="trust-status"><span>Email</span><strong>${emailStatus}</strong></div>
+          <div class="trust-status"><span>ID check</span><strong>${idStatus}</strong></div>
+          <div class="trust-status"><span>Interests</span><strong>${escapeHtml(interests.join(', '))}</strong></div>
+        </div>
+        <div class="feed-controls">
+          <label class="field">
+            <span>Expand feed</span>
+            <select id="feed-radius">
+              ${['10 miles', '25 miles', '50 miles', 'Central Oregon', 'Statewide'].map((item) => `<option ${item === radius ? 'selected' : ''}>${escapeHtml(item)}</option>`).join('')}
+            </select>
+          </label>
+          <label class="field">
+            <span>Search another area</span>
+            <input id="feed-area-search" type="text" placeholder="e.g., Redmond, OR" />
+          </label>
+          <button class="btn btn-primary" type="button" data-update-feed>Update feed</button>
+        </div>
+      `;
+      summary.querySelector('[data-update-feed]').addEventListener('click', function () {
+        const nextRadius = summary.querySelector('#feed-radius').value;
+        const nextArea = summary.querySelector('#feed-area-search').value.trim() || city;
+        window.GF_TOAST(`Feed updated for ${nextArea} · ${nextRadius}`, { tone: 'success' });
+      });
+    })();
+  </script>
+<script data-pplx-inline-edit>
+(function () {
+  if (window === window.top) return;
+
+  const allowedParentOrigins = ["https://www.perplexity.ai","https://perplexity.ai","https://testing.perplexity.ai","https://staging.perplexity.ai","https://*.preview.i.perplexity.ai","http://localhost:3000","http://127.0.0.1:3000","http://localhost:5173","http://127.0.0.1:5173"];
+  const MAX_FONT_BYTES = 500 * 1024;
+  const MAX_TOTAL_FONT_BYTES = 2 * 1024 * 1024;
+  let scrollForwarding = false;
+  let scrollRaf = 0;
+  let trustedTopOrigin = null;
+
+  // Allow entries like "https://*.preview.i.perplexity.ai" — the wildcard
+  // matches a single DNS label (no dots), so "https://*.foo" cannot stretch
+  // across multiple labels.
+  function matchesAllowedOrigin(origin) {
+    if (!origin) return false;
+    for (const entry of allowedParentOrigins) {
+      if (!entry.includes("*")) {
+        if (entry === origin) return true;
+        continue;
+      }
+      const pattern = new RegExp(
+        "^" +
+          entry.replace(/[.+?^${}()|[\]\\]/g, "\\$&").replace(/\*/g, "[^.]+") +
+          "$",
+      );
+      if (pattern.test(origin)) return true;
+    }
+    return false;
+  }
+
+  // Trust decision: when the sender is same-origin-visible (event.origin is a
+  // real origin like https://www.perplexity.ai) we trust event.origin directly.
+  // When event.origin is "null" (opaque broker srcdoc), we fall back to the
+  // broker's stamped `parentOrigin` to identify the top window. The fallback
+  // is claim-only — we rely on the browser's native `targetOrigin` enforcement
+  // on the response path (see postToTrustedTop) to ensure replies can't be
+  // delivered to anyone but the actual top window of that claimed origin.
+  function getTrustedParentOrigin(event) {
+    const forwardedParentOrigin =
+      typeof event.data.parentOrigin === "string" ? event.data.parentOrigin : null;
+    const parentOrigin = event.origin === "null" ? forwardedParentOrigin : event.origin;
+    return matchesAllowedOrigin(parentOrigin) ? parentOrigin : null;
+  }
+
+  // All responses go to window.top with targetOrigin = the allowlisted origin.
+  // An attacker that iframes us inside their own null-origin broker can claim
+  // any parentOrigin they like, but the browser will drop the reply whenever
+  // the real top's origin doesn't match — so the screenshot never leaves.
+  function postToTrustedTop(message) {
+    if (!trustedTopOrigin) return;
+    try {
+      window.top.postMessage(message, trustedTopOrigin);
+    } catch (_error) {}
+  }
+
+  function inlineAll(original, clone) {
+    if (original.nodeType !== 1 || clone.nodeType !== 1) return;
+
+    try {
+      const computedStyle = getComputedStyle(original);
+      // cssText on a computed style is the serialized declaration in modern
+      // Chromium/Safari — a single read beats enumerating ~400 longhand
+      // properties. Firefox returns "" here, so we fall back on empty.
+      const serialized = computedStyle.cssText;
+      if (serialized) {
+        clone.style.cssText = serialized;
+      } else {
+        const parts = new Array(computedStyle.length);
+        for (let index = 0; index < computedStyle.length; index += 1) {
+          const property = computedStyle[index];
+          parts[index] = `${property}:${computedStyle.getPropertyValue(property)};`;
+        }
+        clone.style.cssText = parts.join("");
+      }
+    } catch (_error) {}
+
+    const originalChildren = original.children;
+    const clonedChildren = clone.children;
+    for (
+      let index = 0;
+      index < originalChildren.length && index < clonedChildren.length;
+      index += 1
+    ) {
+      inlineAll(originalChildren[index], clonedChildren[index]);
+    }
+  }
+
+  function extractFontUrl(srcValue) {
+    const matches = [
+      ...srcValue.matchAll(
+        /url\(["']?([^"')]+)["']?\)(?:\s*format\(["']?([^"')]+)["']?\))?/gi,
+      ),
+    ];
+    if (matches.length === 0) return null;
+    const woff2 = matches.find((m) => m[2] && m[2].toLowerCase().includes("woff2"));
+    if (woff2) return woff2[1];
+    const woff = matches.find((m) => m[2] && m[2].toLowerCase().includes("woff"));
+    if (woff) return woff[1];
+    return matches[0][1];
+  }
+
+  // Cache resolved font URL -> data URI across captures. Fonts on a page
+  // essentially never change, and a batch run emits multiple captures back to
+  // back — without this we'd refetch + re-base64 every time.
+  const fontDataUriCache = new Map();
+  const SRC_DECLARATION_RE = /src\s*:\s*[^;}]+/i;
+
+  async function fetchAsDataUri(url) {
+    if (fontDataUriCache.has(url)) return fontDataUriCache.get(url);
+    let dataUri = null;
+    try {
+      const response = await fetch(url, { mode: "cors", credentials: "omit" });
+      if (response.ok) {
+        const blob = await response.blob();
+        if (blob.size <= MAX_FONT_BYTES) {
+          dataUri = await new Promise((resolve) => {
+            const reader = new FileReader();
+            reader.onloadend = () =>
+              resolve(typeof reader.result === "string" ? reader.result : null);
+            reader.onerror = () => resolve(null);
+            reader.readAsDataURL(blob);
+          });
+        }
+      }
+    } catch (_error) {
+      dataUri = null;
+    }
+    fontDataUriCache.set(url, dataUri);
+    return dataUri;
+  }
+
+  function collectFontFaceRuleTexts() {
+    const rules = [];
+    for (const sheet of document.styleSheets) {
+      let cssRules;
+      try {
+        cssRules = sheet.cssRules;
+      } catch (_error) {
+        continue;
+      }
+      if (!cssRules) continue;
+      for (const rule of cssRules) {
+        const cssText = rule.cssText || "";
+        if (cssText.startsWith("@font-face")) rules.push(cssText);
+      }
+    }
+    return rules;
+  }
+
+  async function buildInlinedFontCss() {
+    const ruleTexts = collectFontFaceRuleTexts();
+    if (ruleTexts.length === 0) return null;
+
+    const resolved = ruleTexts.map((cssText) => {
+      if (!SRC_DECLARATION_RE.test(cssText)) return null;
+      const srcMatch = cssText.match(/src\s*:\s*([^;}]+)[;}]/i);
+      if (!srcMatch) return null;
+      const url = extractFontUrl(srcMatch[1]);
+      if (!url) return null;
+      try {
+        return { cssText, url: new URL(url, document.baseURI).href };
+      } catch (_error) {
+        return null;
+      }
+    });
+
+    const dataUris = await Promise.all(
+      resolved.map((entry) => (entry ? fetchAsDataUri(entry.url) : Promise.resolve(null))),
+    );
+
+    const inlined = [];
+    let totalBytes = 0;
+    for (let index = 0; index < resolved.length; index += 1) {
+      const entry = resolved[index];
+      const dataUri = dataUris[index];
+      if (!entry || !dataUri) continue;
+      const approxBytes = dataUri.length * 0.75;
+      if (totalBytes + approxBytes > MAX_TOTAL_FONT_BYTES) break;
+      totalBytes += approxBytes;
+      inlined.push(entry.cssText.replace(SRC_DECLARATION_RE, `src: url("${dataUri}")`));
+    }
+    return inlined.length > 0 ? inlined.join("\n") : null;
+  }
+
+  function stripExternal(clone) {
+    const images = clone.querySelectorAll("img");
+    for (let index = 0; index < images.length; index += 1) {
+      const src = images[index].getAttribute("src");
+      if (src && !src.startsWith("data:")) images[index].removeAttribute("src");
+    }
+
+    const elements = clone.querySelectorAll("*");
+    for (let index = 0; index < elements.length; index += 1) {
+      const style = elements[index].style.cssText;
+      if (style && style.includes("url(")) {
+        elements[index].style.cssText = style.replace(
+          /url\(["']?(?!data:)[^)"']*["']?\)/gi,
+          "none",
+        );
+      }
+    }
+  }
+
+  function emitScroll() {
+    scrollRaf = 0;
+    if (!scrollForwarding) return;
+    postToTrustedTop({
+      type: "INLINE_EDIT_SCROLL",
+      scrollX: window.scrollX,
+      scrollY: window.scrollY,
+    });
+  }
+
+  window.addEventListener(
+    "scroll",
+    function () {
+      if (!scrollForwarding || scrollRaf) return;
+      scrollRaf = requestAnimationFrame(emitScroll);
+    },
+    { passive: true, capture: true },
+  );
+
+  async function handleCaptureRequest(event) {
+    const requestId = event.data.requestId;
+    const scrollX = window.scrollX;
+    const scrollY = window.scrollY;
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+
+    function postResult(dataUrl) {
+      postToTrustedTop({
+        type: "INLINE_EDIT_SCREENSHOT_RESULT",
+        requestId,
+        dataUrl,
+        scrollX,
+        scrollY,
+      });
+    }
+
+    try {
+      // Wait for any pending web fonts to resolve so both inline metrics and
+      // the @font-face inlining below see the same loaded faces.
+      if (document.fonts && document.fonts.ready) {
+        try {
+          await document.fonts.ready;
+        } catch (_error) {}
+      }
+
+      const clone = document.documentElement.cloneNode(true);
+      inlineAll(document.documentElement, clone);
+
+      const removedNodes = clone.querySelectorAll("script,link[rel=\"stylesheet\"],style");
+      for (let index = 0; index < removedNodes.length; index += 1) {
+        removedNodes[index].remove();
+      }
+
+      stripExternal(clone);
+
+      // Re-embed web fonts as data-URI @font-face rules so the SVG rasterizer
+      // can resolve them — external font URLs aren't fetched during
+      // foreignObject rendering, which would otherwise force a fallback face
+      // and change text metrics.
+      const inlinedFontCss = await buildInlinedFontCss();
+      if (inlinedFontCss) {
+        const styleEl = document.createElement("style");
+        styleEl.textContent = inlinedFontCss;
+        const head = clone.querySelector("head");
+        if (head) head.appendChild(styleEl);
+        else clone.insertBefore(styleEl, clone.firstChild);
+      }
+
+      const html = new XMLSerializer().serializeToString(clone);
+      const svg =
+        `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}">` +
+        '<foreignObject width="100%" height="100%">' +
+        `<div xmlns="http://www.w3.org/1999/xhtml" style="width:${width}px;height:${height}px;overflow:hidden">` +
+        `<div style="transform:translate(-${scrollX}px,-${scrollY}px);transform-origin:top left">` +
+        html +
+        "</div></div></foreignObject></svg>";
+      const svgUrl = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
+      const image = new Image();
+      image.onload = function () {
+        const canvas = document.createElement("canvas");
+        canvas.width = width;
+        canvas.height = height;
+        canvas.getContext("2d").drawImage(image, 0, 0);
+        postResult(canvas.toDataURL("image/png"));
+      };
+      image.onerror = function () {
+        postResult(null);
+      };
+      image.src = svgUrl;
+    } catch (_error) {
+      postResult(null);
+    }
+  }
+
+  window.addEventListener("message", function (event) {
+    if (!event.data) return;
+    // Only accept messages from the direct parent frame. Blocks sibling /
+    // unrelated-window postMessage senders that could otherwise reach us.
+    if (event.source !== window.parent) return;
+
+    const trustedParentOrigin = getTrustedParentOrigin(event);
+    if (!trustedParentOrigin) return;
+    trustedTopOrigin = trustedParentOrigin;
+
+    if (event.data.type === "INLINE_EDIT_SCROLL_START") {
+      scrollForwarding = true;
+      emitScroll();
+      return;
+    }
+
+    if (event.data.type === "INLINE_EDIT_SCROLL_STOP") {
+      scrollForwarding = false;
+      if (scrollRaf) cancelAnimationFrame(scrollRaf);
+      scrollRaf = 0;
+      return;
+    }
+
+    if (event.data.type !== "INLINE_EDIT_CAPTURE_REQUEST") return;
+
+    handleCaptureRequest(event);
+  });
+})();
+
+
+</script></body>
+</html>

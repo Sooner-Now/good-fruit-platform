@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#fff1ea" />
+  <title>Start Growing — Good Fruit Platform</title>
+  <meta name="description" content="Create your Good Fruit profile, connect your local church and community, and start growing through prayer, learning, service, and mutual support." />
+  <meta property="og:title" content="Start Growing on Good Fruit" />
+  <meta property="og:description" content="Build your profile as an individual and grow with your local faith community." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500;1,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body class="is-landing">
+  <main class="start-shell">
+    <div class="container">
+      <div class="start-grid">
+        <section class="start-hero" aria-labelledby="start-title">
+          <div class="row-tight" style="color:white;">
+            <svg class="logo-svg" viewBox="0 0 40 40" aria-hidden="true" style="width:36px;height:36px;">
+              <path d="M20 36 L20 20" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" fill="none" />
+              <path fill="#84cc16" d="M20 24 C 10 22, 6 14, 8 8 C 14 8, 20 14, 20 22 Z" />
+              <path fill="#14b8a6" opacity="0.9" d="M20 22 C 26 16, 32 16, 34 12 C 32 22, 26 26, 20 24 Z" />
+              <circle fill="#fb7c5b" cx="20" cy="14" r="5.2" />
+              <circle cx="18.4" cy="12.6" r="1.4" fill="white" opacity="0.55" />
+            </svg>
+            <span style="font-family: var(--font-display); font-size: 20px; font-weight: 700;">Good Fruit</span>
+          </div>
+
+          <h1 id="start-title">Join the orchard.<br/><em>Grow with trust.</em></h1>
+          <p>Good Fruit starts with a real identity and the right level of access. Visitors can look around, guests can interact after verification, members can serve deeply, and businesses can join as trusted marketplace partners.</p>
+
+          <div class="growth-preview" aria-label="Growth preview">
+            <div class="between" style="margin-bottom: 12px;">
+              <div>
+                <p class="section-eyebrow" style="color: var(--color-gold);">Trust path</p>
+                <h2 style="color:white; font-size: 24px;">Visitor → Guest → Member</h2>
+              </div>
+              <span class="badge badge-gold">Verified growth</span>
+            </div>
+            <div class="progress" role="progressbar" aria-valuenow="12" aria-valuemin="0" aria-valuemax="100">
+              <div class="progress__bar" style="width: 12%; background: linear-gradient(90deg, var(--color-lime), var(--color-gold));"></div>
+            </div>
+            <p class="text-sm" style="margin: 12px 0 0;">Email confirmation unlocks search. ID verification unlocks posting, helping, marketplace interactions, and deeper community trust.</p>
+          </div>
+        </section>
+
+        <section class="profile-builder" aria-labelledby="builder-title">
+          <p class="section-eyebrow">Registration</p>
+          <h2 id="builder-title" style="font-size: clamp(28px, 4vw, 42px); margin: 4px 0 8px;">Create your Good Fruit access.</h2>
+          <p class="text-secondary">Choose your level, confirm your email, set your local area, and tell Good Fruit what you want to find or contribute.</p>
+
+          <form id="profile-form" class="stack-lg" style="margin-top: 22px;">
+            <div>
+              <label style="display:block; font-size:12px; font-weight:700; color:var(--color-text-secondary); margin-bottom:8px;">Access level</label>
+              <div class="membership-grid" role="radiogroup" aria-label="Access level">
+                <label class="membership-card">
+                  <input type="radio" name="role" value="Visitor" checked />
+                  <span class="badge badge-green">Free</span>
+                  <strong>Visitor</strong>
+                  <span>Search and view public listings after email confirmation.</span>
+                </label>
+                <label class="membership-card">
+                  <input type="radio" name="role" value="Guest" />
+                  <span class="badge badge-gold">ID required</span>
+                  <strong>Guest</strong>
+                  <span>Interact, respond, post needs, join teams, and use marketplace intros.</span>
+                </label>
+                <label class="membership-card">
+                  <input type="radio" name="role" value="Member" />
+                  <span class="badge badge-lime">Verified</span>
+                  <strong>Member</strong>
+                  <span>Build trust history, join orchards, mentor, lead, and earn bonus eligibility.</span>
+                </label>
+                <label class="membership-card">
+                  <input type="radio" name="role" value="Business" />
+                  <span class="badge badge-coral">Monthly fee</span>
+                  <strong>Business</strong>
+                  <span>Trusted business profile, marketplace visibility, and member bonus participation.</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-grid form-grid--2">
+              <div class="field">
+                <label for="name">Legal name</label>
+                <input id="name" name="name" type="text" placeholder="e.g., Jordan Miller" autocomplete="name" required data-testid="input-name" />
+              </div>
+              <div class="field">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required data-testid="input-email" />
+              </div>
+            </div>
+
+            <div class="form-grid form-grid--2">
+              <div class="field">
+                <label for="city">Home area</label>
+                <input id="city" name="city" type="text" placeholder="e.g., Bend, OR" autocomplete="address-level2" required data-testid="input-city" />
+              </div>
+              <div class="field">
+                <label for="radius">Default feed radius</label>
+                <select id="radius" name="radius" data-testid="select-radius">
+                  <option>10 miles</option>
+                  <option selected>25 miles</option>
+                  <option>50 miles</option>
+                  <option>Central Oregon</option>
+                  <option>Statewide</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-grid form-grid--2">
+              <div class="field">
+                <label for="church">Church, group, or community</label>
+                <input id="church" name="church" type="text" placeholder="Optional but helpful for trust layers" data-testid="input-church" />
+              </div>
+              <div class="field">
+                <label for="business-name">Business name</label>
+                <input id="business-name" name="business" type="text" placeholder="For business accounts" data-testid="input-business" />
+              </div>
+            </div>
+
+            <div class="verification-grid">
+              <article class="card verification-card">
+                <span class="badge badge-green">Step 1</span>
+                <h3>Email confirmation</h3>
+                <p class="text-sm text-secondary">Required for every account. Visitors can search and view public feeds after confirming email.</p>
+              </article>
+              <article class="card verification-card">
+                <span class="badge badge-gold">Step 2</span>
+                <h3>ID verification</h3>
+                <p class="text-sm text-secondary">Required before posting, responding, joining teams, or marketplace intros. In production this should use a secure identity provider.</p>
+                <div class="field" style="margin-top: 10px;">
+                  <label for="id-upload">State-issued ID upload</label>
+                  <input id="id-upload" name="idUpload" type="file" accept="image/*,.pdf" data-testid="input-id-upload" />
+                </div>
+              </article>
+              <article class="card verification-card">
+                <span class="badge badge-coral">Business</span>
+                <h3>Service fee and bonus pool</h3>
+                <p class="text-sm text-secondary">Businesses pay a monthly service fee, become platform members, and may participate when member bonuses or profit-share distributions are available.</p>
+              </article>
+            </div>
+
+            <div>
+              <label style="display:block; font-size:12px; font-weight:700; color:var(--color-text-secondary); margin-bottom:8px;">Interests and feed priorities</label>
+              <div class="builder-checks">
+                <label class="builder-check"><input type="checkbox" name="interest" value="Prayer" /> Prayer</label>
+                <label class="builder-check"><input type="checkbox" name="interest" value="Needs" /> Needs and mutual aid</label>
+                <label class="builder-check"><input type="checkbox" name="interest" value="Connect" /> Groups, events, projects</label>
+                <label class="builder-check"><input type="checkbox" name="interest" value="Learn" /> Training and courses</label>
+                <label class="builder-check"><input type="checkbox" name="interest" value="Marketplace" /> Marketplace</label>
+                <label class="builder-check"><input type="checkbox" name="interest" value="Business" /> Local business</label>
+              </div>
+            </div>
+
+            <div class="card" style="background: var(--color-bg-soft);">
+              <div class="row" style="align-items:flex-start;">
+                <div style="font-size: 24px; font-weight:800; color:var(--color-turquoise-deep);">ID</div>
+                <div>
+                  <h3>Safety-first trust model</h3>
+                  <p class="text-sm text-secondary" style="margin:4px 0 0;">Good Fruit should verify people before they post, transact, request help, or contact vulnerable members. Documents should never be stored in this static prototype.</p>
+                </div>
+              </div>
+            </div>
+
+            <button class="btn btn-primary btn-block" type="submit" data-testid="button-start-growing">Create account →</button>
+            <a class="btn btn-ghost btn-block" href="home.html" data-testid="link-skip-demo">Skip for now and view demo</a>
+          </form>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <script src="assets/shared.js"></script>
+  <script>
+    (function () {
+      const form = document.getElementById('profile-form');
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        const data = new FormData(form);
+        const query = new URLSearchParams();
+        ['name', 'email', 'city', 'church', 'role', 'radius', 'business'].forEach((key) => {
+          const value = (data.get(key) || '').toString().trim();
+          if (value) query.set(key, value);
+        });
+        const interests = data.getAll('interest');
+        if (interests.length) query.set('interests', interests.join(','));
+        const role = (data.get('role') || 'Visitor').toString();
+        query.set('emailConfirmed', 'pending');
+        query.set('idVerified', role === 'Visitor' ? 'not_required' : 'pending');
+        query.set('accessStatus', role === 'Visitor' ? 'view_only' : 'verification_pending');
+        window.GF_TOAST('Registration started · check your email', { tone: 'success' });
+        setTimeout(() => {
+          window.location.href = `home.html${query.toString() ? `?${query.toString()}` : ''}`;
+        }, 650);
+      });
+    })();
+  </script>
+<script data-pplx-inline-edit>
+(function () {
+  if (window === window.top) return;
+
+  const allowedParentOrigins = ["https://www.perplexity.ai","https://perplexity.ai","https://testing.perplexity.ai","https://staging.perplexity.ai","https://*.preview.i.perplexity.ai","http://localhost:3000","http://127.0.0.1:3000","http://localhost:5173","http://127.0.0.1:5173"];
+  const MAX_FONT_BYTES = 500 * 1024;
+  const MAX_TOTAL_FONT_BYTES = 2 * 1024 * 1024;
+  let scrollForwarding = false;
+  let scrollRaf = 0;
+  let trustedTopOrigin = null;
+
+  // Allow entries like "https://*.preview.i.perplexity.ai" — the wildcard
+  // matches a single DNS label (no dots), so "https://*.foo" cannot stretch
+  // across multiple labels.
+  function matchesAllowedOrigin(origin) {
+    if (!origin) return false;
+    for (const entry of allowedParentOrigins) {
+      if (!entry.includes("*")) {
+        if (entry === origin) return true;
+        continue;
+      }
+      const pattern = new RegExp(
+        "^" +
+          entry.replace(/[.+?^${}()|[\]\\]/g, "\\$&").replace(/\*/g, "[^.]+") +
+          "$",
+      );
+      if (pattern.test(origin)) return true;
+    }
+    return false;
+  }
+
+  // Trust decision: when the sender is same-origin-visible (event.origin is a
+  // real origin like https://www.perplexity.ai) we trust event.origin directly.
+  // When event.origin is "null" (opaque broker srcdoc), we fall back to the
+  // broker's stamped `parentOrigin` to identify the top window. The fallback
+  // is claim-only — we rely on the browser's native `targetOrigin` enforcement
+  // on the response path (see postToTrustedTop) to ensure replies can't be
+  // delivered to anyone but the actual top window of that claimed origin.
+  function getTrustedParentOrigin(event) {
+    const forwardedParentOrigin =
+      typeof event.data.parentOrigin === "string" ? event.data.parentOrigin : null;
+    const parentOrigin = event.origin === "null" ? forwardedParentOrigin : event.origin;
+    return matchesAllowedOrigin(parentOrigin) ? parentOrigin : null;
+  }
+
+  // All responses go to window.top with targetOrigin = the allowlisted origin.
+  // An attacker that iframes us inside their own null-origin broker can claim
+  // any parentOrigin they like, but the browser will drop the reply whenever
+  // the real top's origin doesn't match — so the screenshot never leaves.
+  function postToTrustedTop(message) {
+    if (!trustedTopOrigin) return;
+    try {
+      window.top.postMessage(message, trustedTopOrigin);
+    } catch (_error) {}
+  }
+
+  function inlineAll(original, clone) {
+    if (original.nodeType !== 1 || clone.nodeType !== 1) return;
+
+    try {
+      const computedStyle = getComputedStyle(original);
+      // cssText on a computed style is the serialized declaration in modern
+      // Chromium/Safari — a single read beats enumerating ~400 longhand
+      // properties. Firefox returns "" here, so we fall back on empty.
+      const serialized = computedStyle.cssText;
+      if (serialized) {
+        clone.style.cssText = serialized;
+      } else {
+        const parts = new Array(computedStyle.length);
+        for (let index = 0; index < computedStyle.length; index += 1) {
+          const property = computedStyle[index];
+          parts[index] = `${property}:${computedStyle.getPropertyValue(property)};`;
+        }
+        clone.style.cssText = parts.join("");
+      }
+    } catch (_error) {}
+
+    const originalChildren = original.children;
+    const clonedChildren = clone.children;
+    for (
+      let index = 0;
+      index < originalChildren.length && index < clonedChildren.length;
+      index += 1
+    ) {
+      inlineAll(originalChildren[index], clonedChildren[index]);
+    }
+  }
+
+  function extractFontUrl(srcValue) {
+    const matches = [
+      ...srcValue.matchAll(
+        /url\(["']?([^"')]+)["']?\)(?:\s*format\(["']?([^"')]+)["']?\))?/gi,
+      ),
+    ];
+    if (matches.length === 0) return null;
+    const woff2 = matches.find((m) => m[2] && m[2].toLowerCase().includes("woff2"));
+    if (woff2) return woff2[1];
+    const woff = matches.find((m) => m[2] && m[2].toLowerCase().includes("woff"));
+    if (woff) return woff[1];
+    return matches[0][1];
+  }
+
+  // Cache resolved font URL -> data URI across captures. Fonts on a page
+  // essentially never change, and a batch run emits multiple captures back to
+  // back — without this we'd refetch + re-base64 every time.
+  const fontDataUriCache = new Map();
+  const SRC_DECLARATION_RE = /src\s*:\s*[^;}]+/i;
+
+  async function fetchAsDataUri(url) {
+    if (fontDataUriCache.has(url)) return fontDataUriCache.get(url);
+    let dataUri = null;
+    try {
+      const response = await fetch(url, { mode: "cors", credentials: "omit" });
+      if (response.ok) {
+        const blob = await response.blob();
+        if (blob.size <= MAX_FONT_BYTES) {
+          dataUri = await new Promise((resolve) => {
+            const reader = new FileReader();
+            reader.onloadend = () =>
+              resolve(typeof reader.result === "string" ? reader.result : null);
+            reader.onerror = () => resolve(null);
+            reader.readAsDataURL(blob);
+          });
+        }
+      }
+    } catch (_error) {
+      dataUri = null;
+    }
+    fontDataUriCache.set(url, dataUri);
+    return dataUri;
+  }
+
+  function collectFontFaceRuleTexts() {
+    const rules = [];
+    for (const sheet of document.styleSheets) {
+      let cssRules;
+      try {
+        cssRules = sheet.cssRules;
+      } catch (_error) {
+        continue;
+      }
+      if (!cssRules) continue;
+      for (const rule of cssRules) {
+        const cssText = rule.cssText || "";
+        if (cssText.startsWith("@font-face")) rules.push(cssText);
+      }
+    }
+    return rules;
+  }
+
+  async function buildInlinedFontCss() {
+    const ruleTexts = collectFontFaceRuleTexts();
+    if (ruleTexts.length === 0) return null;
+
+    const resolved = ruleTexts.map((cssText) => {
+      if (!SRC_DECLARATION_RE.test(cssText)) return null;
+      const srcMatch = cssText.match(/src\s*:\s*([^;}]+)[;}]/i);
+      if (!srcMatch) return null;
+      const url = extractFontUrl(srcMatch[1]);
+      if (!url) return null;
+      try {
+        return { cssText, url: new URL(url, document.baseURI).href };
+      } catch (_error) {
+        return null;
+      }
+    });
+
+    const dataUris = await Promise.all(
+      resolved.map((entry) => (entry ? fetchAsDataUri(entry.url) : Promise.resolve(null))),
+    );
+
+    const inlined = [];
+    let totalBytes = 0;
+    for (let index = 0; index < resolved.length; index += 1) {
+      const entry = resolved[index];
+      const dataUri = dataUris[index];
+      if (!entry || !dataUri) continue;
+      const approxBytes = dataUri.length * 0.75;
+      if (totalBytes + approxBytes > MAX_TOTAL_FONT_BYTES) break;
+      totalBytes += approxBytes;
+      inlined.push(entry.cssText.replace(SRC_DECLARATION_RE, `src: url("${dataUri}")`));
+    }
+    return inlined.length > 0 ? inlined.join("\n") : null;
+  }
+
+  function stripExternal(clone) {
+    const images = clone.querySelectorAll("img");
+    for (let index = 0; index < images.length; index += 1) {
+      const src = images[index].getAttribute("src");
+      if (src && !src.startsWith("data:")) images[index].removeAttribute("src");
+    }
+
+    const elements = clone.querySelectorAll("*");
+    for (let index = 0; index < elements.length; index += 1) {
+      const style = elements[index].style.cssText;
+      if (style && style.includes("url(")) {
+        elements[index].style.cssText = style.replace(
+          /url\(["']?(?!data:)[^)"']*["']?\)/gi,
+          "none",
+        );
+      }
+    }
+  }
+
+  function emitScroll() {
+    scrollRaf = 0;
+    if (!scrollForwarding) return;
+    postToTrustedTop({
+      type: "INLINE_EDIT_SCROLL",
+      scrollX: window.scrollX,
+      scrollY: window.scrollY,
+    });
+  }
+
+  window.addEventListener(
+    "scroll",
+    function () {
+      if (!scrollForwarding || scrollRaf) return;
+      scrollRaf = requestAnimationFrame(emitScroll);
+    },
+    { passive: true, capture: true },
+  );
+
+  async function handleCaptureRequest(event) {
+    const requestId = event.data.requestId;
+    const scrollX = window.scrollX;
+    const scrollY = window.scrollY;
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+
+    function postResult(dataUrl) {
+      postToTrustedTop({
+        type: "INLINE_EDIT_SCREENSHOT_RESULT",
+        requestId,
+        dataUrl,
+        scrollX,
+        scrollY,
+      });
+    }
+
+    try {
+      // Wait for any pending web fonts to resolve so both inline metrics and
+      // the @font-face inlining below see the same loaded faces.
+      if (document.fonts && document.fonts.ready) {
+        try {
+          await document.fonts.ready;
+        } catch (_error) {}
+      }
+
+      const clone = document.documentElement.cloneNode(true);
+      inlineAll(document.documentElement, clone);
+
+      const removedNodes = clone.querySelectorAll("script,link[rel=\"stylesheet\"],style");
+      for (let index = 0; index < removedNodes.length; index += 1) {
+        removedNodes[index].remove();
+      }
+
+      stripExternal(clone);
+
+      // Re-embed web fonts as data-URI @font-face rules so the SVG rasterizer
+      // can resolve them — external font URLs aren't fetched during
+      // foreignObject rendering, which would otherwise force a fallback face
+      // and change text metrics.
+      const inlinedFontCss = await buildInlinedFontCss();
+      if (inlinedFontCss) {
+        const styleEl = document.createElement("style");
+        styleEl.textContent = inlinedFontCss;
+        const head = clone.querySelector("head");
+        if (head) head.appendChild(styleEl);
+        else clone.insertBefore(styleEl, clone.firstChild);
+      }
+
+      const html = new XMLSerializer().serializeToString(clone);
+      const svg =
+        `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}">` +
+        '<foreignObject width="100%" height="100%">' +
+        `<div xmlns="http://www.w3.org/1999/xhtml" style="width:${width}px;height:${height}px;overflow:hidden">` +
+        `<div style="transform:translate(-${scrollX}px,-${scrollY}px);transform-origin:top left">` +
+        html +
+        "</div></div></foreignObject></svg>";
+      const svgUrl = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
+      const image = new Image();
+      image.onload = function () {
+        const canvas = document.createElement("canvas");
+        canvas.width = width;
+        canvas.height = height;
+        canvas.getContext("2d").drawImage(image, 0, 0);
+        postResult(canvas.toDataURL("image/png"));
+      };
+      image.onerror = function () {
+        postResult(null);
+      };
+      image.src = svgUrl;
+    } catch (_error) {
+      postResult(null);
+    }
+  }
+
+  window.addEventListener("message", function (event) {
+    if (!event.data) return;
+    // Only accept messages from the direct parent frame. Blocks sibling /
+    // unrelated-window postMessage senders that could otherwise reach us.
+    if (event.source !== window.parent) return;
+
+    const trustedParentOrigin = getTrustedParentOrigin(event);
+    if (!trustedParentOrigin) return;
+    trustedTopOrigin = trustedParentOrigin;
+
+    if (event.data.type === "INLINE_EDIT_SCROLL_START") {
+      scrollForwarding = true;
+      emitScroll();
+      return;
+    }
+
+    if (event.data.type === "INLINE_EDIT_SCROLL_STOP") {
+      scrollForwarding = false;
+      if (scrollRaf) cancelAnimationFrame(scrollRaf);
+      scrollRaf = 0;
+      return;
+    }
+
+    if (event.data.type !== "INLINE_EDIT_CAPTURE_REQUEST") return;
+
+    handleCaptureRequest(event);
+  });
+})();
+
+
+</script></body>
+</html>

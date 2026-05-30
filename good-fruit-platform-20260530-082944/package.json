@@ -1,0 +1,12 @@
+{
+  "name": "good-fruit-platform",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Static Good Fruit Platform prototype with local verification and deployment helpers.",
+  "scripts": {
+    "verify": "node scripts/verify.mjs",
+    "check:env": "node scripts/check-platform-env.mjs",
+    "bundle": "bash scripts/build-deploy-bundle.sh",
+    "push:github": "bash scripts/push-to-github.sh"
+  }
+}

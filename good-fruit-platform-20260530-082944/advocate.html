@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#fff1ea" />
+  <title>Advocate — Good Fruit Platform</title>
+  <meta name="description" content="A Good Fruit digital advocate that helps people navigate prayer, learning, community, service, marketplace trust, and next steps." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body data-advocate-page>
+  <div data-component="header" data-title="Advocate"></div>
+
+  <main class="app-main">
+    <div class="container">
+      <section class="advocate-hero card" aria-labelledby="advocate-title">
+        <div>
+          <p class="section-eyebrow">AI companion concept</p>
+          <h1 id="advocate-title">Meet Seedling, your Good Fruit advocate.</h1>
+          <p class="text-secondary">Friendly, wise, encouraging, and rooted in truth. Seedling helps you grow in yourself, in the Lord, and in community.</p>
+          <div class="advocate-principles" aria-label="Seedling principles">
+            <span><strong>Grows with you</strong> Personal growth and transformation</span>
+            <span><strong>Rooted in the Lord</strong> Biblically grounded and led by love</span>
+            <span><strong>Built for community</strong> Connects you with people and purpose</span>
+          </div>
+        </div>
+        <div class="advocate-identity">
+          <img src="assets/seedling-advocate.png" alt="Seedling, the Good Fruit AI advocate mascot" data-seedling-avatar />
+          <strong>Seedling</strong>
+          <span>A little seed with big purpose</span>
+        </div>
+      </section>
+
+      <section class="seedling-role-grid" aria-label="Seedling role in platform">
+        <article class="card">
+          <span class="seedling-icon seedling-icon--growth" aria-hidden="true">✦</span>
+          <h3>Guide</h3>
+          <p class="text-sm text-secondary">Helps people navigate the platform and choose a next faithful step.</p>
+        </article>
+        <article class="card">
+          <span class="seedling-icon seedling-icon--faith" aria-hidden="true">+</span>
+          <h3>Encourage</h3>
+          <p class="text-sm text-secondary">Offers timely support, reminders, Scripture direction, and uplifting truth.</p>
+        </article>
+        <article class="card">
+          <span class="seedling-icon seedling-icon--community" aria-hidden="true">●</span>
+          <h3>Connect</h3>
+          <p class="text-sm text-secondary">Introduces people to groups, needs, learning paths, and trusted local helpers.</p>
+        </article>
+        <article class="card">
+          <span class="seedling-icon seedling-icon--love" aria-hidden="true">♥</span>
+          <h3>Grow</h3>
+          <p class="text-sm text-secondary">Tracks growth, celebrates breakthroughs, and nudges people toward good fruit.</p>
+        </article>
+      </section>
+
+      <section class="advocate-layout">
+        <div class="advocate-chat card" aria-label="Advocate chat">
+          <div class="advocate-chat__head">
+            <div class="seedling-chat-title">
+              <img src="assets/seedling-expressions/listening.png" alt="" aria-hidden="true" data-seedling-avatar />
+              <div>
+                <h2>Talk with Seedling</h2>
+                <p class="text-sm text-secondary" data-seedling-mood>Listening</p>
+              </div>
+            </div>
+            <div>
+              <p class="text-sm text-secondary">Ask for guidance or choose a path below.</p>
+            </div>
+            <span class="badge badge-green" data-advocate-trust>Visitor</span>
+          </div>
+
+          <div class="advocate-messages" data-advocate-messages aria-live="polite"></div>
+
+          <div class="seedling-expression-dock" aria-label="Seedling expressions">
+            <button type="button" data-expression="joyful" aria-pressed="false">Joyful</button>
+            <button type="button" data-expression="encouraging" aria-pressed="false">Encouraging</button>
+            <button type="button" data-expression="thinking" aria-pressed="false">Thinking</button>
+            <button type="button" data-expression="praying" aria-pressed="false">Praying</button>
+            <button type="button" data-expression="comforting" aria-pressed="false">Comforting</button>
+            <button type="button" data-expression="celebrate" aria-pressed="false">Celebrate</button>
+          </div>
+
+          <div class="advocate-prompts" aria-label="Suggested advocate prompts">
+            <button type="button" data-prompt="I need prayer">I need prayer</button>
+            <button type="button" data-prompt="I need help with a practical need">I need help</button>
+            <button type="button" data-prompt="I want to serve in my area">I want to serve</button>
+            <button type="button" data-prompt="Help me grow in the Bible">Grow in the Bible</button>
+            <button type="button" data-prompt="Help me build trust so I can post">Build trust</button>
+          </div>
+
+          <form class="advocate-input" data-advocate-form>
+            <label class="sr-only" for="advocate-question">Ask the advocate</label>
+            <input id="advocate-question" name="question" type="text" placeholder="Ask for help finding your next step..." autocomplete="off" />
+            <button class="btn btn-primary" type="submit">Ask</button>
+          </form>
+        </div>
+
+        <aside class="advocate-side stack-lg" aria-label="Advocate recommendations">
+          <section class="card">
+            <p class="section-eyebrow">Next best steps</p>
+            <div class="advocate-step-list" data-advocate-steps></div>
+          </section>
+
+          <section class="card">
+            <p class="section-eyebrow">Growth plan</p>
+            <div class="advocate-growth-plan" data-advocate-growth></div>
+          </section>
+
+          <section class="card">
+            <p class="section-eyebrow">Guardrails</p>
+            <ul class="advocate-guardrails">
+              <li>Encourage people toward real relationships, not isolation.</li>
+              <li>Escalate crisis, abuse, or emergency needs to trusted human help.</li>
+              <li>Protect private documents and sensitive prayer requests.</li>
+              <li>Never replace pastors, counselors, doctors, or emergency services.</li>
+            </ul>
+          </section>
+        </aside>
+      </section>
+    </div>
+  </main>
+
+  <div data-component="bottom-nav" data-active="advocate"></div>
+  <script src="assets/shared.js"></script>
+  <script src="assets/advocate-agent.js"></script>
+</body>
+</html>
