@@ -4,140 +4,213 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#fff1ea" />
-  <title>Start Growing — Good Fruit Platform</title>
-  <meta name="description" content="Create your Good Fruit profile, connect your local church and community, and start growing through prayer, learning, service, and mutual support." />
-  <meta property="og:title" content="Start Growing on Good Fruit" />
-  <meta property="og:description" content="Build your profile as an individual and grow with your local faith community." />
+  <title>Connect — Good Fruit Platform</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500;1,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/styles.css" />
 </head>
-<body class="is-landing">
-  <main class="start-shell">
+<body>
+  <div data-component="header" data-title="Connect"></div>
+
+  <main class="app-main">
     <div class="container">
-      <div class="start-grid">
-        <section class="start-hero" aria-labelledby="start-title">
-          <div class="row-tight" style="color:white;">
-            <svg class="logo-svg" viewBox="0 0 40 40" aria-hidden="true" style="width:36px;height:36px;">
-              <path d="M20 36 L20 20" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" fill="none" />
-              <path fill="#84cc16" d="M20 24 C 10 22, 6 14, 8 8 C 14 8, 20 14, 20 22 Z" />
-              <path fill="#14b8a6" opacity="0.9" d="M20 22 C 26 16, 32 16, 34 12 C 32 22, 26 26, 20 24 Z" />
-              <circle fill="#fb7c5b" cx="20" cy="14" r="5.2" />
-              <circle cx="18.4" cy="12.6" r="1.4" fill="white" opacity="0.55" />
-            </svg>
-            <span style="font-family: var(--font-display); font-size: 20px; font-weight: 700;">Good Fruit</span>
-          </div>
 
-          <h1 id="start-title">Plant your profile.<br/><em>Start growing.</em></h1>
-          <p>Good Fruit begins with you as an individual: your gifts, your neighborhood, your church, and the ways you want to serve. Build a profile, then let the platform surface local prayers, needs, opportunities, businesses, churches, and community groups around you.</p>
+      <section style="margin-bottom: 18px;">
+        <h1 style="font-size: 28px;">Connect</h1>
+        <p class="text-secondary">Mentors, projects, groups, and events.</p>
+      </section>
 
-          <div class="growth-preview" aria-label="Growth preview">
-            <div class="between" style="margin-bottom: 12px;">
-              <div>
-                <p class="section-eyebrow" style="color: var(--color-gold);">Your first seed</p>
-                <h2 style="color:white; font-size: 24px;">Level 1 · Seed 🌱</h2>
-              </div>
-              <span class="badge badge-gold">+50 fruit</span>
-            </div>
-            <div class="progress" role="progressbar" aria-valuenow="12" aria-valuemin="0" aria-valuemax="100">
-              <div class="progress__bar" style="width: 12%; background: linear-gradient(90deg, var(--color-lime), var(--color-gold));"></div>
-            </div>
-            <p class="text-sm" style="margin: 12px 0 0;">Complete your profile, join one local group, and pray for one need to begin your growth path.</p>
-          </div>
-        </section>
+      <div data-component="local-feed" data-feed="connect" data-title="Churches and communities to connect with" style="margin-bottom: 18px;"></div>
 
-        <section class="profile-builder" aria-labelledby="builder-title">
-          <p class="section-eyebrow">Individual profile</p>
-          <h2 id="builder-title" style="font-size: clamp(28px, 4vw, 42px); margin: 4px 0 8px;">Tell us where you’re planted.</h2>
-          <p class="text-secondary">This prototype uses the form to personalize the next screen. In WordPress, these fields map cleanly to user profile metadata and feed filters.</p>
+      <!-- Tabs -->
+      <div data-tabs>
+        <div class="tab-row" role="tablist" aria-label="Connect sections">
+          <button class="tab" role="tab" aria-selected="true" aria-controls="panel-mentors" id="tab-mentors">Mentors</button>
+          <button class="tab" role="tab" aria-selected="false" aria-controls="panel-projects" id="tab-projects">Projects</button>
+          <button class="tab" role="tab" aria-selected="false" aria-controls="panel-groups" id="tab-groups">Groups</button>
+          <button class="tab" role="tab" aria-selected="false" aria-controls="panel-events" id="tab-events">Events</button>
+        </div>
+      </div>
 
-          <form id="profile-form" class="stack-lg" style="margin-top: 22px;">
-            <div class="form-grid form-grid--2">
-              <div class="field">
-                <label for="name">Your name</label>
-                <input id="name" name="name" type="text" placeholder="e.g., Hannah Pereira" autocomplete="name" data-testid="input-name" />
-              </div>
-              <div class="field">
-                <label for="city">City or neighborhood</label>
-                <input id="city" name="city" type="text" placeholder="e.g., Long Beach, CA" autocomplete="address-level2" data-testid="input-city" />
-              </div>
-            </div>
+      <div style="margin-top: 16px;">
+        <!-- MENTORS -->
+        <section id="panel-mentors" role="tabpanel" aria-labelledby="tab-mentors" class="stack">
 
-            <div class="form-grid form-grid--2">
-              <div class="field">
-                <label for="church">Church or faith community</label>
-                <input id="church" name="church" type="text" placeholder="Add your church, parish, or group" data-testid="input-church" />
-              </div>
-              <div class="field">
-                <label for="focus">Growth focus</label>
-                <select id="focus" name="focus" data-testid="select-focus">
-                  <option value="">Choose a path</option>
-                  <option>Prayer and encouragement</option>
-                  <option>Mutual aid and service</option>
-                  <option>Learning and discipleship</option>
-                  <option>Marketplace and local business</option>
-                  <option>Mentorship and leadership</option>
-                </select>
-              </div>
-            </div>
-
-            <div>
-              <label style="display:block; font-size:12px; font-weight:700; color:var(--color-text-secondary); margin-bottom:8px;">Gifts you want to grow</label>
-              <div class="builder-checks">
-                <label class="builder-check"><input type="checkbox" name="gift" value="Prayer" /> Prayer</label>
-                <label class="builder-check"><input type="checkbox" name="gift" value="Hospitality" /> Hospitality</label>
-                <label class="builder-check"><input type="checkbox" name="gift" value="Teaching" /> Teaching</label>
-                <label class="builder-check"><input type="checkbox" name="gift" value="Giving" /> Giving</label>
-                <label class="builder-check"><input type="checkbox" name="gift" value="Mentoring" /> Mentoring</label>
-                <label class="builder-check"><input type="checkbox" name="gift" value="Business" /> Local business</label>
-              </div>
-            </div>
-
-            <div class="field">
-              <label for="story">Short introduction</label>
-              <textarea id="story" name="story" placeholder="Share a sentence about how you want to grow or serve this season." data-testid="textarea-story"></textarea>
-            </div>
-
-            <div class="card" style="background: var(--color-bg-soft);">
-              <div class="row" style="align-items:flex-start;">
-                <div style="font-size: 28px;">📍</div>
-                <div>
-                  <h3>Local feed setup</h3>
-                  <p class="text-sm text-secondary" style="margin:4px 0 0;">Once your city is set, each tab can be populated by churches, businesses, schools, nonprofits, and community groups in that area.</p>
+          <article class="card mentor-card">
+            <div class="mentor-card__head">
+              <div class="avatar avatar-lg avatar-teal">MN</div>
+              <div style="flex:1;">
+                <div class="between">
+                  <h3>Marcus Ndebele</h3>
+                  <span class="badge badge-green">Available</span>
+                </div>
+                <p class="text-sm text-muted" style="margin:2px 0 0;">Worship pastor · Philadelphia, PA</p>
+                <p class="text-sm" style="margin: 8px 0 10px; color: var(--color-text-secondary);">10+ years mentoring young worship leaders. Loves talking through both theology and chord progressions.</p>
+                <div class="row-wrap">
+                  <span class="skill-tag">Worship</span>
+                  <span class="skill-tag">Leadership</span>
+                  <span class="skill-tag">Songwriting</span>
                 </div>
               </div>
             </div>
+            <button class="btn btn-primary btn-block" data-testid="btn-request-mentor-1">Request mentorship</button>
+          </article>
 
-            <button class="btn btn-primary btn-block" type="submit" data-testid="button-start-growing">Start growing →</button>
-            <a class="btn btn-ghost btn-block" href="home.html" data-testid="link-skip-demo">Skip for now and view demo</a>
-          </form>
+          <article class="card mentor-card">
+            <div class="mentor-card__head">
+              <div class="avatar avatar-lg avatar-violet">PA</div>
+              <div style="flex:1;">
+                <div class="between">
+                  <h3>Priya Anand</h3>
+                  <span class="badge badge-amber">Limited</span>
+                </div>
+                <p class="text-sm text-muted" style="margin:2px 0 0;">CPA &amp; small business advisor · Atlanta, GA</p>
+                <p class="text-sm" style="margin: 8px 0 10px; color: var(--color-text-secondary);">Helping believers steward money well — budgeting, taxes, generous giving plans.</p>
+                <div class="row-wrap">
+                  <span class="skill-tag">Finance</span>
+                  <span class="skill-tag">Stewardship</span>
+                  <span class="skill-tag">Small biz</span>
+                </div>
+              </div>
+            </div>
+            <button class="btn btn-ghost btn-block">Request mentorship</button>
+          </article>
+
+          <article class="card mentor-card">
+            <div class="mentor-card__head">
+              <div class="avatar avatar-lg avatar-rose">EK</div>
+              <div style="flex:1;">
+                <div class="between">
+                  <h3>Esther Kim</h3>
+                  <span class="badge badge-green">Available</span>
+                </div>
+                <p class="text-sm text-muted" style="margin:2px 0 0;">Marriage &amp; family counselor · Los Angeles, CA</p>
+                <p class="text-sm" style="margin: 8px 0 10px; color: var(--color-text-secondary);">Twenty years walking with couples and families through hard seasons.</p>
+                <div class="row-wrap">
+                  <span class="skill-tag">Marriage</span>
+                  <span class="skill-tag">Counseling</span>
+                  <span class="skill-tag">Family</span>
+                </div>
+              </div>
+            </div>
+            <button class="btn btn-primary btn-block">Request mentorship</button>
+          </article>
+
+        </section>
+
+        <!-- PROJECTS -->
+        <section id="panel-projects" role="tabpanel" aria-labelledby="tab-projects" hidden class="stack">
+          <article class="card">
+            <div class="row" style="margin-bottom: 10px;">
+              <div style="font-size: 36px;">🏘️</div>
+              <div>
+                <h3>Habitat build · West side</h3>
+                <p class="text-xs text-muted">Organized by Riverside Church</p>
+              </div>
+              <span class="badge badge-coral" style="margin-left:auto;">8 spots</span>
+            </div>
+            <p class="text-sm text-secondary">Three-weekend build starting May 11. We need framers, painters, and lots of sandwich-makers.</p>
+            <div class="row-tight" style="margin: 10px 0;">
+              <div class="row-tight" style="margin-left: 0;">
+                <div class="avatar avatar-sm avatar-teal">M</div>
+                <div class="avatar avatar-sm avatar-rose" style="margin-left: -8px;">J</div>
+                <div class="avatar avatar-sm avatar-violet" style="margin-left: -8px;">P</div>
+                <div class="avatar avatar-sm" style="margin-left: -8px;">+9</div>
+              </div>
+              <span class="text-xs text-muted">12 volunteers</span>
+            </div>
+            <button class="btn btn-lime btn-block" data-testid="btn-join-habitat">Join project</button>
+          </article>
+
+          <article class="card">
+            <div class="row" style="margin-bottom: 10px;">
+              <div style="font-size: 36px;">🍲</div>
+              <div>
+                <h3>Saturday soup kitchen</h3>
+                <p class="text-xs text-muted">Organized by Hannah Pereira</p>
+              </div>
+              <span class="badge badge-green" style="margin-left:auto;">Open</span>
+            </div>
+            <p class="text-sm text-secondary">Weekly meal prep & service from 9 AM to 1 PM. We'd love hands and heart.</p>
+            <button class="btn btn-lime btn-block">Join project</button>
+          </article>
+        </section>
+
+        <!-- GROUPS -->
+        <section id="panel-groups" role="tabpanel" aria-labelledby="tab-groups" hidden>
+          <div class="stack">
+            <div class="card row" style="gap: 14px;">
+              <div style="font-size: 32px;">📖</div>
+              <div style="flex:1;">
+                <h3>Romans deep-dive</h3>
+                <p class="text-xs text-muted">42 members · Tuesdays 7 PM</p>
+              </div>
+              <button class="btn btn-primary btn-sm">Join</button>
+            </div>
+            <div class="card row" style="gap: 14px;">
+              <div style="font-size: 32px;">👶</div>
+              <div style="flex:1;">
+                <h3>Young moms circle</h3>
+                <p class="text-xs text-muted">28 members · Thursday mornings</p>
+              </div>
+              <button class="btn btn-primary btn-sm">Join</button>
+            </div>
+            <div class="card row" style="gap: 14px;">
+              <div style="font-size: 32px;">🌍</div>
+              <div style="flex:1;">
+                <h3>Missions &amp; culture</h3>
+                <p class="text-xs text-muted">156 members · Monthly</p>
+              </div>
+              <button class="btn btn-primary btn-sm">Join</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- EVENTS -->
+        <section id="panel-events" role="tabpanel" aria-labelledby="tab-events" hidden>
+          <div class="stack">
+            <article class="card row" style="gap: 14px; align-items: flex-start;">
+              <div class="event-date">
+                <div class="event-date__month">May</div>
+                <div class="event-date__day">11</div>
+              </div>
+              <div style="flex:1;">
+                <h3>Habitat build kickoff</h3>
+                <p class="text-xs text-muted">Sat · 7:00 AM · 1402 Vine St</p>
+                <p class="text-sm text-secondary" style="margin-top: 6px;">Donuts at 7, framing starts at 8. Bring a hammer and a hat.</p>
+              </div>
+            </article>
+            <article class="card row" style="gap: 14px; align-items: flex-start;">
+              <div class="event-date">
+                <div class="event-date__month" style="background: var(--color-turquoise);">May</div>
+                <div class="event-date__day">18</div>
+              </div>
+              <div style="flex:1;">
+                <h3>Worship night · Westside</h3>
+                <p class="text-xs text-muted">Sat · 7:00 PM · Riverside Park amphitheater</p>
+                <p class="text-sm text-secondary" style="margin-top: 6px;">Outdoor worship with five churches together. Bring a blanket.</p>
+              </div>
+            </article>
+            <article class="card row" style="gap: 14px; align-items: flex-start;">
+              <div class="event-date">
+                <div class="event-date__month" style="background: var(--color-lime-hover);">May</div>
+                <div class="event-date__day">24</div>
+              </div>
+              <div style="flex:1;">
+                <h3>Youth retreat sign-ups close</h3>
+                <p class="text-xs text-muted">Fri · All day</p>
+              </div>
+            </article>
+          </div>
         </section>
       </div>
+
     </div>
   </main>
 
+  <div data-component="bottom-nav" data-active="connect"></div>
   <script src="assets/shared.js"></script>
-  <script>
-    (function () {
-      const form = document.getElementById('profile-form');
-      form.addEventListener('submit', function (event) {
-        event.preventDefault();
-        const data = new FormData(form);
-        const query = new URLSearchParams();
-        ['name', 'city', 'church', 'focus'].forEach((key) => {
-          const value = (data.get(key) || '').toString().trim();
-          if (value) query.set(key, value);
-        });
-        const gifts = data.getAll('gift');
-        if (gifts.length) query.set('gifts', gifts.join(','));
-        window.GF_TOAST('Profile planted · welcome to Good Fruit', { tone: 'success' });
-        setTimeout(() => {
-          window.location.href = `home.html${query.toString() ? `?${query.toString()}` : ''}`;
-        }, 650);
-      });
-    })();
-  </script>
 <script data-pplx-inline-edit>
 (function () {
   if (window === window.top) return;

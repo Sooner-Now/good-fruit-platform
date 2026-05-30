@@ -4,140 +4,152 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#fff1ea" />
-  <title>Start Growing — Good Fruit Platform</title>
-  <meta name="description" content="Create your Good Fruit profile, connect your local church and community, and start growing through prayer, learning, service, and mutual support." />
-  <meta property="og:title" content="Start Growing on Good Fruit" />
-  <meta property="og:description" content="Build your profile as an individual and grow with your local faith community." />
+  <title>Needs — Good Fruit Platform</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500;1,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/styles.css" />
 </head>
-<body class="is-landing">
-  <main class="start-shell">
+<body>
+  <div data-component="header" data-title="Needs"></div>
+
+  <main class="app-main">
     <div class="container">
-      <div class="start-grid">
-        <section class="start-hero" aria-labelledby="start-title">
-          <div class="row-tight" style="color:white;">
-            <svg class="logo-svg" viewBox="0 0 40 40" aria-hidden="true" style="width:36px;height:36px;">
-              <path d="M20 36 L20 20" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" fill="none" />
-              <path fill="#84cc16" d="M20 24 C 10 22, 6 14, 8 8 C 14 8, 20 14, 20 22 Z" />
-              <path fill="#14b8a6" opacity="0.9" d="M20 22 C 26 16, 32 16, 34 12 C 32 22, 26 26, 20 24 Z" />
-              <circle fill="#fb7c5b" cx="20" cy="14" r="5.2" />
-              <circle cx="18.4" cy="12.6" r="1.4" fill="white" opacity="0.55" />
-            </svg>
-            <span style="font-family: var(--font-display); font-size: 20px; font-weight: 700;">Good Fruit</span>
-          </div>
 
-          <h1 id="start-title">Plant your profile.<br/><em>Start growing.</em></h1>
-          <p>Good Fruit begins with you as an individual: your gifts, your neighborhood, your church, and the ways you want to serve. Build a profile, then let the platform surface local prayers, needs, opportunities, businesses, churches, and community groups around you.</p>
+      <section style="margin-bottom: 18px;">
+        <h1 style="font-size: 28px;">Needs &amp; support</h1>
+        <p class="text-secondary">Mutual aid that's practical and prayerful.</p>
+      </section>
 
-          <div class="growth-preview" aria-label="Growth preview">
-            <div class="between" style="margin-bottom: 12px;">
-              <div>
-                <p class="section-eyebrow" style="color: var(--color-gold);">Your first seed</p>
-                <h2 style="color:white; font-size: 24px;">Level 1 · Seed 🌱</h2>
-              </div>
-              <span class="badge badge-gold">+50 fruit</span>
-            </div>
-            <div class="progress" role="progressbar" aria-valuenow="12" aria-valuemin="0" aria-valuemax="100">
-              <div class="progress__bar" style="width: 12%; background: linear-gradient(90deg, var(--color-lime), var(--color-gold));"></div>
-            </div>
-            <p class="text-sm" style="margin: 12px 0 0;">Complete your profile, join one local group, and pray for one need to begin your growth path.</p>
-          </div>
-        </section>
+      <div data-component="local-feed" data-feed="needs" data-title="Local needs sources" style="margin-bottom: 18px;"></div>
 
-        <section class="profile-builder" aria-labelledby="builder-title">
-          <p class="section-eyebrow">Individual profile</p>
-          <h2 id="builder-title" style="font-size: clamp(28px, 4vw, 42px); margin: 4px 0 8px;">Tell us where you’re planted.</h2>
-          <p class="text-secondary">This prototype uses the form to personalize the next screen. In WordPress, these fields map cleanly to user profile metadata and feed filters.</p>
-
-          <form id="profile-form" class="stack-lg" style="margin-top: 22px;">
-            <div class="form-grid form-grid--2">
-              <div class="field">
-                <label for="name">Your name</label>
-                <input id="name" name="name" type="text" placeholder="e.g., Hannah Pereira" autocomplete="name" data-testid="input-name" />
-              </div>
-              <div class="field">
-                <label for="city">City or neighborhood</label>
-                <input id="city" name="city" type="text" placeholder="e.g., Long Beach, CA" autocomplete="address-level2" data-testid="input-city" />
-              </div>
-            </div>
-
-            <div class="form-grid form-grid--2">
-              <div class="field">
-                <label for="church">Church or faith community</label>
-                <input id="church" name="church" type="text" placeholder="Add your church, parish, or group" data-testid="input-church" />
-              </div>
-              <div class="field">
-                <label for="focus">Growth focus</label>
-                <select id="focus" name="focus" data-testid="select-focus">
-                  <option value="">Choose a path</option>
-                  <option>Prayer and encouragement</option>
-                  <option>Mutual aid and service</option>
-                  <option>Learning and discipleship</option>
-                  <option>Marketplace and local business</option>
-                  <option>Mentorship and leadership</option>
-                </select>
-              </div>
-            </div>
-
-            <div>
-              <label style="display:block; font-size:12px; font-weight:700; color:var(--color-text-secondary); margin-bottom:8px;">Gifts you want to grow</label>
-              <div class="builder-checks">
-                <label class="builder-check"><input type="checkbox" name="gift" value="Prayer" /> Prayer</label>
-                <label class="builder-check"><input type="checkbox" name="gift" value="Hospitality" /> Hospitality</label>
-                <label class="builder-check"><input type="checkbox" name="gift" value="Teaching" /> Teaching</label>
-                <label class="builder-check"><input type="checkbox" name="gift" value="Giving" /> Giving</label>
-                <label class="builder-check"><input type="checkbox" name="gift" value="Mentoring" /> Mentoring</label>
-                <label class="builder-check"><input type="checkbox" name="gift" value="Business" /> Local business</label>
-              </div>
-            </div>
-
-            <div class="field">
-              <label for="story">Short introduction</label>
-              <textarea id="story" name="story" placeholder="Share a sentence about how you want to grow or serve this season." data-testid="textarea-story"></textarea>
-            </div>
-
-            <div class="card" style="background: var(--color-bg-soft);">
-              <div class="row" style="align-items:flex-start;">
-                <div style="font-size: 28px;">📍</div>
-                <div>
-                  <h3>Local feed setup</h3>
-                  <p class="text-sm text-secondary" style="margin:4px 0 0;">Once your city is set, each tab can be populated by churches, businesses, schools, nonprofits, and community groups in that area.</p>
-                </div>
-              </div>
-            </div>
-
-            <button class="btn btn-primary btn-block" type="submit" data-testid="button-start-growing">Start growing →</button>
-            <a class="btn btn-ghost btn-block" href="home.html" data-testid="link-skip-demo">Skip for now and view demo</a>
-          </form>
-        </section>
+      <!-- Impact stats -->
+      <div class="grid grid-3" style="margin-bottom: 18px;">
+        <div class="card" style="text-align:center; padding: 14px 12px;">
+          <div class="prayer-stat__value font-display tabular" style="font-size: 22px; font-weight: 700;">218</div>
+          <div class="text-xs text-muted" style="text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600;">Needs met</div>
+        </div>
+        <div class="card" style="text-align:center; padding: 14px 12px;">
+          <div class="font-display tabular" style="font-size: 22px; font-weight: 700; color: var(--color-lime-hover);">$14.2K</div>
+          <div class="text-xs text-muted" style="text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600;">Given this month</div>
+        </div>
+        <div class="card" style="text-align:center; padding: 14px 12px;">
+          <div class="font-display tabular" style="font-size: 22px; font-weight: 700; color: var(--color-turquoise-hover);">142</div>
+          <div class="text-xs text-muted" style="text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600;">Active helpers</div>
+        </div>
       </div>
+
+      <!-- Categories -->
+      <div class="chip-row" data-chip-group>
+        <button class="chip is-active" aria-pressed="true" data-filter="all">All</button>
+        <button class="chip" aria-pressed="false">Financial</button>
+        <button class="chip" aria-pressed="false">Housing</button>
+        <button class="chip" aria-pressed="false">Food</button>
+        <button class="chip" aria-pressed="false">Transport</button>
+        <button class="chip" aria-pressed="false">Emotional</button>
+        <button class="chip" aria-pressed="false">Childcare</button>
+      </div>
+
+      <!-- Needs feed -->
+      <section class="section stack">
+
+        <article class="card need-card urgency-high">
+          <div class="row" style="margin-bottom: 8px;">
+            <div class="avatar">JR</div>
+            <div style="flex:1;">
+              <strong>Joelle Reyes</strong>
+              <p class="text-xs text-muted" style="margin: 0;">Brooklyn, NY · 2h ago</p>
+            </div>
+            <span class="badge badge-red">High urgency</span>
+          </div>
+          <h3 style="margin-bottom: 6px;">Eviction notice — need $1,400 by Friday</h3>
+          <p class="text-sm text-secondary">Single mom of two, lost a contract last month. Working two jobs but rent's behind. Anything helps.</p>
+          <div class="row-wrap" style="margin: 10px 0;">
+            <span class="skill-tag">Financial</span>
+            <span class="skill-tag">Housing</span>
+          </div>
+          <div class="progress progress--orange"><div class="progress__bar" style="width: 64%;"></div></div>
+          <div class="between" style="margin-top: 8px;">
+            <span class="text-xs"><strong style="color: var(--color-text);">$890</strong> raised of $1,400 · 12 helpers</span>
+          </div>
+          <div class="row-tight" style="margin-top: 12px;">
+            <button class="btn btn-coral btn-sm" data-testid="btn-help-1">💝 Help</button>
+            <button class="btn btn-ghost btn-sm">🙏 Pray</button>
+            <button class="btn btn-ghost btn-sm">Share</button>
+          </div>
+        </article>
+
+        <article class="card need-card urgency-medium">
+          <div class="row" style="margin-bottom: 8px;">
+            <div class="avatar avatar-violet">FK</div>
+            <div style="flex:1;">
+              <strong>Father Kenechukwu</strong>
+              <p class="text-xs text-muted" style="margin: 0;">Bronx, NY · 5h ago</p>
+            </div>
+            <span class="badge badge-amber">Medium</span>
+          </div>
+          <h3 style="margin-bottom: 6px;">Need a working car seat (toddler)</h3>
+          <p class="text-sm text-secondary">For a family from our parish — theirs broke, and they're driving 40 mins to the children's hospital twice a week.</p>
+          <div class="row-wrap" style="margin: 10px 0;">
+            <span class="skill-tag">Childcare</span>
+            <span class="skill-tag">Transport</span>
+          </div>
+          <div class="row-tight" style="margin-top: 6px;">
+            <button class="btn btn-primary btn-sm">🤝 Offer help</button>
+            <button class="btn btn-ghost btn-sm">🙏 Pray</button>
+          </div>
+        </article>
+
+        <article class="card need-card urgency-low">
+          <div class="row" style="margin-bottom: 8px;">
+            <div class="avatar avatar-rose">MT</div>
+            <div style="flex:1;">
+              <strong>Mrs. Tanaka</strong>
+              <p class="text-xs text-muted" style="margin: 0;">Queens, NY · 1d ago</p>
+            </div>
+            <span class="badge badge-green">Ongoing</span>
+          </div>
+          <h3 style="margin-bottom: 6px;">Weekly visit — homebound widow</h3>
+          <p class="text-sm text-secondary">She's 84, lives alone since her husband passed. Would love a visit and someone to read to her on Wednesdays.</p>
+          <div class="row-wrap" style="margin: 10px 0;">
+            <span class="skill-tag">Emotional</span>
+            <span class="skill-tag">Companionship</span>
+          </div>
+          <div class="row-tight">
+            <button class="btn btn-lime btn-sm">🤝 Sign up</button>
+            <button class="btn btn-ghost btn-sm">🙏 Pray</button>
+          </div>
+        </article>
+
+        <article class="card need-card urgency-medium">
+          <div class="row" style="margin-bottom: 8px;">
+            <div class="avatar avatar-teal">CN</div>
+            <div style="flex:1;">
+              <strong>Carlos N.</strong>
+              <p class="text-xs text-muted" style="margin: 0;">Jersey City, NJ · 1d ago</p>
+            </div>
+            <span class="badge badge-amber">Medium</span>
+          </div>
+          <h3 style="margin-bottom: 6px;">Job lead in trades / construction</h3>
+          <p class="text-sm text-secondary">Recently certified electrician, just moved here. Looking for an introduction or shop that'll mentor.</p>
+          <div class="row-wrap" style="margin: 10px 0;">
+            <span class="skill-tag">Employment</span>
+          </div>
+          <div class="row-tight">
+            <button class="btn btn-primary btn-sm">🤝 Offer help</button>
+            <button class="btn btn-ghost btn-sm">🙏 Pray</button>
+          </div>
+        </article>
+
+      </section>
+
+      <button class="btn btn-coral btn-block" style="margin-top: 8px;" data-testid="btn-post-need">+ Post a need</button>
+
     </div>
   </main>
 
+  <div data-component="bottom-nav" data-active="needs"></div>
   <script src="assets/shared.js"></script>
-  <script>
-    (function () {
-      const form = document.getElementById('profile-form');
-      form.addEventListener('submit', function (event) {
-        event.preventDefault();
-        const data = new FormData(form);
-        const query = new URLSearchParams();
-        ['name', 'city', 'church', 'focus'].forEach((key) => {
-          const value = (data.get(key) || '').toString().trim();
-          if (value) query.set(key, value);
-        });
-        const gifts = data.getAll('gift');
-        if (gifts.length) query.set('gifts', gifts.join(','));
-        window.GF_TOAST('Profile planted · welcome to Good Fruit', { tone: 'success' });
-        setTimeout(() => {
-          window.location.href = `home.html${query.toString() ? `?${query.toString()}` : ''}`;
-        }, 650);
-      });
-    })();
-  </script>
 <script data-pplx-inline-edit>
 (function () {
   if (window === window.top) return;

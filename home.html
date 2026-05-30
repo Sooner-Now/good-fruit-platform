@@ -4,138 +4,219 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#fff1ea" />
-  <title>Start Growing — Good Fruit Platform</title>
-  <meta name="description" content="Create your Good Fruit profile, connect your local church and community, and start growing through prayer, learning, service, and mutual support." />
-  <meta property="og:title" content="Start Growing on Good Fruit" />
-  <meta property="og:description" content="Build your profile as an individual and grow with your local faith community." />
+  <title>Home — Good Fruit Platform</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500;1,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/styles.css" />
 </head>
-<body class="is-landing">
-  <main class="start-shell">
+<body>
+  <div data-component="header" data-title="Home"></div>
+
+  <main class="app-main">
     <div class="container">
-      <div class="start-grid">
-        <section class="start-hero" aria-labelledby="start-title">
-          <div class="row-tight" style="color:white;">
-            <svg class="logo-svg" viewBox="0 0 40 40" aria-hidden="true" style="width:36px;height:36px;">
-              <path d="M20 36 L20 20" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" fill="none" />
-              <path fill="#84cc16" d="M20 24 C 10 22, 6 14, 8 8 C 14 8, 20 14, 20 22 Z" />
-              <path fill="#14b8a6" opacity="0.9" d="M20 22 C 26 16, 32 16, 34 12 C 32 22, 26 26, 20 24 Z" />
-              <circle fill="#fb7c5b" cx="20" cy="14" r="5.2" />
-              <circle cx="18.4" cy="12.6" r="1.4" fill="white" opacity="0.55" />
-            </svg>
-            <span style="font-family: var(--font-display); font-size: 20px; font-weight: 700;">Good Fruit</span>
+
+      <!-- Greeting -->
+      <section style="margin-bottom: 18px;">
+        <p class="section-eyebrow" style="color: var(--color-turquoise-deep);">Friday, Apr 24</p>
+        <h1 id="home-greeting" style="font-size: clamp(24px, 4vw, 32px); margin-top: 4px;">Good morning, Hannah.</h1>
+        <p class="text-secondary" style="margin-top: 4px;">You're <strong>12 days</strong> into your streak. <span style="color: var(--color-coral-hover); font-weight: 600;">🔥 Keep going.</span></p>
+      </section>
+
+      <div data-component="local-feed" data-feed="home" data-title="What’s growing near you" style="margin-bottom: 18px;"></div>
+
+      <!-- Plant avatar card + quick actions, asymmetric layout -->
+      <section style="display:grid; gap:16px; grid-template-columns: 1fr;">
+        <div class="plant-card" data-testid="card-plant-avatar">
+          <div style="display:flex; gap: 18px; align-items:center; position: relative; z-index: 1;">
+            <div style="text-align:center;">
+              <span class="plant-emoji" aria-hidden="true">🌳</span>
+            </div>
+            <div style="flex:1; min-width: 0;">
+              <p style="font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-turquoise-deep); margin-bottom: 4px;">Level 4 · Young Tree</p>
+              <h2 style="font-size: 24px; margin-bottom: 8px;">720 / 1,000 fruit</h2>
+              <div class="progress progress--orange" aria-label="Progress to next level" role="progressbar" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100">
+                <div class="progress__bar" style="width: 72%; background: linear-gradient(90deg, var(--color-coral), var(--color-gold));"></div>
+              </div>
+              <p class="text-xs text-muted" style="margin-top: 6px;">280 points to <strong style="color: var(--color-text);">Mature Tree 🌲</strong></p>
+            </div>
           </div>
 
-          <h1 id="start-title">Plant your profile.<br/><em>Start growing.</em></h1>
-          <p>Good Fruit begins with you as an individual: your gifts, your neighborhood, your church, and the ways you want to serve. Build a profile, then let the platform surface local prayers, needs, opportunities, businesses, churches, and community groups around you.</p>
-
-          <div class="growth-preview" aria-label="Growth preview">
-            <div class="between" style="margin-bottom: 12px;">
-              <div>
-                <p class="section-eyebrow" style="color: var(--color-gold);">Your first seed</p>
-                <h2 style="color:white; font-size: 24px;">Level 1 · Seed 🌱</h2>
-              </div>
-              <span class="badge badge-gold">+50 fruit</span>
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 16px; position: relative; z-index: 1;">
+            <div class="plant-stat">
+              <span class="plant-stat__label">💧 Water given</span>
+              <span class="plant-stat__value tabular">47</span>
             </div>
-            <div class="progress" role="progressbar" aria-valuenow="12" aria-valuemin="0" aria-valuemax="100">
-              <div class="progress__bar" style="width: 12%; background: linear-gradient(90deg, var(--color-lime), var(--color-gold));"></div>
+            <div class="plant-stat">
+              <span class="plant-stat__label">☀️ Sun shared</span>
+              <span class="plant-stat__value tabular">32</span>
             </div>
-            <p class="text-sm" style="margin: 12px 0 0;">Complete your profile, join one local group, and pray for one need to begin your growth path.</p>
           </div>
-        </section>
+        </div>
 
-        <section class="profile-builder" aria-labelledby="builder-title">
-          <p class="section-eyebrow">Individual profile</p>
-          <h2 id="builder-title" style="font-size: clamp(28px, 4vw, 42px); margin: 4px 0 8px;">Tell us where you’re planted.</h2>
-          <p class="text-secondary">This prototype uses the form to personalize the next screen. In WordPress, these fields map cleanly to user profile metadata and feed filters.</p>
+        <!-- Quick actions -->
+        <div class="grid grid-4">
+          <button class="quick-action quick-action--pray" data-testid="qa-pray" onclick="window.GF_TOAST('Prayer sent · +10 pts', { tone: 'success' })">
+            <span class="quick-action__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg></span>
+            <span class="quick-action__label">Pray</span>
+          </button>
+          <button class="quick-action quick-action--water" data-testid="qa-water" onclick="window.GF_TOAST('💧 Water given · +10 pts', { tone: 'success' })">
+            <span class="quick-action__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/></svg></span>
+            <span class="quick-action__label">Give Water</span>
+          </button>
+          <button class="quick-action quick-action--sun" data-testid="qa-sun" onclick="window.GF_TOAST('☀️ Sun shared · +10 pts', { tone: 'success' })">
+            <span class="quick-action__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg></span>
+            <span class="quick-action__label">Share Sun</span>
+          </button>
+          <button class="quick-action quick-action--post" data-testid="qa-post" onclick="window.GF_TOAST('Post composer (demo)', { tone: 'success' })">
+            <span class="quick-action__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></span>
+            <span class="quick-action__label">Post</span>
+          </button>
+        </div>
+      </section>
 
-          <form id="profile-form" class="stack-lg" style="margin-top: 22px;">
-            <div class="form-grid form-grid--2">
-              <div class="field">
-                <label for="name">Your name</label>
-                <input id="name" name="name" type="text" placeholder="e.g., Hannah Pereira" autocomplete="name" data-testid="input-name" />
-              </div>
-              <div class="field">
-                <label for="city">City or neighborhood</label>
-                <input id="city" name="city" type="text" placeholder="e.g., Long Beach, CA" autocomplete="address-level2" data-testid="input-city" />
-              </div>
-            </div>
-
-            <div class="form-grid form-grid--2">
-              <div class="field">
-                <label for="church">Church or faith community</label>
-                <input id="church" name="church" type="text" placeholder="Add your church, parish, or group" data-testid="input-church" />
-              </div>
-              <div class="field">
-                <label for="focus">Growth focus</label>
-                <select id="focus" name="focus" data-testid="select-focus">
-                  <option value="">Choose a path</option>
-                  <option>Prayer and encouragement</option>
-                  <option>Mutual aid and service</option>
-                  <option>Learning and discipleship</option>
-                  <option>Marketplace and local business</option>
-                  <option>Mentorship and leadership</option>
-                </select>
-              </div>
-            </div>
-
+      <!-- Productivity hub (collapsible) -->
+      <section class="section">
+        <details class="card" style="padding: 0;">
+          <summary style="list-style: none; padding: 16px 18px; cursor: pointer; display: flex; align-items: center; justify-content: space-between;">
             <div>
-              <label style="display:block; font-size:12px; font-weight:700; color:var(--color-text-secondary); margin-bottom:8px;">Gifts you want to grow</label>
-              <div class="builder-checks">
-                <label class="builder-check"><input type="checkbox" name="gift" value="Prayer" /> Prayer</label>
-                <label class="builder-check"><input type="checkbox" name="gift" value="Hospitality" /> Hospitality</label>
-                <label class="builder-check"><input type="checkbox" name="gift" value="Teaching" /> Teaching</label>
-                <label class="builder-check"><input type="checkbox" name="gift" value="Giving" /> Giving</label>
-                <label class="builder-check"><input type="checkbox" name="gift" value="Mentoring" /> Mentoring</label>
-                <label class="builder-check"><input type="checkbox" name="gift" value="Business" /> Local business</label>
-              </div>
+              <span class="section-eyebrow" style="color: var(--color-lime-hover);">Today</span>
+              <h3 style="margin-top: 2px;">Productivity Hub</h3>
+            </div>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+          </summary>
+          <div style="padding: 0 18px 18px;">
+            <h4 style="margin-bottom: 8px;">To-do</h4>
+            <div class="todo-list" data-testid="list-todos">
+              <label class="todo-item is-done">
+                <input type="checkbox" checked style="display:none">
+                <span class="todo-check" aria-hidden="true">✓</span>
+                <span class="todo-text">Pray for Mark's interview</span>
+              </label>
+              <label class="todo-item">
+                <input type="checkbox" style="display:none">
+                <span class="todo-check"></span>
+                <span class="todo-text">Drop off groceries to Mrs. Tanaka</span>
+              </label>
+              <label class="todo-item">
+                <input type="checkbox" style="display:none">
+                <span class="todo-check"></span>
+                <span class="todo-text">Finish Galatians chapter 5</span>
+              </label>
             </div>
 
-            <div class="field">
-              <label for="story">Short introduction</label>
-              <textarea id="story" name="story" placeholder="Share a sentence about how you want to grow or serve this season." data-testid="textarea-story"></textarea>
+            <h4 style="margin-bottom: 8px; margin-top: 18px;">Sticky notes</h4>
+            <div class="notes-grid">
+              <div class="note" style="--rot:-2deg;">Bring soup recipe to Sunday potluck.</div>
+              <div class="note note-blue" style="--rot:1deg;">Call Pastor Lee re: youth retreat.</div>
+              <div class="note note-green" style="--rot:-1deg;">Order extra Bibles for the shelter.</div>
             </div>
+          </div>
+        </details>
+      </section>
 
-            <div class="card" style="background: var(--color-bg-soft);">
-              <div class="row" style="align-items:flex-start;">
-                <div style="font-size: 28px;">📍</div>
-                <div>
-                  <h3>Local feed setup</h3>
-                  <p class="text-sm text-secondary" style="margin:4px 0 0;">Once your city is set, each tab can be populated by churches, businesses, schools, nonprofits, and community groups in that area.</p>
-                </div>
-              </div>
+      <!-- Milestones -->
+      <section class="section">
+        <div class="section-title">
+          <h2>Milestones</h2>
+          <a href="profile.html" class="link">View all</a>
+        </div>
+        <div class="grid grid-3">
+          <div class="card">
+            <div class="row-tight" style="margin-bottom: 8px;">
+              <span class="badge badge-gold">🔥 Streak</span>
             </div>
+            <h3 style="margin-bottom: 8px;">7-day streak</h3>
+            <div class="progress progress--amber"><div class="progress__bar" style="width: 100%;"></div></div>
+            <p class="text-xs text-muted" style="margin-top: 8px;">Achieved · 12 days running</p>
+          </div>
+          <div class="card">
+            <div class="row-tight" style="margin-bottom: 8px;">
+              <span class="badge">Help others</span>
+            </div>
+            <h3 style="margin-bottom: 8px;">Help 5 people</h3>
+            <div class="progress"><div class="progress__bar" style="width: 60%;"></div></div>
+            <p class="text-xs text-muted" style="margin-top: 8px;">3 of 5 helped this month</p>
+          </div>
+          <div class="card">
+            <div class="row-tight" style="margin-bottom: 8px;">
+              <span class="badge badge-lime">Course</span>
+            </div>
+            <h3 style="margin-bottom: 8px;">Financial Stewardship</h3>
+            <div class="progress"><div class="progress__bar" style="width: 67%; background: linear-gradient(90deg, var(--color-lime), var(--color-turquoise));"></div></div>
+            <p class="text-xs text-muted" style="margin-top: 8px;">Lesson 8 of 12</p>
+          </div>
+        </div>
+      </section>
 
-            <button class="btn btn-primary btn-block" type="submit" data-testid="button-start-growing">Start growing →</button>
-            <a class="btn btn-ghost btn-block" href="home.html" data-testid="link-skip-demo">Skip for now and view demo</a>
-          </form>
-        </section>
-      </div>
+      <!-- Activity feed -->
+      <section class="section">
+        <div class="section-title">
+          <h2>Community activity</h2>
+          <a href="connect.html" class="link">See all</a>
+        </div>
+
+        <article class="activity-item" data-testid="card-activity-1">
+          <div class="avatar avatar-teal">DR</div>
+          <div class="activity-item__body">
+            <div class="activity-item__head">
+              <span class="activity-item__name">Daniel Rivera</span>
+              <span class="activity-item__time">12m ago</span>
+            </div>
+            <p class="activity-item__text">Asked for prayer — his mom starts chemo on Monday. Texas, USA.</p>
+            <div class="activity-item__actions">
+              <button class="activity-item__action" onclick="window.GF_TOAST('Praying with Daniel · +10 pts', { tone:'success'})">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+                Pray
+              </button>
+              <button class="activity-item__action">💧 Give water</button>
+              <button class="activity-item__action">☀️ Share sun</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="activity-item">
+          <div class="avatar avatar-violet">PA</div>
+          <div class="activity-item__body">
+            <div class="activity-item__head">
+              <span class="activity-item__name">Priya Anand</span>
+              <span class="activity-item__time">1h ago</span>
+            </div>
+            <p class="activity-item__text">Praising God — she got the apprenticeship she'd been praying for. 🎉</p>
+            <div class="activity-item__actions">
+              <button class="activity-item__action">🎉 Celebrate</button>
+              <button class="activity-item__action">☀️ Share sun</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="activity-item">
+          <div class="avatar avatar-rose">JT</div>
+          <div class="activity-item__body">
+            <div class="activity-item__head">
+              <span class="activity-item__name">Jaye Tanaka</span>
+              <span class="activity-item__time">3h ago</span>
+            </div>
+            <p class="activity-item__text">Listed a sourdough starter (free) and 3 hrs of bookkeeping help in the marketplace.</p>
+            <div class="activity-item__actions">
+              <a class="activity-item__action" href="marketplace.html">View listing →</a>
+              <button class="activity-item__action">🤝 Connect</button>
+            </div>
+          </div>
+        </article>
+      </section>
+
     </div>
   </main>
 
+  <div data-component="bottom-nav" data-active="home"></div>
   <script src="assets/shared.js"></script>
   <script>
     (function () {
-      const form = document.getElementById('profile-form');
-      form.addEventListener('submit', function (event) {
-        event.preventDefault();
-        const data = new FormData(form);
-        const query = new URLSearchParams();
-        ['name', 'city', 'church', 'focus'].forEach((key) => {
-          const value = (data.get(key) || '').toString().trim();
-          if (value) query.set(key, value);
-        });
-        const gifts = data.getAll('gift');
-        if (gifts.length) query.set('gifts', gifts.join(','));
-        window.GF_TOAST('Profile planted · welcome to Good Fruit', { tone: 'success' });
-        setTimeout(() => {
-          window.location.href = `home.html${query.toString() ? `?${query.toString()}` : ''}`;
-        }, 650);
-      });
+      const name = new URLSearchParams(window.location.search).get('name');
+      if (name) {
+        document.getElementById('home-greeting').textContent = `Good morning, ${name.split(' ')[0]}.`;
+      }
     })();
   </script>
 <script data-pplx-inline-edit>
