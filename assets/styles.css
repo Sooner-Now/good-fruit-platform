@@ -1060,6 +1060,107 @@ p { margin: 0 0 12px; }
 }
 
 /* ==========================================================================
+   Learn board
+   ========================================================================== */
+
+.learn-source-panel,
+.learn-controls {
+  margin-bottom: 18px;
+}
+.learn-source-panel__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.learn-source-panel__head h2 {
+  max-width: 760px;
+  font-size: clamp(20px, 3vw, 30px);
+}
+.learn-stat {
+  padding: 14px 12px;
+  text-align: center;
+}
+.learn-stat__value {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 22px;
+  color: var(--color-text);
+}
+.learn-stat__label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+.learn-controls__grid {
+  display: grid;
+  gap: 12px;
+}
+@media (min-width: 800px) {
+  .learn-controls__grid {
+    grid-template-columns: minmax(0, 1fr) minmax(160px, 210px) minmax(140px, 180px);
+    align-items: end;
+  }
+}
+.learn-grid {
+  display: grid;
+  gap: 12px;
+}
+@media (min-width: 860px) {
+  .learn-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+.learn-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 100%;
+}
+.learn-card__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+.learn-card__icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  display: grid;
+  place-items: center;
+  background: var(--color-turquoise-soft);
+  color: var(--color-turquoise-deep);
+  font-weight: 800;
+  flex-shrink: 0;
+}
+.learn-card__meta,
+.learn-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.learn-card__actions {
+  margin-top: auto;
+}
+.learn-card[data-level="entry"] { border-color: #bbf7d0; }
+.learn-card[data-level="certification"] { border-color: #fde68a; }
+.learn-card[data-level="advanced"] { border-color: #99f6e4; }
+.learn-empty {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 720px) {
+  .learn-source-panel__head,
+  .learn-card__head {
+    flex-direction: column;
+  }
+}
+
+/* ==========================================================================
    Mentor / Project / Group / Event cards
    ========================================================================== */
 

@@ -9,17 +9,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/styles.css" />
-  <style>
-    .course-thumb {
-      aspect-ratio: 16 / 9;
-      border-radius: var(--radius-xl);
-      background: linear-gradient(135deg, var(--color-coral-soft), var(--color-gold));
-      display: flex; align-items: center; justify-content: center;
-      font-size: 44px;
-      margin-bottom: 12px;
-    }
-    .course-card { padding: 14px; }
-  </style>
 </head>
 <body>
   <div data-component="header" data-title="Learn"></div>
@@ -28,11 +17,84 @@
     <div class="container">
 
       <section style="margin-bottom: 18px;">
-        <h1 style="font-size: 28px;">Learn</h1>
-        <p class="text-secondary">Courses, certifications, expert Q&amp;A, and partner schools.</p>
+        <h1 style="font-size: 28px;">Learn and level up</h1>
+        <p class="text-secondary">Trainings, certifications, skills-building, and courses that help people grow their abilities.</p>
       </section>
 
-      <div data-component="local-feed" data-feed="learn" data-title="Local learning partners" style="margin-bottom: 18px;"></div>
+      <section class="learn-source-panel card" aria-label="Learning source directory">
+        <div class="learn-source-panel__head">
+          <div>
+            <p class="section-eyebrow">Growth pathways</p>
+            <h2>Workforce training, certifications, community classes, apprenticeships, and service readiness</h2>
+            <p class="text-sm text-secondary">Good Fruit surfaces public learning paths and partner-submitted courses so people can build practical, spiritual, and professional capacity.</p>
+          </div>
+          <button class="btn btn-primary btn-sm" data-testid="btn-refresh-learn">Refresh paths</button>
+        </div>
+        <div class="source-grid">
+          <article class="source-card source-card--active">
+            <span class="badge badge-green">Workforce</span>
+            <h3>COCC workforce training</h3>
+            <p class="text-sm text-secondary">Leadership, project management, health care, trades, certification prep, and business skills.</p>
+            <a href="https://cocc.edu/departments/center-business-industry/workforce-training-draft1" target="_blank" rel="noreferrer">Open training</a>
+          </article>
+          <article class="source-card source-card--active">
+            <span class="badge badge-green">Community ed</span>
+            <h3>COCC community education</h3>
+            <p class="text-sm text-secondary">CPR/AED, wilderness life support, languages, gardening, creative skills, and enrichment.</p>
+            <a href="https://cocc.edu/departments/community-ed/" target="_blank" rel="noreferrer">Open classes</a>
+          </article>
+          <article class="source-card">
+            <span class="badge badge-amber">Partner-ready</span>
+            <h3>Church and nonprofit courses</h3>
+            <p class="text-sm text-secondary">Partner-submitted trainings for care teams, mentors, recovery support, budgeting, and discipleship.</p>
+            <a href="connect.html">Find partners</a>
+          </article>
+        </div>
+      </section>
+
+      <div class="grid grid-3" style="margin-bottom: 18px;">
+        <div class="card learn-stat">
+          <div class="learn-stat__value tabular" id="learn-count">--</div>
+          <div class="learn-stat__label">Learning paths</div>
+        </div>
+        <div class="card learn-stat">
+          <div class="learn-stat__value tabular" id="learn-cert-count">--</div>
+          <div class="learn-stat__label">Certifications</div>
+        </div>
+        <div class="card learn-stat">
+          <div class="learn-stat__value tabular" id="learn-provider-count">--</div>
+          <div class="learn-stat__label">Providers</div>
+        </div>
+      </div>
+
+      <section class="learn-controls card" aria-label="Learn filters">
+        <div class="learn-controls__grid">
+          <div class="field">
+            <label for="learn-search">Search learning paths</label>
+            <input id="learn-search" type="search" placeholder="CPR, welding, GED, business, leadership, budgeting..." autocomplete="off" data-testid="input-learn-search" />
+          </div>
+          <div class="field">
+            <label for="learn-provider">Provider</label>
+            <select id="learn-provider" data-testid="select-learn-provider">
+              <option value="all">All providers</option>
+              <option value="cocc">COCC</option>
+              <option value="heart">Heart of Oregon</option>
+              <option value="sbdc">SBDC</option>
+              <option value="partner">Partner submitted</option>
+              <option value="online">Online</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="learn-format">Format</label>
+            <select id="learn-format" data-testid="select-learn-format">
+              <option value="all">All formats</option>
+              <option value="in-person">In person</option>
+              <option value="online">Online</option>
+              <option value="hybrid">Hybrid</option>
+            </select>
+          </div>
+        </div>
+      </section>
 
       <!-- Bible reader entry point (highlighted) -->
       <a href="bible.html" class="card is-hoverable" style="display:flex; align-items:center; gap: 14px; text-decoration:none; color: inherit; background: linear-gradient(135deg, var(--color-bg-warm), var(--color-bg)); border-color: var(--color-coral-soft);" data-testid="card-bible-entry">
@@ -41,7 +103,7 @@
         </div>
         <div style="flex:1; min-width: 0;">
           <h3>Bible Reader</h3>
-          <p class="text-sm text-secondary" style="margin: 2px 0 0;">Daily verse, full chapters, your bookmarks. Powered by STEP Bible.</p>
+          <p class="text-sm text-secondary" style="margin: 2px 0 0;">Daily verse, full chapters, and bookmarks for spiritual growth alongside practical skill building.</p>
         </div>
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-text-muted);"><path d="m9 18 6-6-6-6"/></svg>
       </a>
@@ -49,147 +111,20 @@
       <!-- Tabs -->
       <div data-tabs style="margin-top: 18px;">
         <div class="tab-row" role="tablist" aria-label="Learn sections">
-          <button class="tab" role="tab" aria-selected="true" aria-controls="panel-courses" id="tab-courses">Courses</button>
+          <button class="tab" role="tab" aria-selected="true" aria-controls="panel-all" id="tab-all">All</button>
           <button class="tab" role="tab" aria-selected="false" aria-controls="panel-cert" id="tab-cert">Certifications</button>
-          <button class="tab" role="tab" aria-selected="false" aria-controls="panel-qa" id="tab-qa">Expert Q&amp;A</button>
-          <button class="tab" role="tab" aria-selected="false" aria-controls="panel-schools" id="tab-schools">Schools</button>
+          <button class="tab" role="tab" aria-selected="false" aria-controls="panel-skills" id="tab-skills">Skills</button>
+          <button class="tab" role="tab" aria-selected="false" aria-controls="panel-career" id="tab-career">Career</button>
+          <button class="tab" role="tab" aria-selected="false" aria-controls="panel-service" id="tab-service">Service</button>
         </div>
       </div>
 
       <div style="margin-top: 16px;">
-        <!-- COURSES -->
-        <section id="panel-courses" role="tabpanel" aria-labelledby="tab-courses">
-          <!-- In progress -->
-          <article class="card" style="background: linear-gradient(135deg, var(--color-bg-warm), var(--color-surface)); border-color: var(--color-coral-soft);">
-            <p class="section-eyebrow" style="color: var(--color-coral-hover);">In progress</p>
-            <h3 style="margin-top: 4px;">Financial Stewardship</h3>
-            <p class="text-sm text-secondary">12 lessons · ~8 hrs · taught by Priya Anand, CPA</p>
-            <div class="progress" style="margin-top: 14px;"><div class="progress__bar" style="width: 67%; background: linear-gradient(90deg, var(--color-lime), var(--color-turquoise));"></div></div>
-            <div class="between" style="margin-top: 8px;">
-              <span class="text-xs text-muted">Lesson 8 of 12 · 67%</span>
-              <button class="btn btn-primary btn-sm" data-testid="btn-resume">Resume →</button>
-            </div>
-          </article>
-
-          <!-- Course grid -->
-          <div class="grid grid-2" style="margin-top: 18px;">
-            <article class="card course-card">
-              <div class="course-thumb" aria-hidden="true">📖</div>
-              <h4>Reading the Bible well</h4>
-              <p class="text-xs text-muted">6 hrs · 1.4K enrolled</p>
-              <button class="btn btn-ghost btn-sm btn-block" style="margin-top: 10px;">Enroll</button>
-            </article>
-            <article class="card course-card">
-              <div class="course-thumb" style="background: linear-gradient(135deg, var(--color-turquoise-soft), var(--color-turquoise));" aria-hidden="true">🤝</div>
-              <h4>Conflict &amp; reconciliation</h4>
-              <p class="text-xs text-muted">4 hrs · 892 enrolled</p>
-              <button class="btn btn-ghost btn-sm btn-block" style="margin-top: 10px;">Enroll</button>
-            </article>
-            <article class="card course-card">
-              <div class="course-thumb" style="background: linear-gradient(135deg, var(--color-lime-soft), var(--color-lime));" aria-hidden="true">🌱</div>
-              <h4>Disciple-making basics</h4>
-              <p class="text-xs text-muted">5 hrs · 2.3K enrolled</p>
-              <button class="btn btn-ghost btn-sm btn-block" style="margin-top: 10px;">Enroll</button>
-            </article>
-            <article class="card course-card">
-              <div class="course-thumb" style="background: linear-gradient(135deg, var(--color-gold-soft), var(--color-gold));" aria-hidden="true">🙏</div>
-              <h4>Praying with Scripture</h4>
-              <p class="text-xs text-muted">3 hrs · 1.1K enrolled</p>
-              <button class="btn btn-ghost btn-sm btn-block" style="margin-top: 10px;">Enroll</button>
-            </article>
-          </div>
-        </section>
-
-        <!-- CERTIFICATIONS -->
-        <section id="panel-cert" role="tabpanel" aria-labelledby="tab-cert" hidden>
-          <div class="stack">
-            <article class="card row" style="gap: 14px;">
-              <div style="width:48px; height:48px; border-radius:50%; background: var(--color-gold-soft); color: var(--color-gold-deep); display: inline-flex; align-items: center; justify-content: center;">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
-              </div>
-              <div style="flex:1;">
-                <h3>Small Group Leader</h3>
-                <p class="text-xs" style="color: var(--color-gold-deep); font-weight: 600;">✓ Earned · Mar 2026</p>
-              </div>
-              <button class="btn btn-ghost btn-sm">View</button>
-            </article>
-            <article class="card row" style="gap: 14px;">
-              <div style="width:48px; height:48px; border-radius:50%; background: var(--color-turquoise-soft); color: var(--color-turquoise-deep); display: inline-flex; align-items: center; justify-content: center;">📜</div>
-              <div style="flex:1;">
-                <h3>Pastoral Counseling 101</h3>
-                <p class="text-xs text-muted">8 modules · 18 hrs</p>
-              </div>
-              <button class="btn btn-primary btn-sm">Start</button>
-            </article>
-          </div>
-        </section>
-
-        <!-- Q&A -->
-        <section id="panel-qa" role="tabpanel" aria-labelledby="tab-qa" hidden>
-          <button class="btn btn-primary btn-block" style="margin-bottom: 14px;">+ Ask a question</button>
-
-          <div class="stack">
-            <article class="card">
-              <div class="row" style="margin-bottom: 8px;">
-                <div class="avatar avatar-sm">SR</div>
-                <strong>Sarah R.</strong>
-                <span class="text-xs text-muted">· 2 days ago</span>
-                <span class="badge badge-coral" style="margin-left:auto;">Counseling</span>
-              </div>
-              <h3 style="margin-bottom: 6px;">How do I forgive someone who isn't sorry?</h3>
-              <div class="card-warm card" style="padding: 14px; border-radius: var(--radius-md);">
-                <div class="row-tight" style="margin-bottom: 6px;">
-                  <div class="avatar avatar-sm avatar-rose">EK</div>
-                  <strong>Esther Kim</strong>
-                  <span class="badge badge-green">Verified expert</span>
-                </div>
-                <p class="text-sm text-secondary" style="margin: 0;">Forgiveness is a release from your side. It doesn't require their repentance — though reconciliation does. Start with naming the harm honestly to God…</p>
-              </div>
-            </article>
-
-            <article class="card">
-              <div class="row" style="margin-bottom: 8px;">
-                <div class="avatar avatar-sm avatar-violet">MT</div>
-                <strong>Martin T.</strong>
-                <span class="text-xs text-muted">· 4 days ago</span>
-                <span class="badge" style="margin-left:auto;">Finance</span>
-              </div>
-              <h3 style="margin-bottom: 6px;">Tithing while paying off debt — what's the wise move?</h3>
-              <p class="text-sm text-secondary">3 expert answers · 24 community responses</p>
-            </article>
-          </div>
-
-          <h4 style="margin: 24px 0 10px;">Browse experts by category</h4>
-          <div class="grid grid-3">
-            <a class="card course-card" href="#" style="text-align:center; text-decoration:none; color:inherit;"><div style="font-size:28px;">💰</div><h4 style="margin-top:6px;">Financial</h4></a>
-            <a class="card course-card" href="#" style="text-align:center; text-decoration:none; color:inherit;"><div style="font-size:28px;">⚖️</div><h4 style="margin-top:6px;">Legal</h4></a>
-            <a class="card course-card" href="#" style="text-align:center; text-decoration:none; color:inherit;"><div style="font-size:28px;">💬</div><h4 style="margin-top:6px;">Counseling</h4></a>
-            <a class="card course-card" href="#" style="text-align:center; text-decoration:none; color:inherit;"><div style="font-size:28px;">🩺</div><h4 style="margin-top:6px;">Health</h4></a>
-            <a class="card course-card" href="#" style="text-align:center; text-decoration:none; color:inherit;"><div style="font-size:28px;">🏠</div><h4 style="margin-top:6px;">Housing</h4></a>
-            <a class="card course-card" href="#" style="text-align:center; text-decoration:none; color:inherit;"><div style="font-size:28px;">🎓</div><h4 style="margin-top:6px;">Education</h4></a>
-          </div>
-        </section>
-
-        <!-- SCHOOLS -->
-        <section id="panel-schools" role="tabpanel" aria-labelledby="tab-schools" hidden>
-          <div class="stack">
-            <article class="card row" style="gap: 14px;">
-              <div style="width:56px; height:56px; border-radius: var(--radius-md); background: var(--color-coral-soft); color: var(--color-coral-hover); display: inline-flex; align-items: center; justify-content: center; font-size: 26px;">🎓</div>
-              <div style="flex:1;">
-                <h3>Westmont Seminary</h3>
-                <p class="text-sm text-secondary">Online MA in Theology — partner discount for Good Fruit members.</p>
-              </div>
-              <span class="badge badge-gold">Scholarship</span>
-            </article>
-            <article class="card row" style="gap: 14px;">
-              <div style="width:56px; height:56px; border-radius: var(--radius-md); background: var(--color-turquoise-soft); color: var(--color-turquoise-deep); display: inline-flex; align-items: center; justify-content: center; font-size: 26px;">📚</div>
-              <div style="flex:1;">
-                <h3>Ridgepoint Bible College</h3>
-                <p class="text-sm text-secondary">Two-year residency program. Apprenticeship in pastoral and missional leadership.</p>
-              </div>
-            </article>
-          </div>
-        </section>
+        <section id="panel-all" role="tabpanel" aria-labelledby="tab-all" class="learn-grid"></section>
+        <section id="panel-cert" role="tabpanel" aria-labelledby="tab-cert" hidden class="learn-grid"></section>
+        <section id="panel-skills" role="tabpanel" aria-labelledby="tab-skills" hidden class="learn-grid"></section>
+        <section id="panel-career" role="tabpanel" aria-labelledby="tab-career" hidden class="learn-grid"></section>
+        <section id="panel-service" role="tabpanel" aria-labelledby="tab-service" hidden class="learn-grid"></section>
       </div>
 
     </div>
@@ -197,6 +132,7 @@
 
   <div data-component="bottom-nav" data-active="learn"></div>
   <script src="assets/shared.js"></script>
+  <script src="assets/learn-board.js"></script>
 <script data-pplx-inline-edit>
 (function () {
   if (window === window.top) return;
