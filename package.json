@@ -7,6 +7,7 @@
     "verify": "node scripts/verify.mjs",
     "check:env": "node scripts/check-platform-env.mjs",
     "bundle": "bash scripts/build-deploy-bundle.sh",
+    "github:doctor": "bash scripts/github-doctor.sh",
     "push:github": "bash scripts/push-to-github.sh"
   }
 }

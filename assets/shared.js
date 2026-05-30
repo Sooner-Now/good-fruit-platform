@@ -39,10 +39,16 @@
     },
     profileDraft: {
       name: '',
+      email: '',
       city: '',
       church: '',
-      focus: '',
-      gifts: [],
+      role: 'Visitor',
+      radius: '25 miles',
+      business: '',
+      interests: [],
+      emailConfirmed: 'pending',
+      idVerified: 'not_required',
+      accessStatus: 'view_only',
     },
   });
 
@@ -54,9 +60,28 @@
     state.user.initials = initials || 'GF';
     state.user.handle = `@${fullName.toLowerCase().replace(/[^a-z0-9]+/g, '').slice(0, 12) || 'goodfruit'}`;
   }
+  if (params.get('email')) state.profileDraft.email = params.get('email').trim();
   if (params.get('city')) state.profileDraft.city = params.get('city').trim();
   if (params.get('church')) state.profileDraft.church = params.get('church').trim();
-  if (params.get('focus')) state.profileDraft.focus = params.get('focus').trim();
+  if (params.get('role')) state.profileDraft.role = params.get('role').trim();
+  if (params.get('radius')) state.profileDraft.radius = params.get('radius').trim();
+  if (params.get('business')) state.profileDraft.business = params.get('business').trim();
+  if (params.get('emailConfirmed')) state.profileDraft.emailConfirmed = params.get('emailConfirmed').trim();
+  if (params.get('idVerified')) state.profileDraft.idVerified = params.get('idVerified').trim();
+  if (params.get('accessStatus')) state.profileDraft.accessStatus = params.get('accessStatus').trim();
+  if (params.get('interests')) {
+    state.profileDraft.interests = params.get('interests').split(',').map((item) => item.trim()).filter(Boolean);
+  }
+
+  function escapeHtml(value) {
+    return String(value || '').replace(/[&<>"']/g, (char) => ({
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#39;',
+    }[char]));
+  }
 
   const LOCAL_SOURCES = [
     {
@@ -113,14 +138,20 @@
     const feed = el.dataset.feed || 'home';
     const title = el.dataset.title || 'Local discovery';
     const city = state.profileDraft.city || el.dataset.city || 'Set your city';
+    const radius = state.profileDraft.radius || '25 miles';
+    const interests = state.profileDraft.interests.length ? state.profileDraft.interests.join(', ') : 'prayer, needs, learning, and service';
+    const safeTitle = escapeHtml(title);
+    const safeCity = escapeHtml(city);
+    const safeRadius = escapeHtml(radius);
+    const safeInterests = escapeHtml(interests);
     const items = LOCAL_SOURCES.filter((item) => item.feed.includes(feed));
     el.innerHTML = `
       <section class="local-feed card" data-testid="section-local-${feed}">
         <div class="local-feed__head">
           <div>
             <p class="section-eyebrow">Local roots</p>
-            <h2>${title}</h2>
-            <p class="text-sm text-secondary">Comb churches, community groups, and businesses near <strong>${city}</strong> to keep this feed alive.</p>
+            <h2>${safeTitle}</h2>
+            <p class="text-sm text-secondary">Personalized for <strong>${safeCity}</strong> within <strong>${safeRadius}</strong>, tuned toward ${safeInterests}.</p>
           </div>
           <button class="btn btn-primary btn-sm" data-testid="button-scan-local-${feed}">Scan local</button>
         </div>
@@ -195,10 +226,11 @@
   }
 
   /* -----------------------------------------------------------------------
-     Bottom navigation (7 items)
+     Bottom navigation
      ----------------------------------------------------------------------- */
   const NAV_ITEMS = [
     { id: 'home', label: 'Home', href: 'home.html', icon: 'M3 9l9-7 9 7v11a2 2 0 0 1-2 2h-4v-7H9v7H5a2 2 0 0 1-2-2z' },
+    { id: 'advocate', label: 'Guide', href: 'advocate.html', icon: 'M12 3l7 4v5c0 5-3.5 8.5-7 9-3.5-.5-7-4-7-9V7l7-4zM9 12l2 2 4-5' },
     { id: 'market', label: 'Market', href: 'marketplace.html', icon: 'M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4zM3 6h18M16 10a4 4 0 0 1-8 0' },
     { id: 'connect', label: 'Connect', href: 'connect.html', icon: 'M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75' },
     { id: 'prayer', label: 'Prayer', href: 'prayer.html', icon: 'M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zM2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z' },
@@ -224,6 +256,20 @@
         </div>
       </nav>
     `;
+  }
+
+  function renderAdvocateLauncher() {
+    if (document.body.classList.contains('is-landing') || document.querySelector('[data-advocate-page]')) return;
+    const link = document.createElement('a');
+    link.className = 'advocate-launcher';
+    link.href = 'advocate.html';
+    link.setAttribute('aria-label', 'Open Good Fruit advocate');
+    link.setAttribute('data-testid', 'link-advocate-launcher');
+    link.innerHTML = `
+      <img src="assets/seedling-expressions/joyful.png" alt="" aria-hidden="true" />
+      <span>Seedling</span>
+    `;
+    document.body.appendChild(link);
   }
 
   /* -----------------------------------------------------------------------
@@ -324,6 +370,7 @@
     document.querySelectorAll('[data-component="header"]').forEach(renderHeader);
     document.querySelectorAll('[data-component="bottom-nav"]').forEach(renderBottomNav);
     document.querySelectorAll('[data-component="local-feed"]').forEach(renderLocalFeed);
+    renderAdvocateLauncher();
     bindTabs();
     bindChips();
   }

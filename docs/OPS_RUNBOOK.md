@@ -37,6 +37,14 @@ This checks whether the Supabase, Stripe, OpenAI, email, and maps environment va
 Run:
 
 ```bash
+bash scripts/github-doctor.sh
+```
+
+The doctor checks the local site, DNS, HTTPS, SSH authentication, and then pushes when GitHub is reachable.
+
+To push directly, run:
+
+```bash
 bash scripts/push-to-github.sh "Describe the update"
 ```
 

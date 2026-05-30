@@ -44,6 +44,7 @@ const requiredIntegrationFiles = [
   'docs/COMMUNITY_DIRECTORY_BLUEPRINT.md',
   'docs/INTEGRATIONS_SETUP.md',
   'scripts/check-platform-env.mjs',
+  'scripts/github-doctor.sh',
 ];
 
 const failures = [];

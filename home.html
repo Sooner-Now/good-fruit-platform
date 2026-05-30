@@ -18,12 +18,38 @@
 
       <!-- Greeting -->
       <section style="margin-bottom: 18px;">
-        <p class="section-eyebrow" style="color: var(--color-turquoise-deep);">Friday, Apr 24</p>
-        <h1 id="home-greeting" style="font-size: clamp(24px, 4vw, 32px); margin-top: 4px;">Good morning, Hannah.</h1>
-        <p class="text-secondary" style="margin-top: 4px;">You're <strong>12 days</strong> into your streak. <span style="color: var(--color-coral-hover); font-weight: 600;">🔥 Keep going.</span></p>
+        <p class="section-eyebrow" style="color: var(--color-turquoise-deep);">Today</p>
+        <h1 id="home-greeting" style="font-size: clamp(24px, 4vw, 32px); margin-top: 4px;">Good morning, friend.</h1>
+        <p class="text-secondary" style="margin-top: 4px;">Your feed is built around your local area, trust level, and the kinds of good work you want to find.</p>
       </section>
 
+      <section class="onboarding-summary card" data-onboarding-summary style="margin-bottom: 18px;"></section>
+
+      <a href="advocate.html" class="card bible-home-card is-hoverable" data-testid="card-home-advocate">
+        <div class="bible-home-card__icon" aria-hidden="true">
+          <img src="assets/seedling-expressions/joyful.png" alt="" aria-hidden="true" style="width:42px;height:42px;object-fit:cover;object-position:center bottom;border-radius:16px;" />
+        </div>
+        <div style="flex:1; min-width:0;">
+          <p class="section-eyebrow">Meet Seedling</p>
+          <h2>Ask your Good Fruit advocate</h2>
+          <p class="text-sm text-secondary">Get help navigating prayer, needs, service, learning, Scripture, trust, and local community.</p>
+        </div>
+        <span class="badge badge-green">Guide</span>
+      </a>
+
       <div data-component="local-feed" data-feed="home" data-title="What’s growing near you" style="margin-bottom: 18px;"></div>
+
+      <a href="bible.html" class="card bible-home-card is-hoverable" data-testid="card-home-bible">
+        <div class="bible-home-card__icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        </div>
+        <div style="flex:1; min-width:0;">
+          <p class="section-eyebrow">Bible study</p>
+          <h2>Open the interactive reader</h2>
+          <p class="text-sm text-secondary">Read, bookmark, hover words for meaning, and keep growing in Scripture.</p>
+        </div>
+        <span class="badge badge-gold">+Growth Fruit</span>
+      </a>
 
       <section class="game-hero card" data-testid="game-hero">
         <div class="game-hero__copy">
@@ -256,10 +282,59 @@
   <script src="assets/good-game.js"></script>
   <script>
     (function () {
-      const name = new URLSearchParams(window.location.search).get('name');
+      const state = window.GF_STATE || {};
+      const profile = state.profileDraft || {};
+      const params = new URLSearchParams(window.location.search);
+      const name = params.get('name') || profile.name;
       if (name) {
         document.getElementById('home-greeting').textContent = `Good morning, ${name.split(' ')[0]}.`;
       }
+      const summary = document.querySelector('[data-onboarding-summary]');
+      if (!summary) return;
+      const escapeHtml = function (value) {
+        return String(value || '').replace(/[&<>"']/g, function (char) {
+          return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char];
+        });
+      };
+      const role = profile.role || params.get('role') || 'Visitor';
+      const city = profile.city || params.get('city') || 'Central Oregon';
+      const radius = profile.radius || params.get('radius') || '25 miles';
+      const interests = profile.interests && profile.interests.length ? profile.interests : ['Prayer', 'Needs', 'Connect'];
+      const emailStatus = profile.emailConfirmed === 'confirmed' ? 'Confirmed' : 'Pending';
+      const idStatus = profile.idVerified === 'not_required' ? 'Not required' : profile.idVerified === 'verified' ? 'Verified' : 'Pending';
+      summary.innerHTML = `
+        <div class="onboarding-summary__head">
+          <div>
+            <p class="section-eyebrow">Access and feed</p>
+            <h2>${escapeHtml(role)} account</h2>
+            <p class="text-sm text-secondary">Local feed centered on <strong>${escapeHtml(city)}</strong>, starting at <strong>${escapeHtml(radius)}</strong>.</p>
+          </div>
+          <span class="badge badge-gold">${emailStatus === 'Confirmed' ? 'Ready' : 'Email pending'}</span>
+        </div>
+        <div class="trust-status-grid">
+          <div class="trust-status"><span>Email</span><strong>${emailStatus}</strong></div>
+          <div class="trust-status"><span>ID check</span><strong>${idStatus}</strong></div>
+          <div class="trust-status"><span>Interests</span><strong>${escapeHtml(interests.join(', '))}</strong></div>
+        </div>
+        <div class="feed-controls">
+          <label class="field">
+            <span>Expand feed</span>
+            <select id="feed-radius">
+              ${['10 miles', '25 miles', '50 miles', 'Central Oregon', 'Statewide'].map((item) => `<option ${item === radius ? 'selected' : ''}>${escapeHtml(item)}</option>`).join('')}
+            </select>
+          </label>
+          <label class="field">
+            <span>Search another area</span>
+            <input id="feed-area-search" type="text" placeholder="e.g., Redmond, OR" />
+          </label>
+          <button class="btn btn-primary" type="button" data-update-feed>Update feed</button>
+        </div>
+      `;
+      summary.querySelector('[data-update-feed]').addEventListener('click', function () {
+        const nextRadius = summary.querySelector('#feed-radius').value;
+        const nextArea = summary.querySelector('#feed-area-search').value.trim() || city;
+        window.GF_TOAST(`Feed updated for ${nextArea} · ${nextRadius}`, { tone: 'success' });
+      });
     })();
   </script>
 <script data-pplx-inline-edit>

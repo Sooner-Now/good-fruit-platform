@@ -29,87 +29,144 @@
             <span style="font-family: var(--font-display); font-size: 20px; font-weight: 700;">Good Fruit</span>
           </div>
 
-          <h1 id="start-title">Plant your profile.<br/><em>Start growing.</em></h1>
-          <p>Good Fruit begins with you as an individual: your gifts, your neighborhood, your church, and the ways you want to serve. Build a profile, then let the platform surface local prayers, needs, opportunities, businesses, churches, and community groups around you.</p>
+          <h1 id="start-title">Join the orchard.<br/><em>Grow with trust.</em></h1>
+          <p>Good Fruit starts with a real identity and the right level of access. Visitors can look around, guests can interact after verification, members can serve deeply, and businesses can join as trusted marketplace partners.</p>
 
           <div class="growth-preview" aria-label="Growth preview">
             <div class="between" style="margin-bottom: 12px;">
               <div>
-                <p class="section-eyebrow" style="color: var(--color-gold);">Your first seed</p>
-                <h2 style="color:white; font-size: 24px;">Level 1 · Seed 🌱</h2>
+                <p class="section-eyebrow" style="color: var(--color-gold);">Trust path</p>
+                <h2 style="color:white; font-size: 24px;">Visitor → Guest → Member</h2>
               </div>
-              <span class="badge badge-gold">+50 fruit</span>
+              <span class="badge badge-gold">Verified growth</span>
             </div>
             <div class="progress" role="progressbar" aria-valuenow="12" aria-valuemin="0" aria-valuemax="100">
               <div class="progress__bar" style="width: 12%; background: linear-gradient(90deg, var(--color-lime), var(--color-gold));"></div>
             </div>
-            <p class="text-sm" style="margin: 12px 0 0;">Complete your profile, join one local group, and pray for one need to begin your growth path.</p>
+            <p class="text-sm" style="margin: 12px 0 0;">Email confirmation unlocks search. ID verification unlocks posting, helping, marketplace interactions, and deeper community trust.</p>
           </div>
         </section>
 
         <section class="profile-builder" aria-labelledby="builder-title">
-          <p class="section-eyebrow">Individual profile</p>
-          <h2 id="builder-title" style="font-size: clamp(28px, 4vw, 42px); margin: 4px 0 8px;">Tell us where you’re planted.</h2>
-          <p class="text-secondary">This prototype uses the form to personalize the next screen. In WordPress, these fields map cleanly to user profile metadata and feed filters.</p>
+          <p class="section-eyebrow">Registration</p>
+          <h2 id="builder-title" style="font-size: clamp(28px, 4vw, 42px); margin: 4px 0 8px;">Create your Good Fruit access.</h2>
+          <p class="text-secondary">Choose your level, confirm your email, set your local area, and tell Good Fruit what you want to find or contribute.</p>
 
           <form id="profile-form" class="stack-lg" style="margin-top: 22px;">
-            <div class="form-grid form-grid--2">
-              <div class="field">
-                <label for="name">Your name</label>
-                <input id="name" name="name" type="text" placeholder="e.g., Hannah Pereira" autocomplete="name" data-testid="input-name" />
-              </div>
-              <div class="field">
-                <label for="city">City or neighborhood</label>
-                <input id="city" name="city" type="text" placeholder="e.g., Long Beach, CA" autocomplete="address-level2" data-testid="input-city" />
+            <div>
+              <label style="display:block; font-size:12px; font-weight:700; color:var(--color-text-secondary); margin-bottom:8px;">Access level</label>
+              <div class="membership-grid" role="radiogroup" aria-label="Access level">
+                <label class="membership-card">
+                  <input type="radio" name="role" value="Visitor" checked />
+                  <span class="badge badge-green">Free</span>
+                  <strong>Visitor</strong>
+                  <span>Search and view public listings after email confirmation.</span>
+                </label>
+                <label class="membership-card">
+                  <input type="radio" name="role" value="Guest" />
+                  <span class="badge badge-gold">ID required</span>
+                  <strong>Guest</strong>
+                  <span>Interact, respond, post needs, join teams, and use marketplace intros.</span>
+                </label>
+                <label class="membership-card">
+                  <input type="radio" name="role" value="Member" />
+                  <span class="badge badge-lime">Verified</span>
+                  <strong>Member</strong>
+                  <span>Build trust history, join orchards, mentor, lead, and earn bonus eligibility.</span>
+                </label>
+                <label class="membership-card">
+                  <input type="radio" name="role" value="Business" />
+                  <span class="badge badge-coral">Monthly fee</span>
+                  <strong>Business</strong>
+                  <span>Trusted business profile, marketplace visibility, and member bonus participation.</span>
+                </label>
               </div>
             </div>
 
             <div class="form-grid form-grid--2">
               <div class="field">
-                <label for="church">Church or faith community</label>
-                <input id="church" name="church" type="text" placeholder="Add your church, parish, or group" data-testid="input-church" />
+                <label for="name">Legal name</label>
+                <input id="name" name="name" type="text" placeholder="e.g., Jordan Miller" autocomplete="name" required data-testid="input-name" />
               </div>
               <div class="field">
-                <label for="focus">Growth focus</label>
-                <select id="focus" name="focus" data-testid="select-focus">
-                  <option value="">Choose a path</option>
-                  <option>Prayer and encouragement</option>
-                  <option>Mutual aid and service</option>
-                  <option>Learning and discipleship</option>
-                  <option>Marketplace and local business</option>
-                  <option>Mentorship and leadership</option>
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required data-testid="input-email" />
+              </div>
+            </div>
+
+            <div class="form-grid form-grid--2">
+              <div class="field">
+                <label for="city">Home area</label>
+                <input id="city" name="city" type="text" placeholder="e.g., Bend, OR" autocomplete="address-level2" required data-testid="input-city" />
+              </div>
+              <div class="field">
+                <label for="radius">Default feed radius</label>
+                <select id="radius" name="radius" data-testid="select-radius">
+                  <option>10 miles</option>
+                  <option selected>25 miles</option>
+                  <option>50 miles</option>
+                  <option>Central Oregon</option>
+                  <option>Statewide</option>
                 </select>
               </div>
             </div>
 
-            <div>
-              <label style="display:block; font-size:12px; font-weight:700; color:var(--color-text-secondary); margin-bottom:8px;">Gifts you want to grow</label>
-              <div class="builder-checks">
-                <label class="builder-check"><input type="checkbox" name="gift" value="Prayer" /> Prayer</label>
-                <label class="builder-check"><input type="checkbox" name="gift" value="Hospitality" /> Hospitality</label>
-                <label class="builder-check"><input type="checkbox" name="gift" value="Teaching" /> Teaching</label>
-                <label class="builder-check"><input type="checkbox" name="gift" value="Giving" /> Giving</label>
-                <label class="builder-check"><input type="checkbox" name="gift" value="Mentoring" /> Mentoring</label>
-                <label class="builder-check"><input type="checkbox" name="gift" value="Business" /> Local business</label>
+            <div class="form-grid form-grid--2">
+              <div class="field">
+                <label for="church">Church, group, or community</label>
+                <input id="church" name="church" type="text" placeholder="Optional but helpful for trust layers" data-testid="input-church" />
+              </div>
+              <div class="field">
+                <label for="business-name">Business name</label>
+                <input id="business-name" name="business" type="text" placeholder="For business accounts" data-testid="input-business" />
               </div>
             </div>
 
-            <div class="field">
-              <label for="story">Short introduction</label>
-              <textarea id="story" name="story" placeholder="Share a sentence about how you want to grow or serve this season." data-testid="textarea-story"></textarea>
+            <div class="verification-grid">
+              <article class="card verification-card">
+                <span class="badge badge-green">Step 1</span>
+                <h3>Email confirmation</h3>
+                <p class="text-sm text-secondary">Required for every account. Visitors can search and view public feeds after confirming email.</p>
+              </article>
+              <article class="card verification-card">
+                <span class="badge badge-gold">Step 2</span>
+                <h3>ID verification</h3>
+                <p class="text-sm text-secondary">Required before posting, responding, joining teams, or marketplace intros. In production this should use a secure identity provider.</p>
+                <div class="field" style="margin-top: 10px;">
+                  <label for="id-upload">State-issued ID upload</label>
+                  <input id="id-upload" name="idUpload" type="file" accept="image/*,.pdf" data-testid="input-id-upload" />
+                </div>
+              </article>
+              <article class="card verification-card">
+                <span class="badge badge-coral">Business</span>
+                <h3>Service fee and bonus pool</h3>
+                <p class="text-sm text-secondary">Businesses pay a monthly service fee, become platform members, and may participate when member bonuses or profit-share distributions are available.</p>
+              </article>
+            </div>
+
+            <div>
+              <label style="display:block; font-size:12px; font-weight:700; color:var(--color-text-secondary); margin-bottom:8px;">Interests and feed priorities</label>
+              <div class="builder-checks">
+                <label class="builder-check"><input type="checkbox" name="interest" value="Prayer" /> Prayer</label>
+                <label class="builder-check"><input type="checkbox" name="interest" value="Needs" /> Needs and mutual aid</label>
+                <label class="builder-check"><input type="checkbox" name="interest" value="Connect" /> Groups, events, projects</label>
+                <label class="builder-check"><input type="checkbox" name="interest" value="Learn" /> Training and courses</label>
+                <label class="builder-check"><input type="checkbox" name="interest" value="Marketplace" /> Marketplace</label>
+                <label class="builder-check"><input type="checkbox" name="interest" value="Business" /> Local business</label>
+              </div>
             </div>
 
             <div class="card" style="background: var(--color-bg-soft);">
               <div class="row" style="align-items:flex-start;">
-                <div style="font-size: 28px;">📍</div>
+                <div style="font-size: 24px; font-weight:800; color:var(--color-turquoise-deep);">ID</div>
                 <div>
-                  <h3>Local feed setup</h3>
-                  <p class="text-sm text-secondary" style="margin:4px 0 0;">Once your city is set, each tab can be populated by churches, businesses, schools, nonprofits, and community groups in that area.</p>
+                  <h3>Safety-first trust model</h3>
+                  <p class="text-sm text-secondary" style="margin:4px 0 0;">Good Fruit should verify people before they post, transact, request help, or contact vulnerable members. Documents should never be stored in this static prototype.</p>
                 </div>
               </div>
             </div>
 
-            <button class="btn btn-primary btn-block" type="submit" data-testid="button-start-growing">Start growing →</button>
+            <button class="btn btn-primary btn-block" type="submit" data-testid="button-start-growing">Create account →</button>
             <a class="btn btn-ghost btn-block" href="home.html" data-testid="link-skip-demo">Skip for now and view demo</a>
           </form>
         </section>
@@ -125,13 +182,17 @@
         event.preventDefault();
         const data = new FormData(form);
         const query = new URLSearchParams();
-        ['name', 'city', 'church', 'focus'].forEach((key) => {
+        ['name', 'email', 'city', 'church', 'role', 'radius', 'business'].forEach((key) => {
           const value = (data.get(key) || '').toString().trim();
           if (value) query.set(key, value);
         });
-        const gifts = data.getAll('gift');
-        if (gifts.length) query.set('gifts', gifts.join(','));
-        window.GF_TOAST('Profile planted · welcome to Good Fruit', { tone: 'success' });
+        const interests = data.getAll('interest');
+        if (interests.length) query.set('interests', interests.join(','));
+        const role = (data.get('role') || 'Visitor').toString();
+        query.set('emailConfirmed', 'pending');
+        query.set('idVerified', role === 'Visitor' ? 'not_required' : 'pending');
+        query.set('accessStatus', role === 'Visitor' ? 'view_only' : 'verification_pending');
+        window.GF_TOAST('Registration started · check your email', { tone: 'success' });
         setTimeout(() => {
           window.location.href = `home.html${query.toString() ? `?${query.toString()}` : ''}`;
         }, 650);

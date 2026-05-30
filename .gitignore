@@ -1,0 +1,7 @@
+.env
+.env.local
+dist/
+.DS_Store
+*.swp
+*.swo
+node_modules/

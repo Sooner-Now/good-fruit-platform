@@ -93,6 +93,18 @@
         </div>
       </section>
 
+      <section class="bible-study-panel card" aria-live="polite">
+        <div>
+          <p class="section-eyebrow">Interactive study lens</p>
+          <h2 id="study-word-title">Hover or tap a word</h2>
+          <p class="text-sm text-secondary" id="study-word-body">Word meanings, original-language hints, and related ideas will appear here while you read.</p>
+        </div>
+        <div class="study-word-meta" id="study-word-meta">
+          <span class="badge badge-slate">KJV study aid</span>
+          <a class="badge" href="https://www.stepbible.org/" target="_blank" rel="noopener">Open STEP Bible</a>
+        </div>
+      </section>
+
       <!-- ========================================================
            Bible text
            ======================================================== -->
@@ -129,6 +141,7 @@
   <div data-component="bottom-nav" data-active="learn"></div>
   <script src="assets/shared.js"></script>
   <script src="assets/bible-data.js"></script>
+  <script src="assets/bible-study.js"></script>
   <script>
   /* ================================================================
      Bible Reader — interactive layer
@@ -318,7 +331,7 @@
       document.getElementById('passage-title').textContent = chapter.title;
       list.innerHTML = chapter.verses.map((v) => `
         <span class="verse${v.wj ? '' : ''}" data-verse-num="${v.n}" tabindex="0" role="button" aria-label="Verse ${v.n}">
-          <span class="verse__num">${v.n}</span><span class="${v.wj ? 'verse__words-of-jesus' : ''}">${v.t}</span>
+          <span class="verse__num">${v.n}</span><span class="${v.wj ? 'verse__words-of-jesus' : ''}">${window.GF_BIBLE_STUDY ? window.GF_BIBLE_STUDY.renderVerse(v.t) : v.t}</span>
         </span>
       `).join(' ');
 
@@ -332,6 +345,7 @@
           }
         });
       });
+      if (window.GF_BIBLE_STUDY) window.GF_BIBLE_STUDY.bind(list, chapter);
 
       // Update source pill
       // (tryStepBible may have already set this; default below)
