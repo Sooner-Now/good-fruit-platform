@@ -7,8 +7,8 @@
   ];
   const MAP_CENTER = [44.0582, -121.3153];
   const OVERPASS_ENDPOINTS = [
-    'https://overpass.kumi.systems/api/interpreter',
     'https://overpass-api.de/api/interpreter',
+    'https://overpass.kumi.systems/api/interpreter',
   ];
 
   const FALLBACK_CHURCHES = [
@@ -123,7 +123,7 @@
 
   async function fetchWithTimeout(url, options) {
     const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 8000);
+    const timeout = setTimeout(() => controller.abort(), 18000);
     try {
       return await fetch(url, { ...options, signal: controller.signal });
     } finally {
