@@ -16,130 +16,116 @@
   <main class="app-main">
     <div class="container">
       <section style="margin-bottom: 18px;">
-        <h1 style="font-size: 28px;">Marketplace</h1>
-        <p class="text-secondary">Trade, give, and receive within your community.</p>
+        <h1 style="font-size: 28px;">Central Oregon marketplace</h1>
+        <p class="text-secondary">Find local products, services, barter offers, and free goods that can strengthen the community.</p>
       </section>
 
-      <div data-component="local-feed" data-feed="market" data-title="Local marketplace sources" style="margin-bottom: 18px;"></div>
+      <section class="market-source-panel card" aria-label="Marketplace source directory">
+        <div class="market-source-panel__head">
+          <div>
+            <p class="section-eyebrow">Local listing radar</p>
+            <h2>Public marketplace boards, free sections, service listings, barter leads, and partner vendors</h2>
+            <p class="text-sm text-secondary">Good Fruit can highlight public listings and approved partner submissions. Facebook Marketplace and private buy/sell groups require permission or user-submitted links before listings are imported.</p>
+          </div>
+          <button class="btn btn-primary btn-sm" data-testid="btn-refresh-market">Refresh leads</button>
+        </div>
+        <div class="source-grid">
+          <article class="source-card source-card--active">
+            <span class="badge badge-green">Public listings</span>
+            <h3>Bend Craigslist</h3>
+            <p class="text-sm text-secondary">Free stuff, wanted, services, community posts, and barter-style leads in Central Oregon.</p>
+            <a href="https://bend.craigslist.org/search/zip" target="_blank" rel="noreferrer">Open free section</a>
+          </article>
+          <article class="source-card source-card--active">
+            <span class="badge badge-green">Local vendors</span>
+            <h3>Local food and producer boards</h3>
+            <p class="text-sm text-secondary">Central Oregon growers, makers, small businesses, and food-market listings.</p>
+            <a href="https://centraloregonlocavore.org/marketplace/" target="_blank" rel="noreferrer">Open Locavore</a>
+          </article>
+          <article class="source-card">
+            <span class="badge badge-amber">Permission needed</span>
+            <h3>Facebook Marketplace &amp; groups</h3>
+            <p class="text-sm text-secondary">Use public links, seller-submitted listings, or approved group exports.</p>
+            <a href="https://www.facebook.com/marketplace/" target="_blank" rel="noreferrer">Open Marketplace</a>
+          </article>
+        </div>
+      </section>
 
-      <!-- Search bar -->
-      <div class="card-tight card" style="display:flex;align-items:center;gap:10px; padding: 10px 14px;">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-text-muted)"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-        <input type="search" placeholder="Search goods, services, skills…" aria-label="Search marketplace" style="border:none;outline:none;background:transparent;flex:1;font:inherit;font-size:14px;color:var(--color-text);" data-testid="input-search">
+      <div class="grid grid-3" style="margin-bottom: 18px;">
+        <div class="card market-stat">
+          <div class="market-stat__value tabular" id="market-count">--</div>
+          <div class="market-stat__label">Listings found</div>
+        </div>
+        <div class="card market-stat">
+          <div class="market-stat__value tabular" id="market-free-count">--</div>
+          <div class="market-stat__label">Free or barter</div>
+        </div>
+        <div class="card market-stat">
+          <div class="market-stat__value tabular" id="market-source-count">--</div>
+          <div class="market-stat__label">Sources</div>
+        </div>
       </div>
+
+      <section class="market-controls card" aria-label="Marketplace filters">
+        <div class="market-controls__grid">
+          <div class="field">
+            <label for="market-search">Search marketplace</label>
+            <input id="market-search" type="search" placeholder="Furniture, hauling, produce, tools, childcare, free..." autocomplete="off" data-testid="input-search" />
+          </div>
+          <div class="field">
+            <label for="market-source">Source</label>
+            <select id="market-source" data-testid="select-market-source">
+              <option value="all">All sources</option>
+              <option value="craigslist">Craigslist</option>
+              <option value="facebook">Facebook approved</option>
+              <option value="local">Local vendor</option>
+              <option value="community">Community board</option>
+              <option value="church">Church partner</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="market-sort">Sort</label>
+            <select id="market-sort" data-testid="select-sort">
+              <option value="latest">Latest</option>
+              <option value="free">Free first</option>
+              <option value="nearby">Nearby</option>
+            </select>
+          </div>
+        </div>
+      </section>
 
       <!-- Category chips -->
       <div class="chip-row" style="margin-top: 14px;" data-chip-group>
         <button class="chip is-active" aria-pressed="true" data-filter="all">All</button>
-        <button class="chip" aria-pressed="false" data-filter="goods">Goods</button>
+        <button class="chip" aria-pressed="false" data-filter="products">Products</button>
         <button class="chip" aria-pressed="false" data-filter="services">Services</button>
-        <button class="chip" aria-pressed="false" data-filter="skills">Skills</button>
         <button class="chip" aria-pressed="false" data-filter="free">Free</button>
-        <button class="chip" aria-pressed="false" data-filter="trade">Trade</button>
+        <button class="chip" aria-pressed="false" data-filter="barter">Barter</button>
+        <button class="chip" aria-pressed="false" data-filter="wanted">Wanted</button>
+        <button class="chip" aria-pressed="false" data-filter="local-food">Local food</button>
       </div>
 
       <!-- Featured banner -->
       <section class="section">
         <div class="card" style="background: linear-gradient(135deg, var(--color-turquoise) 0%, var(--color-turquoise-deep) 100%); color: white; border:none; display:flex; gap: 16px; align-items:center;">
-          <div style="font-size: 44px;">🌻</div>
+          <div class="market-feature-icon" aria-hidden="true">GF</div>
           <div style="flex:1;">
             <p style="font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.9; margin-bottom: 4px;">Featured this week</p>
-            <h2 style="color:white; font-size: 20px;">Sister Roe's garden surplus</h2>
-            <p style="font-size: 13px; opacity: 0.92; margin: 0;">Free tomatoes, basil, and zucchini for any neighbor who needs them.</p>
+            <h2 style="color:white; font-size: 20px;">Free, barter, and local-first leads</h2>
+            <p style="font-size: 13px; opacity: 0.92; margin: 0;">Use the board to spot goods that can meet needs, services that can be sponsored, and neighbors ready to trade.</p>
           </div>
-          <button class="btn btn-coral btn-sm" data-testid="btn-featured">View →</button>
+          <button class="btn btn-coral btn-sm" data-testid="btn-featured">View</button>
         </div>
       </section>
 
       <!-- Sort + filter -->
       <div class="between" style="margin-bottom: 12px;">
-        <p class="text-sm text-secondary" style="margin:0;"><strong style="color: var(--color-text);">12</strong> listings nearby</p>
-        <select class="bible-select" aria-label="Sort by" data-testid="select-sort">
-          <option>Sort: Latest</option>
-          <option>Sort: Nearby</option>
-          <option>Sort: Price (low → high)</option>
-        </select>
+        <p class="text-sm text-secondary" style="margin:0;"><strong style="color: var(--color-text);" id="market-visible-count">--</strong> listings nearby</p>
+        <span class="badge badge-gold">Central Oregon</span>
       </div>
 
       <!-- Listings -->
-      <div class="stack">
-
-        <article class="listing-card" data-testid="card-listing-1">
-          <div class="listing-card__thumb" aria-hidden="true">🍞</div>
-          <div class="listing-card__body">
-            <div class="between" style="margin-bottom: 4px;">
-              <h3 class="listing-card__title">Homemade sourdough loaves</h3>
-              <span class="price-pill">FREE</span>
-            </div>
-            <p class="listing-card__desc">Fresh-baked Saturdays. First come, first served — text me by Friday evening for pickup.</p>
-            <div class="listing-card__meta">
-              <div class="avatar avatar-sm avatar-rose">JT</div>
-              Jaye Tanaka · 0.4 mi · Saved by 4
-            </div>
-          </div>
-        </article>
-
-        <article class="listing-card">
-          <div class="listing-card__thumb" style="background: linear-gradient(135deg, #ccfbf1, #5eead4);" aria-hidden="true">📚</div>
-          <div class="listing-card__body">
-            <div class="between" style="margin-bottom: 4px;">
-              <h3 class="listing-card__title">Bookkeeping help (3 hrs)</h3>
-              <span class="price-pill price-pill--trade">TRADE</span>
-            </div>
-            <p class="listing-card__desc">10+ years as a CPA. Trade for childcare or a meal — preferably both 🙂</p>
-            <div class="listing-card__meta">
-              <div class="avatar avatar-sm avatar-violet">PA</div>
-              Priya Anand · 1.2 mi · Verified
-            </div>
-          </div>
-        </article>
-
-        <article class="listing-card">
-          <div class="listing-card__thumb" style="background: linear-gradient(135deg, #fef9c3, #facc15);" aria-hidden="true">🪴</div>
-          <div class="listing-card__body">
-            <div class="between" style="margin-bottom: 4px;">
-              <h3 class="listing-card__title">Pothos cuttings (rooted)</h3>
-              <span class="price-pill price-pill--paid">$5</span>
-            </div>
-            <p class="listing-card__desc">Three healthy cuttings, well-rooted in water. Perfect for beginners.</p>
-            <div class="listing-card__meta">
-              <div class="avatar avatar-sm avatar-green">EK</div>
-              Esther Kim · 0.8 mi
-            </div>
-          </div>
-        </article>
-
-        <article class="listing-card">
-          <div class="listing-card__thumb" style="background: linear-gradient(135deg, #ffd7c8, #fb7c5b);" aria-hidden="true">🎸</div>
-          <div class="listing-card__body">
-            <div class="between" style="margin-bottom: 4px;">
-              <h3 class="listing-card__title">Acoustic guitar lessons</h3>
-              <span class="price-pill price-pill--paid">$25 / hr</span>
-            </div>
-            <p class="listing-card__desc">Worship guitar for beginners. Half goes to our youth scholarship fund.</p>
-            <div class="listing-card__meta">
-              <div class="avatar avatar-sm avatar-sky">MN</div>
-              Marcus Ndebele · 2.1 mi
-            </div>
-          </div>
-        </article>
-
-        <article class="listing-card">
-          <div class="listing-card__thumb" style="background: linear-gradient(135deg, #ecfccb, #84cc16);" aria-hidden="true">🚗</div>
-          <div class="listing-card__body">
-            <div class="between" style="margin-bottom: 4px;">
-              <h3 class="listing-card__title">Airport ride share — Sunday</h3>
-              <span class="price-pill">FREE</span>
-            </div>
-            <p class="listing-card__desc">Driving to PHL Sunday 6 AM. Two seats open. Coffee on me.</p>
-            <div class="listing-card__meta">
-              <div class="avatar avatar-sm">DR</div>
-              Daniel Rivera · 0.6 mi
-            </div>
-          </div>
-        </article>
-
-      </div>
+      <div class="stack" id="market-listings"></div>
 
       <button class="btn btn-primary btn-block" style="margin-top: 18px;" data-testid="btn-list-something">+ List something</button>
     </div>
@@ -147,6 +133,7 @@
 
   <div data-component="bottom-nav" data-active="market"></div>
   <script src="assets/shared.js"></script>
+  <script src="assets/marketplace-board.js"></script>
 <script data-pplx-inline-edit>
 (function () {
   if (window === window.top) return;

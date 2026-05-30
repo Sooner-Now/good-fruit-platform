@@ -699,6 +699,86 @@ p { margin: 0 0 12px; }
 }
 .price-pill--paid { background: var(--color-primary-soft); color: var(--color-primary-hover); }
 .price-pill--trade { background: #ede9fe; color: #6d28d9; }
+.price-pill--free { background: #d1fae5; color: #047857; }
+.price-pill--wanted { background: #fee2e2; color: #b91c1c; }
+
+.market-source-panel,
+.market-controls {
+  margin-bottom: 18px;
+}
+.market-source-panel__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.market-source-panel__head h2 {
+  max-width: 760px;
+  font-size: clamp(20px, 3vw, 30px);
+}
+.market-stat {
+  padding: 14px 12px;
+  text-align: center;
+}
+.market-stat__value {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 22px;
+  color: var(--color-text);
+}
+.market-stat__label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+.market-controls__grid {
+  display: grid;
+  gap: 12px;
+}
+@media (min-width: 800px) {
+  .market-controls__grid {
+    grid-template-columns: minmax(0, 1fr) minmax(160px, 210px) minmax(140px, 180px);
+    align-items: end;
+  }
+}
+.market-feature-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  display: grid;
+  place-items: center;
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  color: white;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+.market-listing {
+  align-items: flex-start;
+}
+.market-listing__source {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+@media (max-width: 720px) {
+  .market-source-panel__head {
+    flex-direction: column;
+  }
+  .listing-card {
+    align-items: flex-start;
+  }
+  .listing-card__thumb {
+    width: 64px;
+    height: 64px;
+    font-size: 22px;
+  }
+}
 
 /* ==========================================================================
    Need cards
