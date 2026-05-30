@@ -7,7 +7,7 @@ const root = process.cwd();
 const requiredPages = [
   'index.html',
   'home.html',
-  'advocate.html',
+  'opportunities.html',
   'prayer.html',
   'needs.html',
   'connect.html',
@@ -21,6 +21,7 @@ const requiredAssets = [
   'assets/styles.css',
   'assets/shared.js',
   'assets/advocate-agent.js',
+  'assets/opportunities.js',
   'assets/bible-study.js',
   'assets/bible-data.js',
   'assets/seedling-advocate.png',
@@ -43,6 +44,7 @@ const requiredIntegrationFiles = [
   'docs/OPS_RUNBOOK.md',
   'docs/COMMUNITY_DIRECTORY_BLUEPRINT.md',
   'docs/INTEGRATIONS_SETUP.md',
+  'docs/OPPORTUNITIES_README.md',
   'scripts/check-platform-env.mjs',
   'scripts/github-doctor.sh',
 ];

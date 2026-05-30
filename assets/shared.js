@@ -230,7 +230,7 @@
      ----------------------------------------------------------------------- */
   const NAV_ITEMS = [
     { id: 'home', label: 'Home', href: 'home.html', icon: 'M3 9l9-7 9 7v11a2 2 0 0 1-2 2h-4v-7H9v7H5a2 2 0 0 1-2-2z' },
-    { id: 'advocate', label: 'Guide', href: 'advocate.html', icon: 'M12 3l7 4v5c0 5-3.5 8.5-7 9-3.5-.5-7-4-7-9V7l7-4zM9 12l2 2 4-5' },
+    { id: 'opportunities', label: 'Opps', href: 'opportunities.html', icon: 'M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7H14a3.5 3.5 0 0 1 0 7H6M5 12h14' },
     { id: 'market', label: 'Market', href: 'marketplace.html', icon: 'M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4zM3 6h18M16 10a4 4 0 0 1-8 0' },
     { id: 'connect', label: 'Connect', href: 'connect.html', icon: 'M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75' },
     { id: 'prayer', label: 'Prayer', href: 'prayer.html', icon: 'M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zM2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z' },
@@ -259,17 +259,65 @@
   }
 
   function renderAdvocateLauncher() {
-    if (document.body.classList.contains('is-landing') || document.querySelector('[data-advocate-page]')) return;
-    const link = document.createElement('a');
-    link.className = 'advocate-launcher';
-    link.href = 'advocate.html';
-    link.setAttribute('aria-label', 'Open Good Fruit advocate');
-    link.setAttribute('data-testid', 'link-advocate-launcher');
-    link.innerHTML = `
+    if (document.body.classList.contains('is-landing')) return;
+    const shell = document.createElement('div');
+    shell.className = 'seedling-help';
+    shell.innerHTML = `
+      <button class="advocate-launcher" type="button" aria-expanded="false" aria-controls="seedling-help-panel" data-seedling-help-toggle data-testid="button-seedling-help">
       <img src="assets/seedling-expressions/joyful.png" alt="" aria-hidden="true" />
       <span>Seedling</span>
+      </button>
+      <section class="seedling-help-panel" id="seedling-help-panel" aria-label="Seedling help" hidden>
+        <div class="seedling-help-panel__head">
+          <div class="seedling-chat-title">
+            <img src="assets/seedling-expressions/listening.png" alt="" aria-hidden="true" data-seedling-mini-avatar />
+            <div>
+              <h2>Ask Seedling</h2>
+              <p class="text-sm text-secondary" data-seedling-mini-mood>Listening</p>
+            </div>
+          </div>
+          <button class="icon-btn" type="button" aria-label="Close Seedling help" data-seedling-help-close>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <div class="seedling-help-panel__body" data-seedling-mini-messages>
+          <p><strong>You are not alone.</strong> I can help you find prayer, needs, opportunities, learning, marketplace items, or your next faithful step.</p>
+        </div>
+        <div class="seedling-help-prompts">
+          <button type="button" data-seedling-mini-prompt="prayer">Prayer</button>
+          <button type="button" data-seedling-mini-prompt="needs">Needs</button>
+          <button type="button" data-seedling-mini-prompt="opportunities">Opportunities</button>
+          <button type="button" data-seedling-mini-prompt="learn">Learn</button>
+        </div>
+      </section>
     `;
-    document.body.appendChild(link);
+    document.body.appendChild(shell);
+    const toggle = shell.querySelector('[data-seedling-help-toggle]');
+    const panel = shell.querySelector('#seedling-help-panel');
+    const close = shell.querySelector('[data-seedling-help-close]');
+    const messages = shell.querySelector('[data-seedling-mini-messages]');
+    const avatar = shell.querySelector('[data-seedling-mini-avatar]');
+    const mood = shell.querySelector('[data-seedling-mini-mood]');
+    const replies = {
+      prayer: ['assets/seedling-expressions/praying.png', 'Praying', 'Open the Prayer tab to add a request, join a prayer circle, or keep praying with someone nearby.', 'prayer.html'],
+      needs: ['assets/seedling-expressions/here-for-you.png', 'Supporting', 'Open Needs to ask clearly, offer help, or match practical support with someone who needs it.', 'needs.html'],
+      opportunities: ['assets/seedling-expressions/encouraging.png', 'Encouraging', 'Open Opportunities to support local builders through investment, mentorship, sharing, prayer, or collaboration.', 'opportunities.html'],
+      learn: ['assets/seedling-expressions/thinking.png', 'Thinking', 'Open Learn to find courses, certifications, Bible growth, and practical skills that help you bear fruit.', 'learn.html'],
+    };
+    function setOpen(open) {
+      panel.hidden = !open;
+      toggle.setAttribute('aria-expanded', String(open));
+    }
+    toggle.addEventListener('click', () => setOpen(panel.hidden));
+    close.addEventListener('click', () => setOpen(false));
+    shell.querySelectorAll('[data-seedling-mini-prompt]').forEach((button) => {
+      button.addEventListener('click', () => {
+        const [src, label, copy, href] = replies[button.dataset.seedlingMiniPrompt];
+        avatar.src = src;
+        mood.textContent = label;
+        messages.innerHTML = `<p>${copy}</p><a class="btn btn-primary btn-sm" href="${href}">Open ${button.textContent}</a>`;
+      });
+    });
   }
 
   /* -----------------------------------------------------------------------

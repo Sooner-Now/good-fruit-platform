@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#fff1ea" />
+  <title>Opportunities — Good Fruit Platform</title>
+  <meta name="description" content="Discover community-supported businesses, projects, and collaborations seeking investment, mentorship, prayer, sharing, and local partnership." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <div data-component="header" data-title="Opportunities"></div>
+
+  <main class="app-main opportunities-page">
+    <div class="container">
+      <section class="opportunity-hero card" aria-labelledby="opportunities-title">
+        <div class="opportunity-hero__copy">
+          <p class="section-eyebrow">Community-supported business growth</p>
+          <h1 id="opportunities-title">Opportunities</h1>
+          <p class="opportunity-hero__lead">Support businesses that strengthen your community. Discover builders, makers, churches, nonprofits, tradespeople, teachers, growers, and local projects worth helping forward.</p>
+          <div class="opportunity-hero__actions">
+            <a class="btn btn-primary" href="#opportunity-grid">Explore opportunities</a>
+            <a class="btn btn-coral" href="#submit-opportunity">Submit your business</a>
+            <a class="btn btn-ghost" href="#how-support-works">How it works</a>
+          </div>
+        </div>
+        <div class="opportunity-hero__panel" aria-label="Opportunities summary">
+          <span class="badge badge-gold">Good faith collaboration</span>
+          <h2>Back the builders.</h2>
+          <p>Investment is only one way to help. Mentor, share, pray, collaborate, buy locally, open doors, or lend practical skill.</p>
+          <div class="opportunity-snapshot">
+            <span><strong>18</strong> support offers</span>
+            <span><strong>6</strong> featured projects</span>
+            <span><strong>42</strong> endorsements</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="opportunity-principles" aria-label="Opportunities principles">
+        <article class="card">
+          <span class="seedling-icon seedling-icon--growth" aria-hidden="true">✦</span>
+          <h2>Rooted in community</h2>
+          <p class="text-sm text-secondary">People are invited to support local work they can understand, visit, encourage, and help steward.</p>
+        </article>
+        <article class="card">
+          <span class="seedling-icon seedling-icon--faith" aria-hidden="true">+</span>
+          <h2>Built for transparency</h2>
+          <p class="text-sm text-secondary">Opportunities should explain the story, need, use of support, risks, timeline, and expected next steps clearly.</p>
+        </article>
+        <article class="card">
+          <span class="seedling-icon seedling-icon--love" aria-hidden="true">♥</span>
+          <h2>Designed for shared growth</h2>
+          <p class="text-sm text-secondary">This is not a hype contest. It is a place to help good work become sustainable and fruitful.</p>
+        </article>
+      </section>
+
+      <section class="opportunity-trust card" aria-labelledby="trust-title">
+        <div>
+          <p class="section-eyebrow">Honor system</p>
+          <h2 id="trust-title">Firm, fair, and community-minded.</h2>
+        </div>
+        <p>All investments, collaborations, and agreements made through Opportunities are entered into directly between the individuals or parties involved. Good Fruit exists to help people connect, share vision, and build trust in community, but we do not guarantee outcomes or enforce private agreements. We ask every participant to operate with honesty, clarity, and good faith. Repeated misconduct, deceptive behavior, or failure to honor upstanding agreements may result in removal or banning from the platform.</p>
+      </section>
+
+      <section class="opportunity-controls card" aria-label="Browse opportunities">
+        <div class="opportunity-controls__grid">
+          <div class="field">
+            <label for="opportunity-search">Search</label>
+            <input id="opportunity-search" type="search" placeholder="Bakery, tools, garden, apprenticeship..." autocomplete="off" />
+          </div>
+          <div class="field">
+            <label for="opportunity-category">Category</label>
+            <select id="opportunity-category">
+              <option value="all">All categories</option>
+              <option value="food">Food and local goods</option>
+              <option value="trades">Trades and tools</option>
+              <option value="youth">Youth and arts</option>
+              <option value="community">Community projects</option>
+              <option value="wellness">Wellness</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="opportunity-support">Support type</label>
+            <select id="opportunity-support">
+              <option value="all">Any support</option>
+              <option value="investment">Investment</option>
+              <option value="collaboration">Collaboration</option>
+              <option value="mentorship">Mentorship</option>
+              <option value="prayer">Prayer</option>
+              <option value="sharing">Sharing</option>
+              <option value="local partnership">Local partnership</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="opportunity-location">Location</label>
+            <select id="opportunity-location">
+              <option value="all">All locations</option>
+              <option value="bend">Bend</option>
+              <option value="redmond">Redmond</option>
+              <option value="prineville">Prineville</option>
+              <option value="sisters">Sisters</option>
+              <option value="madras">Madras</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="opportunity-status">Stage</label>
+            <select id="opportunity-status">
+              <option value="all">All stages</option>
+              <option value="seeking support">Seeking support</option>
+              <option value="funded in part">Funded in part</option>
+              <option value="open to collaborators">Open to collaborators</option>
+              <option value="mentorship requested">Mentorship requested</option>
+            </select>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="opportunity-grid" aria-labelledby="featured-opportunities-title">
+        <div class="section-title">
+          <div>
+            <h2 id="featured-opportunities-title">Featured opportunities</h2>
+            <p class="text-sm text-secondary"><span id="opportunity-count">6</span> community-supported opportunities ready to explore.</p>
+          </div>
+          <span class="badge badge-green">Central Oregon</span>
+        </div>
+        <div class="opportunity-grid" data-opportunity-grid></div>
+      </section>
+
+      <section class="opportunity-detail card" aria-labelledby="detail-title" data-opportunity-detail>
+        <p class="section-eyebrow">Detailed profile preview</p>
+        <h2 id="detail-title">Sparrow &amp; Stone Bakery expansion</h2>
+        <div class="opportunity-detail__grid">
+          <div>
+            <p class="text-secondary">Founder Mara Lewis is seeking support to add a second oven, train two part-time apprentices, and supply weekly bread to a church food pantry partner.</p>
+            <div class="opportunity-detail__columns">
+              <div>
+                <h3>Use of funds</h3>
+                <ul>
+                  <li>Commercial oven deposit</li>
+                  <li>Apprentice stipends</li>
+                  <li>Pantry bread supplies</li>
+                </ul>
+              </div>
+              <div>
+                <h3>Risks and considerations</h3>
+                <ul>
+                  <li>Seasonal revenue swings</li>
+                  <li>Lease renewal due this winter</li>
+                  <li>Equipment delivery timing</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <aside>
+            <h3>Milestones</h3>
+            <ol class="opportunity-milestones">
+              <li>Secure oven deposit</li>
+              <li>Train apprentice bakers</li>
+              <li>Begin pantry partnership</li>
+              <li>Publish first community impact update</li>
+            </ol>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section" id="how-support-works">
+        <div class="section-title">
+          <h2>How support works</h2>
+        </div>
+        <div class="opportunity-steps">
+          <article><span>1</span><h3>Discover</h3><p>Browse opportunities with clear needs, goals, support types, and community context.</p></article>
+          <article><span>2</span><h3>Review</h3><p>Read the story, use of funds, milestones, endorsements, and risks before connecting.</p></article>
+          <article><span>3</span><h3>Connect</h3><p>Reach out directly to invest, mentor, collaborate, share, pray, or partner locally.</p></article>
+          <article><span>4</span><h3>Follow fruit</h3><p>Watch updates, celebrate progress, and keep relationships honest and clear.</p></article>
+        </div>
+      </section>
+
+      <section class="opportunity-paths card" aria-labelledby="paths-title">
+        <div>
+          <p class="section-eyebrow">Participation paths</p>
+          <h2 id="paths-title">There is more than one way to support good work.</h2>
+        </div>
+        <div class="opportunity-path-grid">
+          <span>Invest</span>
+          <span>Collaborate</span>
+          <span>Mentor</span>
+          <span>Share</span>
+          <span>Pray and encourage</span>
+        </div>
+      </section>
+
+      <section class="opportunity-submit card" id="submit-opportunity" aria-labelledby="submit-title">
+        <div>
+          <p class="section-eyebrow">Submit or nominate</p>
+          <h2 id="submit-title">Know a builder worth backing?</h2>
+          <p class="text-secondary">Entrepreneurs, churches, nonprofits, community leaders, and local businesses can submit an opportunity or nominate someone doing grounded, practical work.</p>
+        </div>
+        <form class="opportunity-submit__form">
+          <div class="field">
+            <label for="submit-name">Business or project</label>
+            <input id="submit-name" type="text" placeholder="e.g., Juniper Tool Library" />
+          </div>
+          <div class="field">
+            <label for="submit-contact">Contact email</label>
+            <input id="submit-contact" type="email" placeholder="builder@example.com" />
+          </div>
+          <button class="btn btn-primary" type="button" data-submit-opportunity>Start submission</button>
+        </form>
+      </section>
+
+      <section class="opportunity-footer-note">
+        <p><strong>Compact agreement note:</strong> Agreements made through Opportunities are between participants. Good Fruit operates on an honor system, and dishonest or harmful conduct may lead to banning from the platform.</p>
+      </section>
+    </div>
+  </main>
+
+  <div data-component="bottom-nav" data-active="opportunities"></div>
+  <script src="assets/shared.js"></script>
+  <script src="assets/opportunities.js"></script>
+</body>
+</html>

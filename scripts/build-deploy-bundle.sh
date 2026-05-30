@@ -13,7 +13,7 @@ node scripts/verify.mjs
 rm -rf "$PACKAGE_DIR"
 mkdir -p "$PACKAGE_DIR"
 
-cp index.html home.html advocate.html prayer.html needs.html connect.html marketplace.html learn.html bible.html profile.html "$PACKAGE_DIR/"
+cp index.html home.html opportunities.html prayer.html needs.html connect.html marketplace.html learn.html bible.html profile.html "$PACKAGE_DIR/"
 cp -R assets "$PACKAGE_DIR/assets"
 cp -R api "$PACKAGE_DIR/api"
 cp -R docs "$PACKAGE_DIR/docs"
