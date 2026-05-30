@@ -597,6 +597,143 @@ p { margin: 0 0 12px; }
 }
 
 /* ==========================================================================
+   Good Fruit game layer
+   ========================================================================== */
+
+.game-hero {
+  display: grid;
+  gap: 18px;
+  align-items: center;
+  margin-bottom: 18px;
+  background: linear-gradient(135deg, #ffffff 0%, #fff8f3 48%, #ecfccb 100%);
+  border-color: var(--color-lime-soft);
+}
+@media (min-width: 760px) {
+  .game-hero { grid-template-columns: minmax(0, 1fr) 170px; }
+}
+.game-hero__copy h2 {
+  font-size: clamp(22px, 4vw, 34px);
+  margin: 4px 0 8px;
+}
+.game-hero__score {
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  padding: 14px;
+  border-radius: var(--radius-lg);
+  background: white;
+  border: 1px solid var(--color-border);
+  text-align: center;
+}
+.game-hero__ring {
+  width: 86px;
+  height: 86px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(circle at center, white 58%, transparent 60%),
+    conic-gradient(var(--color-lime) 0 72%, var(--color-border) 72% 100%);
+  color: var(--color-lime-hover);
+  font-weight: 800;
+}
+.game-quest-grid,
+.game-good-feed,
+.fruit-map-grid,
+.orchard-grid,
+.trust-layer-grid {
+  display: grid;
+  gap: 12px;
+}
+@media (min-width: 860px) {
+  .game-quest-grid,
+  .fruit-map-grid,
+  .orchard-grid,
+  .trust-layer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+.quest-card,
+.good-card,
+.fruit-map-card,
+.orchard-card,
+.trust-layer-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.quest-card { border-color: var(--color-turquoise-soft); }
+.quest-card__head,
+.good-card__head,
+.orchard-card__head,
+.trust-layer-card__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+.quest-card__team,
+.good-card__impact,
+.fruit-map-card__meta,
+.orchard-card__meta,
+.trust-layer-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.quest-card__actions,
+.good-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.game-action { transition: transform var(--duration-fast), box-shadow var(--duration-fast); }
+.game-action:active { transform: translateY(1px); }
+.fruit-map-card {
+  position: relative;
+  overflow: hidden;
+}
+.fruit-map-card::after {
+  content: "";
+  position: absolute;
+  inset: auto -24px -38px auto;
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: var(--fruit-soft, var(--color-turquoise-soft));
+  opacity: 0.7;
+}
+.fruit-map-card__value {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--color-text);
+}
+.water-wallet,
+.sun-wallet {
+  display: grid;
+  gap: 8px;
+  padding: 12px;
+  border-radius: var(--radius-lg);
+}
+.water-wallet { background: var(--color-turquoise-soft); color: var(--color-turquoise-deep); }
+.sun-wallet { background: var(--color-gold-soft); color: var(--color-gold-deep); }
+.orchard-card { border-color: var(--color-lime-soft); }
+.orchard-card__bar {
+  height: 10px;
+  border-radius: var(--radius-full);
+  background: var(--color-border);
+  overflow: hidden;
+}
+.orchard-card__bar span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-lime), var(--color-turquoise));
+}
+.trust-layer-card { border-color: #e2e8f0; }
+.trust-layer-card.is-earned { border-color: var(--color-turquoise-soft); }
+
+/* ==========================================================================
    Quick actions grid
    ========================================================================== */
 

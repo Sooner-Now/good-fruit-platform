@@ -25,6 +25,48 @@
 
       <div data-component="local-feed" data-feed="home" data-title="What’s growing near you" style="margin-bottom: 18px;"></div>
 
+      <section class="game-hero card" data-testid="game-hero">
+        <div class="game-hero__copy">
+          <p class="section-eyebrow">Good Fruit game</p>
+          <h2>Team up. Do good. Grow together.</h2>
+          <p class="text-sm">Earn fruit by joining local quests, confirming good things happening, and inviting others into service. Team actions unlock bigger boosts than solo actions.</p>
+        </div>
+        <div class="game-hero__score">
+          <span class="game-hero__ring">72%</span>
+          <strong>Young Tree</strong>
+          <span>280 fruit to next level</span>
+        </div>
+      </section>
+
+      <section class="grid grid-2" style="margin-bottom: 18px;">
+        <div class="water-wallet">
+          <span class="section-eyebrow">Water wallet</span>
+          <strong class="tabular" style="font-size: 24px;">64 / 100</strong>
+          <span class="text-sm">Regenerates daily. Invest it through prayer, encouragement, mentoring, giving, and hands-on help.</span>
+        </div>
+        <div class="sun-wallet">
+          <span class="section-eyebrow">Sunlight</span>
+          <strong class="tabular" style="font-size: 24px;">18 boosts</strong>
+          <span class="text-sm">Use sunlight to lift needs, local businesses, trainings, testimonies, and good work worth seeing.</span>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-title">
+          <h2>Team quests</h2>
+          <a href="connect.html" class="link">Find more</a>
+        </div>
+        <div class="game-quest-grid" data-game-quests></div>
+      </section>
+
+      <section class="section">
+        <div class="section-title">
+          <h2>Promote good things</h2>
+          <button class="btn btn-primary btn-sm" data-game-promote>+ Share good</button>
+        </div>
+        <div class="game-good-feed" data-good-feed></div>
+      </section>
+
       <!-- Plant avatar card + quick actions, asymmetric layout -->
       <section style="display:grid; gap:16px; grid-template-columns: 1fr;">
         <div class="plant-card" data-testid="card-plant-avatar">
@@ -211,6 +253,7 @@
 
   <div data-component="bottom-nav" data-active="home"></div>
   <script src="assets/shared.js"></script>
+  <script src="assets/good-game.js"></script>
   <script>
     (function () {
       const name = new URLSearchParams(window.location.search).get('name');
